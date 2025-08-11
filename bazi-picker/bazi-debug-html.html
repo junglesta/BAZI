@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Ba Zi Picker — HTMX</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lunar-javascript/1.7.3/lunar.min.js"></script>
+        <style>
+            .mono {
+                font-feature-settings: "tnum" on;
+            }
+            .debug-panel {
+                position: fixed;
+                bottom: 10px;
+                right: 10px;
+                background: rgba(0,0,0,0.8);
+                color: white;
+                padding: 10px;
+                border-radius: 5px;
+                font-family: monospace;
+                font-size: 12px;
+                max-width: 400px;
+                display: none;
+            }
+            .debug-panel.show {
+                display: block;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-900">
+        <main class="max-w-3xl mx-auto p-6 space-y-6">
+            <header>
+                <h1 class="text-2xl font-bold">Ba Zi Picker</h1>
+                <p class="text-sm text-slate-500">
+                    Calendar form with 4 fields → result below. Uses HTMX +
+                    client JS. Optionally works with a server endpoint.
+                </p>
+            </header>
+
+            <!-- FORM (4 elements) -->
+            <form
+                id="bazi-form"
+                class="grid md:grid-cols-4 gap-4 items-end"
+            >
+                <label class="block">
+                    <span class="text-xs text-slate-500">Year</span>
+                    <input
+                        id="year"
+                        name="year"
+                        type="number"
+                        min="1900"
+                        max="2100"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Month</span>
+                    <input
+                        id="month"
+                        name="month"
+                        type="number"
+                        min="1"
+                        max="12"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Day</span>
+                    <input
+                        id="day"
+                        name="day"
+                        type="number"
+                        min="1"
+                        max="31"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Hour (0–23)</span>
+                    <input
+                        id="hour"
+                        name="hour"
+                        type="number"
+                        min="0"
+                        max="23"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+
+                <div class="md:col-span-4 flex gap-3 items-center">
+                    <label class="block">
+                        <span class="text-xs text-slate-500">Timezone</span>
+                        <select
+                            id="tz"
+                            name="tz"
+                            class="mt-1 rounded-xl border p-2"
+                        >
+                            <option>Europe/Rome</option>
+                            <option>UTC</option>
+                            <option>Europe/London</option>
+                            <option>Europe/Paris</option>
+                            <option>America/New_York</option>
+                            <option>Asia/Shanghai</option>
+                            <option>Asia/Tokyo</option>
+                        </select>
+                    </label>
+                    <button
+                        type="button"
+                        id="btn-calculate"
+                        class="px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                    >
+                        Get Ba Zi
+                    </button>
+                    <button
+                        type="button"
+                        id="btn-now"
+                        class="px-4 py-2 rounded-xl bg-white border hover:bg-slate-50 transition-colors"
+                    >
+                        Use Now
+                    </button>
+                    <button
+                        type="button"
+                        id="btn-debug"
+                        class="px-4 py-2 rounded-xl bg-red-500 text-white text-xs"
+                    >
+                        Debug
+                    </button>
+                </div>
+            </form>
+
+            <!-- RESULT AREA -->
+            <section id="result" class="min-h-24"></section>
+
+            <footer class="text-xs text-slate-500">
+                Powered by
+                <a
+                    class="underline"
+                    href="https://cdnjs.cloudflare.com/libraries/lunar-javascript"
+                    target="_blank"
+                    rel="noreferrer"
+                    >lunar-javascript</a
+                >. This page can also call `/api/bazi` if you run the optional
+                server.
+            </footer>
+        </main>
+
+        <!-- Debug Panel -->
+        <div id="debug-panel" class="debug-panel">
+            <div id="debug-content">Debug info will appear here...</div>
+        </div>
+
+        <script>
+            // Debug logging function
+            function debugLog(message) {
+                console.log(message);
+                const debugPanel = document.getElementById('debug-panel');
+                const debugContent = document.getElementById('debug-content');
+                debugContent.innerHTML = `${new Date().toLocaleTimeString()}: ${message}<br>${debugContent.innerHTML}`;
+                debugPanel.classList.add('show');
+            }
+
+            // Check if lunar-javascript loaded
+            window.addEventListener('load', function() {
+                if (typeof Solar !== 'undefined') {
+                    debugLog('✅ lunar-javascript loaded successfully');
+                    console.log('Solar object available:', Solar);
+                } else {
+                    debugLog('❌ lunar-javascript failed to load!');
+                    alert('Error: lunar-javascript library not loaded. Please refresh the page.');
+                }
+            });
+
+            const pad = (n) => String(n).padStart(2, "0");
+
+            // Simplified compute function
+            function computeBaZiClient(y, m, d, h, tz) {
+                try {
+                    debugLog(`Computing for: ${y}-${m}-${d} ${h}:00 ${tz}`);
+                    
+                    // Simple approach: create date directly
+                    const date = new Date(y, m - 1, d, h, 0, 0);
+                    debugLog(`Created date: ${date.toString()}`);
+                    
+                    if (typeof Solar === 'undefined') {
+                        throw new Error('Solar is not defined - library not loaded');
+                    }
+                    
+                    const solar = Solar.fromDate(date);
+                    const lunar = solar.getLunar();
+                    const ec = lunar.getEightChar();
+                    
+                    const result = {
+                        iso: date.toISOString(),
+                        pillars: {
+                            year: ec.getYear(),
+                            month: ec.getMonth(),
+                            day: ec.getDay(),
+                            hour: ec.getTime(),
+                        },
+                        lunar: lunar.toString(),
+                        lunarFull: lunar.toFullString(),
+                        shengxiao: lunar.getYearShengXiao(),
+                    };
+                    
+                    debugLog(`✅ Computed successfully: ${JSON.stringify(result.pillars)}`);
+                    return result;
+                } catch (error) {
+                    debugLog(`❌ Error in computeBaZiClient: ${error.message}`);
+                    console.error('Full error:', error);
+                    throw error;
+                }
+            }
+
+            // Render result HTML
+            function renderResultHTML(data) {
+                const p = data.pillars;
+                return `
+                    <div class="grid md:grid-cols-4 gap-4">
+                        ${["year", "month", "day", "hour"]
+                            .map(
+                                (k) => `
+                                <div class="rounded-2xl bg-white border p-4 shadow-sm">
+                                    <div class="text-xs text-slate-500">${k[0].toUpperCase() + k.slice(1)} Pillar</div>
+                                    <div class="text-2xl font-semibold mt-1">${p[k]}</div>
+                                </div>
+                            `
+                            )
+                            .join("")}
+                    </div>
+                    <div class="mt-4 p-4 bg-white rounded-xl border">
+                        <div class="text-xs text-slate-500 mb-2">Full Data:</div>
+                        <pre class="mono text-sm overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+                    </div>
+                `;
+            }
+
+            // Calculate button handler
+            function handleCalculate() {
+                try {
+                    debugLog('Calculate button clicked');
+                    
+                    const form = document.getElementById('bazi-form');
+                    const y = parseInt(document.getElementById('year').value);
+                    const m = parseInt(document.getElementById('month').value);
+                    const d = parseInt(document.getElementById('day').value);
+                    const h = parseInt(document.getElementById('hour').value);
+                    const tz = document.getElementById('tz').value;
+                    
+                    if (isNaN(y) || isNaN(m) || isNaN(d) || isNaN(h)) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+                    
+                    debugLog(`Form values: ${y}/${m}/${d} ${h}:00 ${tz}`);
+                    
+                    const data = computeBaZiClient(y, m, d, h, tz);
+                    const html = renderResultHTML(data);
+                    document.getElementById('result').innerHTML = html;
+                    
+                    debugLog('✅ Result displayed successfully');
+                } catch (error) {
+                    debugLog(`❌ Error in handleCalculate: ${error.message}`);
+                    document.getElementById('result').innerHTML = `
+                        <div class="p-4 bg-red-50 border border-red-200 rounded-xl">
+                            <p class="text-red-600 font-semibold">Error calculating Ba Zi:</p>
+                            <p class="text-red-500 text-sm mt-1">${error.message}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Use Now button handler
+            function handleUseNow() {
+                try {
+                    debugLog('Use Now button clicked');
+                    const now = new Date();
+                    document.getElementById('year').value = now.getFullYear();
+                    document.getElementById('month').value = now.getMonth() + 1;
+                    document.getElementById('day').value = now.getDate();
+                    document.getElementById('hour').value = now.getHours();
+                    debugLog(`Filled with current time: ${now.toString()}`);
+                } catch (error) {
+                    debugLog(`❌ Error in handleUseNow: ${error.message}`);
+                }
+            }
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                debugLog('DOM loaded, initializing...');
+                
+                // Attach event listeners
+                const calculateBtn = document.getElementById('btn-calculate');
+                const nowBtn = document.getElementById('btn-now');
+                const debugBtn = document.getElementById('btn-debug');
+                
+                if (calculateBtn) {
+                    calculateBtn.addEventListener('click', handleCalculate);
+                    debugLog('Calculate button listener attached');
+                }
+                
+                if (nowBtn) {
+                    nowBtn.addEventListener('click', handleUseNow);
+                    debugLog('Use Now button listener attached');
+                }
+                
+                if (debugBtn) {
+                    debugBtn.addEventListener('click', function() {
+                        const panel = document.getElementById('debug-panel');
+                        panel.classList.toggle('show');
+                    });
+                }
+                
+                // Set initial values to current date/time
+                handleUseNow();
+                
+                // Try to detect user's timezone
+                try {
+                    const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    const tzSelect = document.getElementById('tz');
+                    const options = Array.from(tzSelect.options);
+                    
+                    if (options.some(opt => opt.value === userTZ)) {
+                        tzSelect.value = userTZ;
+                        debugLog(`Detected timezone: ${userTZ}`);
+                    } else {
+                        debugLog(`Timezone ${userTZ} not in list, using Europe/Rome`);
+                    }
+                } catch (e) {
+                    debugLog('Could not detect timezone');
+                }
+                
+                debugLog('✅ Initialization complete');
+            });
+
+            // Test that Solar is available after a short delay
+            setTimeout(() => {
+                if (typeof Solar !== 'undefined') {
+                    try {
+                        const testDate = new Date();
+                        const testSolar = Solar.fromDate(testDate);
+                        debugLog('✅ Solar test successful');
+                    } catch (e) {
+                        debugLog('❌ Solar test failed: ' + e.message);
+                    }
+                }
+            }, 1000);
+        </script>
+    </body>
+</html>

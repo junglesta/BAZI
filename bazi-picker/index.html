@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Ba Zi Calculator • 八字計算器 - Four Pillars of Destiny</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lunar-javascript/1.7.3/lunar.min.js"></script>
+        <style>
+            .mono {
+                font-feature-settings: "tnum" on;
+            }
+            .chinese-char {
+                font-size: 2.5rem;
+                line-height: 1;
+            }
+            .tooltip {
+                position: relative;
+                display: inline-block;
+            }
+            .tooltip .tooltiptext {
+                visibility: hidden;
+                width: 200px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -100px;
+                opacity: 0;
+                transition: opacity 0.3s;
+                font-size: 0.875rem;
+            }
+            .tooltip:hover .tooltiptext {
+                visibility: visible;
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-50 text-slate-900">
+        <main class="max-w-4xl mx-auto p-6 space-y-6">
+            <header>
+                <h1 class="text-3xl font-bold">Ba Zi Calculator • 八字計算器</h1>
+                <p class="text-sm text-slate-500 mt-2">
+                    Four Pillars of Destiny (四柱命理) - Calculate your Chinese astrology chart with complete translations.
+                </p>
+            </header>
+
+            <!-- FORM -->
+            <form id="bazi-form" class="grid md:grid-cols-4 gap-4 items-end">
+                <label class="block">
+                    <span class="text-xs text-slate-500">Year</span>
+                    <input
+                        id="year"
+                        name="year"
+                        type="number"
+                        min="1900"
+                        max="2100"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Month</span>
+                    <input
+                        id="month"
+                        name="month"
+                        type="number"
+                        min="1"
+                        max="12"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Day</span>
+                    <input
+                        id="day"
+                        name="day"
+                        type="number"
+                        min="1"
+                        max="31"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+                <label class="block">
+                    <span class="text-xs text-slate-500">Hour (0–23)</span>
+                    <input
+                        id="hour"
+                        name="hour"
+                        type="number"
+                        min="0"
+                        max="23"
+                        class="mt-1 w-full rounded-xl border p-2"
+                        required
+                    />
+                </label>
+
+                <div class="md:col-span-4 flex gap-3 items-center">
+                    <label class="block">
+                        <span class="text-xs text-slate-500">Timezone</span>
+                        <select id="tz" name="tz" class="mt-1 rounded-xl border p-2">
+                            <option>Europe/Rome</option>
+                            <option>UTC</option>
+                            <option>Europe/London</option>
+                            <option>Europe/Paris</option>
+                            <option>America/New_York</option>
+                            <option>Asia/Shanghai</option>
+                            <option>Asia/Tokyo</option>
+                        </select>
+                    </label>
+                    <button
+                        type="button"
+                        id="btn-calculate"
+                        class="px-4 py-2 rounded-xl bg-slate-900 text-white hover:bg-slate-800 transition-colors"
+                    >
+                        Calculate Ba Zi
+                    </button>
+                    <button
+                        type="button"
+                        id="btn-now"
+                        class="px-4 py-2 rounded-xl bg-white border hover:bg-slate-50 transition-colors"
+                    >
+                        Use Current Time
+                    </button>
+                </div>
+            </form>
+
+            <!-- RESULT AREA -->
+            <section id="result" class="min-h-24"></section>
+
+            <!-- Legend/Help Section -->
+            <details class="bg-white rounded-xl border p-4">
+                <summary class="cursor-pointer font-semibold text-sm">📖 Understanding Your Ba Zi Chart • 了解您的八字</summary>
+                <div class="mt-4 space-y-3 text-sm">
+                    <div>
+                        <h4 class="font-semibold">Heavenly Stems (天干 Tiān Gān) - Elements:</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-5 gap-2 mt-2">
+                            <div><span class="text-lg">甲</span> Jiǎ - Yang Wood</div>
+                            <div><span class="text-lg">乙</span> Yǐ - Yin Wood</div>
+                            <div><span class="text-lg">丙</span> Bǐng - Yang Fire</div>
+                            <div><span class="text-lg">丁</span> Dīng - Yin Fire</div>
+                            <div><span class="text-lg">戊</span> Wù - Yang Earth</div>
+                            <div><span class="text-lg">己</span> Jǐ - Yin Earth</div>
+                            <div><span class="text-lg">庚</span> Gēng - Yang Metal</div>
+                            <div><span class="text-lg">辛</span> Xīn - Yin Metal</div>
+                            <div><span class="text-lg">壬</span> Rén - Yang Water</div>
+                            <div><span class="text-lg">癸</span> Guǐ - Yin Water</div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold">Earthly Branches (地支 Dì Zhī) - Zodiac Animals:</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-2">
+                            <div><span class="text-lg">子</span> Zǐ - Rat</div>
+                            <div><span class="text-lg">丑</span> Chǒu - Ox</div>
+                            <div><span class="text-lg">寅</span> Yín - Tiger</div>
+                            <div><span class="text-lg">卯</span> Mǎo - Rabbit</div>
+                            <div><span class="text-lg">辰</span> Chén - Dragon</div>
+                            <div><span class="text-lg">巳</span> Sì - Snake</div>
+                            <div><span class="text-lg">午</span> Wǔ - Horse</div>
+                            <div><span class="text-lg">未</span> Wèi - Goat</div>
+                            <div><span class="text-lg">申</span> Shēn - Monkey</div>
+                            <div><span class="text-lg">酉</span> Yǒu - Rooster</div>
+                            <div><span class="text-lg">戌</span> Xū - Dog</div>
+                            <div><span class="text-lg">亥</span> Hài - Pig</div>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 italic">
+                        Each pillar combines one Heavenly Stem with one Earthly Branch, creating 60 possible combinations in the full cycle.
+                    </p>
+                </div>
+            </details>
+
+            <footer class="text-xs text-slate-500">
+                Powered by <a class="underline" href="https://cdnjs.cloudflare.com/libraries/lunar-javascript" target="_blank">lunar-javascript</a>
+            </footer>
+        </main>
+
+        <script>
+            // Translation mappings
+            const HEAVENLY_STEMS = {
+                '甲': { pinyin: 'Jiǎ', element: 'Yang Wood', number: 1 },
+                '乙': { pinyin: 'Yǐ', element: 'Yin Wood', number: 2 },
+                '丙': { pinyin: 'Bǐng', element: 'Yang Fire', number: 3 },
+                '丁': { pinyin: 'Dīng', element: 'Yin Fire', number: 4 },
+                '戊': { pinyin: 'Wù', element: 'Yang Earth', number: 5 },
+                '己': { pinyin: 'Jǐ', element: 'Yin Earth', number: 6 },
+                '庚': { pinyin: 'Gēng', element: 'Yang Metal', number: 7 },
+                '辛': { pinyin: 'Xīn', element: 'Yin Metal', number: 8 },
+                '壬': { pinyin: 'Rén', element: 'Yang Water', number: 9 },
+                '癸': { pinyin: 'Guǐ', element: 'Yin Water', number: 10 }
+            };
+
+            const EARTHLY_BRANCHES = {
+                '子': { pinyin: 'Zǐ', animal: 'Rat', element: 'Water', number: 1 },
+                '丑': { pinyin: 'Chǒu', animal: 'Ox', element: 'Earth', number: 2 },
+                '寅': { pinyin: 'Yín', animal: 'Tiger', element: 'Wood', number: 3 },
+                '卯': { pinyin: 'Mǎo', animal: 'Rabbit', element: 'Wood', number: 4 },
+                '辰': { pinyin: 'Chén', animal: 'Dragon', element: 'Earth', number: 5 },
+                '巳': { pinyin: 'Sì', animal: 'Snake', element: 'Fire', number: 6 },
+                '午': { pinyin: 'Wǔ', animal: 'Horse', element: 'Fire', number: 7 },
+                '未': { pinyin: 'Wèi', animal: 'Goat', element: 'Earth', number: 8 },
+                '申': { pinyin: 'Shēn', animal: 'Monkey', element: 'Metal', number: 9 },
+                '酉': { pinyin: 'Yǒu', animal: 'Rooster', element: 'Metal', number: 10 },
+                '戌': { pinyin: 'Xū', animal: 'Dog', element: 'Earth', number: 11 },
+                '亥': { pinyin: 'Hài', animal: 'Pig', element: 'Water', number: 12 }
+            };
+
+            // Parse a pillar (e.g., "甲子") into components
+            function parsePillar(pillar) {
+                if (!pillar || pillar.length !== 2) return null;
+                
+                const stem = pillar[0];
+                const branch = pillar[1];
+                
+                const stemInfo = HEAVENLY_STEMS[stem] || {};
+                const branchInfo = EARTHLY_BRANCHES[branch] || {};
+                
+                return {
+                    chinese: pillar,
+                    stem: stem,
+                    branch: branch,
+                    stemPinyin: stemInfo.pinyin || stem,
+                    branchPinyin: branchInfo.pinyin || branch,
+                    stemElement: stemInfo.element || 'Unknown',
+                    branchAnimal: branchInfo.animal || 'Unknown',
+                    branchElement: branchInfo.element || 'Unknown',
+                    fullPinyin: `${stemInfo.pinyin || stem}-${branchInfo.pinyin || branch}`,
+                    description: `${stemInfo.element || 'Unknown'} / ${branchInfo.animal || 'Unknown'}`
+                };
+            }
+
+            // Compute Ba Zi
+            function computeBaZiClient(y, m, d, h, tz) {
+                try {
+                    const date = new Date(y, m - 1, d, h, 0, 0);
+                    
+                    if (typeof Solar === 'undefined') {
+                        throw new Error('Lunar library not loaded');
+                    }
+                    
+                    const solar = Solar.fromDate(date);
+                    const lunar = solar.getLunar();
+                    const ec = lunar.getEightChar();
+                    
+                    return {
+                        iso: date.toISOString(),
+                        pillars: {
+                            year: ec.getYear(),
+                            month: ec.getMonth(),
+                            day: ec.getDay(),
+                            hour: ec.getTime(),
+                        },
+                        pillarsEnglish: {
+                            year: parsePillar(ec.getYear()),
+                            month: parsePillar(ec.getMonth()),
+                            day: parsePillar(ec.getDay()),
+                            hour: parsePillar(ec.getTime()),
+                        },
+                        lunar: lunar.toString(),
+                        lunarFull: lunar.toFullString(),
+                        shengxiao: lunar.getYearShengXiao(),
+                    };
+                } catch (error) {
+                    console.error('Error computing Ba Zi:', error);
+                    throw error;
+                }
+            }
+
+            // Render result with translations
+            function renderResultHTML(data) {
+                const pillars = data.pillarsEnglish;
+                const pillarNames = ['year', 'month', 'day', 'hour'];
+                
+                let html = `
+                    <div class="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-xl">
+                        <p class="text-blue-900 font-semibold">Your Ba Zi (Four Pillars of Destiny) • 八字</p>
+                        <p class="text-blue-700 text-sm mt-1">Born: ${new Date(data.iso).toLocaleString()}</p>
+                        <p class="text-blue-700 text-sm">Chinese Zodiac: ${data.shengxiao}</p>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-4 gap-4 mb-6">
+                `;
+                
+                pillarNames.forEach(name => {
+                    const pillar = pillars[name];
+                    if (!pillar) return;
+                    
+                    html += `
+                        <div class="rounded-2xl bg-white border p-4 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-xs text-slate-500 font-semibold uppercase tracking-wide">
+                                ${name} Pillar
+                            </div>
+                            <div class="chinese-char font-bold mt-2 text-slate-800">
+                                ${pillar.chinese}
+                            </div>
+                            <div class="text-lg font-semibold text-slate-700 mt-1">
+                                ${pillar.fullPinyin}
+                            </div>
+                            <div class="text-sm text-slate-600 mt-1">
+                                ${pillar.description}
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-slate-100">
+                                <div class="text-xs text-slate-500">
+                                    <div class="flex justify-between">
+                                        <span>Stem (${pillar.stem}):</span>
+                                        <span class="font-medium text-slate-700">${pillar.stemElement}</span>
+                                    </div>
+                                    <div class="flex justify-between mt-1">
+                                        <span>Branch (${pillar.branch}):</span>
+                                        <span class="font-medium text-slate-700">${pillar.branchAnimal}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                html += `
+                    </div>
+                    
+                    <div class="bg-white rounded-xl border p-4">
+                        <h3 class="font-semibold text-sm mb-3">Element Analysis • 五行分析</h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                            ${pillarNames.map(name => {
+                                const p = pillars[name];
+                                return `
+                                    <div>
+                                        <div class="text-xs text-slate-500 uppercase">${name}</div>
+                                        <div class="font-medium">${p.stemElement.split(' ')[1]}</div>
+                                        <div class="text-xs text-slate-600">${p.stemElement.split(' ')[0]}</div>
+                                        <div class="text-xs text-slate-500">${p.stem} ${p.stemPinyin}</div>
+                                    </div>
+                                `;
+                            }).join('')}
+                        </div>
+                    </div>
+                    
+                    <details class="mt-4 bg-slate-50 rounded-xl border p-4">
+                        <summary class="cursor-pointer text-sm font-semibold">View Raw Data</summary>
+                        <pre class="mt-3 text-xs overflow-x-auto">${JSON.stringify(data, null, 2)}</pre>
+                    </details>
+                `;
+                
+                return html;
+            }
+
+            // Calculate button handler
+            function handleCalculate() {
+                try {
+                    const y = parseInt(document.getElementById('year').value);
+                    const m = parseInt(document.getElementById('month').value);
+                    const d = parseInt(document.getElementById('day').value);
+                    const h = parseInt(document.getElementById('hour').value);
+                    const tz = document.getElementById('tz').value;
+                    
+                    if (isNaN(y) || isNaN(m) || isNaN(d) || isNaN(h)) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+                    
+                    const data = computeBaZiClient(y, m, d, h, tz);
+                    const html = renderResultHTML(data);
+                    document.getElementById('result').innerHTML = html;
+                    
+                } catch (error) {
+                    document.getElementById('result').innerHTML = `
+                        <div class="p-4 bg-red-50 border border-red-200 rounded-xl">
+                            <p class="text-red-600 font-semibold">Error calculating Ba Zi:</p>
+                            <p class="text-red-500 text-sm mt-1">${error.message}</p>
+                        </div>
+                    `;
+                }
+            }
+
+            // Use Now button handler
+            function handleUseNow() {
+                const now = new Date();
+                document.getElementById('year').value = now.getFullYear();
+                document.getElementById('month').value = now.getMonth() + 1;
+                document.getElementById('day').value = now.getDate();
+                document.getElementById('hour').value = now.getHours();
+            }
+
+            // Initialize when DOM is ready
+            document.addEventListener('DOMContentLoaded', function() {
+                // Attach event listeners
+                document.getElementById('btn-calculate').addEventListener('click', handleCalculate);
+                document.getElementById('btn-now').addEventListener('click', handleUseNow);
+                
+                // Set initial values to current date/time
+                handleUseNow();
+                
+                // Try to detect user's timezone
+                try {
+                    const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    const tzSelect = document.getElementById('tz');
+                    const options = Array.from(tzSelect.options);
+                    
+                    if (options.some(opt => opt.value === userTZ)) {
+                        tzSelect.value = userTZ;
+                    }
+                } catch (e) {
+                    console.log('Could not detect timezone');
+                }
+            });
+        </script>
+    </body>
+</html>
