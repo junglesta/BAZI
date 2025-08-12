@@ -153,11 +153,24 @@
                 color: #7fff00;
             }
 
+            .calculated-date-info {
+                text-align: center;
+                margin-bottom: 15px;
+                margin-top: 10px;
+            }
+
+            .date-display {
+                font-size: 1rem;
+                color: #aaa;
+                letter-spacing: 0.5px;
+            }
+
             .pillars-container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
                 gap: 20px;
                 margin-top: 30px;
+                margin-bottom: 30px;
             }
 
             .pillar {
@@ -184,13 +197,13 @@
             }
 
             .chinese-char {
-                font-size: 2rem;
+                font-size: 1rem;
                 font-weight: bold;
             }
 
             .pinyin {
                 color: #aaa;
-                font-size: 0.8rem;
+                font-size: 0.4rem;
                 margin-top: 3px;
             }
 
@@ -254,7 +267,7 @@
             }
 
             .animal-info {
-                font-size: 1.2rem;
+                font-size: 2.4rem;
                 margin: 10px 0;
                 font-weight: 500;
             }
@@ -307,8 +320,56 @@
                 h1 {
                     font-size: 1.8rem;
                 }
+                .date-display {
+                    font-size: 0.9rem;
+                }
                 .pillars-container {
-                    grid-template-columns: 1fr;
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 10px;
+                }
+                .pillar {
+                    padding: 15px 10px;
+                }
+                .chinese-char {
+                    font-size: 0.75rem;
+                }
+                .animal-emoji {
+                    font-size: 2.5rem;
+                }
+                .animal-info {
+                    font-size: 1.8rem;
+                }
+                .element {
+                    font-size: 0.9rem;
+                    padding: 3px 10px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .date-display {
+                    font-size: 0.85rem;
+                }
+                .pillars-container {
+                    grid-template-columns: repeat(2, 1fr);
+                    gap: 8px;
+                }
+                .pillar {
+                    padding: 12px 8px;
+                }
+                .pillar-title {
+                    font-size: 1rem;
+                }
+                .chinese-char {
+                    font-size: 0.65rem;
+                }
+                .animal-emoji {
+                    font-size: 2rem;
+                }
+                .pinyin {
+                    font-size: 0.35rem;
+                }
+                .animal-info {
+                    font-size: 1.4rem;
                 }
             }
         </style>
@@ -386,11 +447,11 @@
 
         <div class="container">
             <header>
-                <h1>BA ZI</h1>
-                <p class="subtitle">PILLAR OF DESTINY</p>
-                <span class="validation-badge"
-                    >✓ Mathematics meets ancient wisdom - Beautiful simplicity
-                </span>
+                <h1>BaZi</h1>
+                <small class="validation-badge"
+                    >✓ Mathematics meets ancient metaphors
+                </small>
+                <small class="subtitle">PILLAR OF DESTINY</small>
             </header>
 
             <div class="input-section">
@@ -499,6 +560,20 @@
                 </button>
             </div>
 
+            <!-- Calculated Date Display -->
+            <div
+                class="calculated-date-info"
+                id="calculatedDateInfo"
+                style="display: none"
+            >
+                <div class="date-display" id="dateDisplay">
+                    <!-- Date info will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Pillars moved up to be 3rd block -->
+            <div class="pillars-container" id="pillarsContainer"></div>
+
             <div
                 class="astronomical-data"
                 id="astronomicalData"
@@ -543,8 +618,6 @@
                 </div>
             </div>
 
-            <div class="pillars-container" id="pillarsContainer"></div>
-
             <div class="test-cases">
                 <h3 style="color: #7fff00; margin-bottom: 10px">
                     Geometric Test Points | 0°, 90°, 180°, 195°, 270°
@@ -568,9 +641,14 @@
                 >✓ Mathematics: Cold Dew 1967 Validated to ±0.001°</span
             >
 
+            <span class="validation-badge">✓ Beautiful simplicity </span>
+
             <span class="validation-badge"
-                >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1,
-                ChatGPT5</span
+                >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight Characters,
+                based on the Ganzhi calendar</span
+            >
+            <span class="validation-badge"
+                >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1</span
             >
             <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
         </div>
@@ -1115,6 +1193,51 @@
                     );
                     console.log("======================");
                 }
+
+                // Display calculated date info
+                const monthNames = [
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December",
+                ];
+                const dayNames = [
+                    "Sunday",
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                ];
+
+                const localDateDisplay = new Date(
+                    year,
+                    month - 1,
+                    day,
+                    hour,
+                    minute,
+                );
+                const dayOfWeek = dayNames[localDateDisplay.getDay()];
+                const monthName = monthNames[month - 1];
+
+                // Get timezone name from select
+                const timezoneSelect = document.getElementById("timezone");
+                const timezoneName =
+                    timezoneSelect.options[timezoneSelect.selectedIndex].text;
+
+                document.getElementById("calculatedDateInfo").style.display =
+                    "block";
+                document.getElementById("dateDisplay").innerHTML =
+                    `${dayOfWeek}, ${monthName} ${day}, ${year} at ${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} (${timezoneName})`;
 
                 // Display astronomical data
                 document.getElementById("astronomicalData").style.display =
