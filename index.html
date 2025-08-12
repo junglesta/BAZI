@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <meta name="version" content="90" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>BAZI 八字 Math From First Principles</title>
@@ -23,7 +24,7 @@
                 );
                 min-height: 100vh;
                 color: #fff;
-                padding: 20px;
+                padding: 1dvh;
             }
 
             .container {
@@ -33,21 +34,21 @@
 
             header {
                 text-align: center;
-                margin-bottom: 40px;
-                padding: 20px;
-                background: rgba(255, 255, 255, 0.05);
-                border-radius: 15px;
-                backdrop-filter: blur(10px);
+                margin-bottom: 1dvh;
+                padding: 1dvh;
+                /* background: rgba(255, 255, 255, 0.05); */
+                border-radius: 1dvh;
+                backdrop-filter: blur(0.75dvh);
             }
 
             h1 {
                 font-size: 3rem;
-                margin-bottom: 10px;
+                margin-bottom: 0.5dvh;
                 background: linear-gradient(45deg, #7fff00, #adff2f);
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
-                font-weight: 900;
+                font-weight: 300;
                 letter-spacing: 3px;
             }
 
@@ -56,29 +57,51 @@
                 font-size: 1.1rem;
             }
 
+            footer {
+                padding-block: 5dvh;
+                padding-inline: 1dvh;
+            }
+
+            h1,
+            h2,
+            h3 {
+                font-weight: 300;
+            }
+            h4,
+            h5,
+            h6 {
+                font-weight: 500;
+            }
+
             .validation-badge {
                 display: inline-block;
-                background: rgba(127, 255, 0, 0.2);
+                border-color: #7fff00;
+                /*rgba(127, 255, 0, 0.2);*/
                 color: #7fff00;
-                padding: 5px 15px;
-                border-radius: 20px;
+                padding: 0.25dvh 1dvh;
+                border-radius: 1dvh;
                 font-size: 0.9rem;
-                margin-top: 10px;
+                margin-top: 1dvh;
+            }
+
+            .pad_top_5 {
+                margin-top: 5dvh;
+                padding-top: 5dvh;
             }
 
             .input-section {
                 background: rgba(255, 255, 255, 0.08);
-                border-radius: 15px;
-                padding: 30px;
-                margin-bottom: 30px;
-                backdrop-filter: blur(10px);
+                border-radius: 0.75dvh;
+                padding: 1.5dvh;
+                margin-bottom: 1.5dvh;
+                backdrop-filter: blur(0.75dvh);
             }
 
             .input-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-                margin-bottom: 20px;
+                gap: 1dvh;
+                margin-bottom: 1dvh;
             }
 
             .input-group {
@@ -87,7 +110,7 @@
             }
 
             label {
-                margin-bottom: 5px;
+                margin-bottom: 0.25dvh;
                 color: #adff2f;
                 font-size: 0.9rem;
                 text-transform: uppercase;
@@ -95,11 +118,11 @@
             }
 
             input {
-                padding: 10px;
+                padding: 0.5dvh;
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 background: rgba(255, 255, 255, 0.05);
                 color: #fff;
-                border-radius: 8px;
+                border-radius: 0.175dvh;
                 font-size: 1rem;
             }
 
@@ -107,14 +130,14 @@
                 background: linear-gradient(45deg, #7fff00, #32cd32);
                 color: #0a0f0a;
                 border: none;
-                padding: 12px 30px;
-                border-radius: 8px;
+                padding: 0.75dvh 1.5dvh;
+                border-radius: 1dvh;
                 font-size: 1.1rem;
                 font-weight: bold;
                 cursor: pointer;
-                transition: transform 0.2s;
-                margin-top: 10px;
-                margin-right: 10px;
+                transition: transform 0.3s;
+                margin-top: 0.5dvh;
+                margin-right: 0.5dvh;
             }
 
             button:hover {
@@ -124,29 +147,29 @@
             .astronomical-data {
                 background: rgba(50, 205, 50, 0.1);
                 border: 1px solid rgba(127, 255, 0, 0.3);
-                border-radius: 15px;
-                padding: 20px;
-                margin-bottom: 30px;
+                border-radius: 1dvh;
+                padding: 1dvh;
+                margin-bottom: 2dvh;
             }
 
             .data-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-                margin-top: 20px;
+                gap: 1dvh;
+                margin-top: 1dvh;
             }
 
             .data-card {
                 background: rgba(255, 255, 255, 0.05);
-                padding: 15px;
-                border-radius: 10px;
+                padding: 1dvh;
+                border-radius: 0.5dvh;
                 border: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .data-label {
                 color: #8a8a8a;
                 font-size: 0.85rem;
-                margin-bottom: 5px;
+                margin-bottom: 0.75dvh;
             }
 
             .data-value {
@@ -157,28 +180,28 @@
 
             .calculated-date-info {
                 text-align: center;
-                margin-bottom: 15px;
-                margin-top: 10px;
+                margin-top: 0.5dvh;
+                margin-bottom: 1dvh;
             }
 
             .date-display {
-                font-size: 1rem;
-                color: #aaa;
+                font-size: 1.2rem;
+                color: #7fff00;
                 letter-spacing: 0.5px;
             }
 
             .pillars-container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 20px;
-                margin-top: 30px;
-                margin-bottom: 30px;
+                gap: 1.5dvh;
+                margin-top: 1.5dvh;
+                margin-bottom: 1.5dvh;
             }
 
             .pillar {
                 background: rgba(255, 255, 255, 0.08);
-                border-radius: 15px;
-                padding: 20px;
+                border-radius: 0.75dvh;
+                padding: 1.5dvh;
                 text-align: center;
                 border: 2px solid rgba(127, 255, 0, 0.3);
             }
@@ -186,7 +209,7 @@
             .pillar-title {
                 font-size: 1.2rem;
                 color: #adff2f;
-                margin-bottom: 15px;
+                margin-bottom: 0.75dvh;
                 font-weight: bold;
             }
 
@@ -194,8 +217,8 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 10px;
-                margin: 15px 0;
+                gap: 0.75dvh;
+                margin: 0.75dvh 0;
             }
 
             .chinese-char {
@@ -211,10 +234,10 @@
 
             .element {
                 display: inline-block;
-                padding: 5px 15px;
-                border-radius: 20px;
+                padding: 5px 0.75dvh;
+                border-radius: 1.5dvh;
                 font-size: 1.1rem;
-                margin-top: 10px;
+                margin-top: 0.75dvh;
                 font-weight: bold;
             }
 
@@ -241,54 +264,55 @@
 
             .animal-emoji {
                 font-size: 3.5rem;
-                margin: 15px 0;
+                margin: 0.75dvh 0;
             }
 
             .animal-emoji-wood {
                 filter: url(#greenify)
-                    drop-shadow(0 0 8px rgba(127, 255, 0, 0.5));
+                    drop-shadow(0 0 0.65dvh rgba(127, 255, 0, 0.5));
             }
 
             .animal-emoji-fire {
-                filter: url(#redify) drop-shadow(0 0 8px rgba(255, 69, 0, 0.5));
+                filter: url(#redify)
+                    drop-shadow(0 0 0.65dvh rgba(255, 69, 0, 0.5));
             }
 
             .animal-emoji-earth {
                 filter: url(#earthify)
-                    drop-shadow(0 0 8px rgba(218, 165, 32, 0.5));
+                    drop-shadow(0 0 0.65dvh rgba(218, 165, 32, 0.5));
             }
 
             .animal-emoji-metal {
                 filter: url(#metalify)
-                    drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
+                    drop-shadow(0 0 0.65dvh rgba(192, 192, 192, 0.5));
             }
 
             .animal-emoji-water {
                 filter: url(#blueify)
-                    drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
+                    drop-shadow(0 0 0.65dvh rgba(30, 144, 255, 0.5));
             }
 
             .animal-info {
                 font-size: 2.4rem;
-                margin: 10px 0;
+                margin: 0.75dvh 0;
                 font-weight: 500;
             }
 
             .solar-term-info {
                 background: rgba(60, 179, 113, 0.1);
                 border: 1px solid rgba(60, 179, 113, 0.3);
-                border-radius: 15px;
-                padding: 20px;
-                margin-top: 20px;
+                border-radius: 0.75dvh;
+                padding: 1.5dvh;
+                margin-top: 1.5dvh;
             }
 
             .term-progress {
                 width: 100%;
-                height: 20px;
+                height: 1.5dvh;
                 background: rgba(255, 255, 255, 0.1);
-                border-radius: 10px;
+                border-radius: 0.75dvh;
                 overflow: hidden;
-                margin-top: 10px;
+                margin-top: 0.75dvh;
             }
 
             .term-progress-bar {
@@ -300,16 +324,16 @@
             .test-cases {
                 background: rgba(34, 139, 34, 0.05);
                 border: 1px solid rgba(127, 255, 0, 0.2);
-                border-radius: 10px;
-                padding: 15px;
-                margin-top: 30px;
+                border-radius: 0.75dvh;
+                padding: 0.75dvh;
+                margin-top: 1dvh;
             }
 
             .test-button {
                 background: rgba(127, 255, 0, 0.2);
                 color: #7fff00;
                 border: 1px solid #7fff00;
-                padding: 8px 15px;
+                padding: 0.65dvh 0.75dvh;
                 margin: 5px;
                 font-size: 0.9rem;
             }
@@ -318,19 +342,19 @@
                 background: rgba(127, 255, 0, 0.3);
             }
 
-            @media (max-width: 768px) {
+            @media (max-width: 760.65dvh) {
                 h1 {
-                    font-size: 1.8rem;
+                    font-size: 3.3rem;
                 }
                 .date-display {
                     font-size: 0.9rem;
                 }
                 .pillars-container {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 10px;
+                    gap: 0.75dvh;
                 }
                 .pillar {
-                    padding: 15px 10px;
+                    padding: 0.75dvh 0.75dvh;
                 }
                 .chinese-char {
                     font-size: 0.75rem;
@@ -343,12 +367,12 @@
                 }
                 .element {
                     font-size: 0.9rem;
-                    padding: 3px 10px;
+                    padding: 3px 0.75dvh;
                 }
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: 10px !important;
+                    margin-top: 0.75dvh !important;
                 }
             }
 
@@ -358,10 +382,10 @@
                 }
                 .pillars-container {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 8px;
+                    gap: 0.65dvh;
                 }
                 .pillar {
-                    padding: 12px 8px;
+                    padding: 0.85dvh 0.65dvh;
                 }
                 .pillar-title {
                     font-size: 1rem;
@@ -381,7 +405,7 @@
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: 10px !important;
+                    margin-top: 0.75dvh !important;
                 }
                 #urlDisplay {
                     font-size: 0.75rem !important;
@@ -469,7 +493,7 @@
             </header>
 
             <div class="input-section">
-                <h2 style="margin-bottom: 20px">Enter Birth Information</h2>
+                <h2 style="margin-bottom: 1.5dvh">Enter Birth Information</h2>
                 <div class="input-grid">
                     <div class="input-group">
                         <label for="year">Year</label>
@@ -526,8 +550,8 @@
                         <select
                             id="timezone"
                             style="
-                                padding: 10px;
-                                border-radius: 8px;
+                                padding: 0.75dvh;
+                                border-radius: 0.65dvh;
                                 background: rgba(255, 255, 255, 0.05);
                                 color: white;
                                 border: 1px solid rgba(255, 255, 255, 0.2);
@@ -573,10 +597,10 @@
                 <div
                     id="urlDisplay"
                     style="
-                        margin-top: 20px;
-                        padding: 12px 15px;
+                        margin-top: 1.5dvh;
+                        padding: 0.85dvh 0.75dvh;
                         background: rgba(255, 255, 255, 0.05);
-                        border-radius: 8px;
+                        border-radius: 0.65dvh;
                         font-size: 0.85rem;
                         color: #fff;
                         display: none;
@@ -590,7 +614,7 @@
                         style="
                             cursor: pointer;
                             display: inline-block;
-                            margin-right: 10px;
+                            margin-right: 0.75dvh;
                             color: #7fff00;
                             font-size: 1.2rem;
                             vertical-align: middle;
@@ -625,7 +649,7 @@
                 id="astronomicalData"
                 style="display: none"
             >
-                <h3 style="color: #7fff00; margin-bottom: 20px">
+                <h3 style="color: #7fff00; margin-bottom: 1.5dvh">
                     🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar Term
                 </h3>
                 <div class="data-grid">
@@ -655,7 +679,7 @@
                 id="solarTermInfo"
                 style="display: none"
             >
-                <h3 style="color: #32cd32; margin-bottom: 20px">
+                <h3 style="color: #32cd32; margin-bottom: 1.5dvh">
                     📐 Geometric Position in Earth's Orbit
                 </h3>
                 <div id="termDetails"></div>
@@ -665,7 +689,7 @@
             </div>
 
             <div class="test-cases">
-                <h3 style="color: #7fff00; margin-bottom: 10px">
+                <h3 style="color: #7fff00; margin-bottom: 0.75dvh">
                     Geometric Test Points | 0°, 90°, 180°, 195°, 270°
                 </h3>
                 <button class="test-button" onclick="testColdDew1967()">
@@ -679,24 +703,27 @@
                 </button>
             </div>
 
-            <span class="validation-badge"
-                >✓ This opensource webapp is made from first principles
-            </span>
+            <footer>
+                <span class="validation-badge"
+                    >✓ This opensource webapp is made from first principles
+                </span>
 
-            <span class="validation-badge"
-                >✓ Mathematics: Cold Dew 1967 Validated to ±0.001°</span
-            >
+                <span class="validation-badge"
+                    >✓ Mathematics: Cold Dew 1967 Validated to ±0.001°</span
+                >
 
-            <span class="validation-badge">✓ Beautiful simplicity </span>
+                <span class="validation-badge">✓ Beautiful simplicity </span>
 
-            <span class="validation-badge"
-                >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight Characters,
-                based on the Ganzhi calendar</span
-            >
-            <span class="validation-badge"
-                >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1</span
-            >
-            <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
+                <span class="validation-badge"
+                    >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
+                    Characters, based on the Ganzhi calendar</span
+                >
+                <span class="validation-badge"
+                    >✓ Vibe Coded by Toybreaker w/help from Claude Opus
+                    4.1</span
+                >
+                <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
+            </footer>
         </div>
 
         <script>
