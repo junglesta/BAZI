@@ -113,6 +113,8 @@
                 font-weight: bold;
                 cursor: pointer;
                 transition: transform 0.2s;
+                margin-top: 10px;
+                margin-right: 10px;
             }
 
             button:hover {
@@ -343,6 +345,11 @@
                     font-size: 0.9rem;
                     padding: 3px 10px;
                 }
+                button {
+                    width: 100%;
+                    margin-left: 0 !important;
+                    margin-top: 10px !important;
+                }
             }
 
             @media (max-width: 480px) {
@@ -370,6 +377,14 @@
                 }
                 .animal-info {
                     font-size: 1.4rem;
+                }
+                button {
+                    width: 100%;
+                    margin-left: 0 !important;
+                    margin-top: 10px !important;
+                }
+                #urlDisplay {
+                    font-size: 0.75rem !important;
                 }
             }
         </style>
@@ -552,11 +567,37 @@
                     onclick="testCurrentTime()"
                     style="
                         background: linear-gradient(45deg, #32cd32, #228b22);
-                        margin-left: 10px;
                     "
                 >
                     NOW
                 </button>
+                <div id="urlDisplay" style="
+                    margin-top: 20px;
+                    padding: 12px 15px;
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 8px;
+                    font-size: 0.85rem;
+                    color: #fff;
+                    display: none;
+                    align-items: center;
+                    word-break: break-all;
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                ">
+                    <span onclick="copyLink()" style="
+                        cursor: pointer;
+                        display: inline-block;
+                        margin-right: 10px;
+                        color: #7fff00;
+                        font-size: 1.2rem;
+                        vertical-align: middle;
+                        transition: transform 0.2s;
+                    " 
+                    onmouseover="this.style.transform='scale(1.2)'" 
+                    onmouseout="this.style.transform='scale(1)'"
+                    title="Copy to clipboard"
+                    id="copyIcon">📋</span>
+                    <span id="urlText" style="vertical-align: middle;"></span>
+                </div>
             </div>
 
             <!-- Calculated Date Display -->
@@ -994,6 +1035,109 @@
             };
 
             // ============================================================================
+            // URL HANDLING
+            // ============================================================================
+
+            function updateURL() {
+                const params = new URLSearchParams();
+                params.set('y', document.getElementById("year").value);
+                params.set('m', document.getElementById("month").value);
+                params.set('d', document.getElementById("day").value);
+                params.set('h', document.getElementById("hour").value);
+                params.set('min', document.getElementById("minute").value);
+                params.set('tz', document.getElementById("timezone").value);
+                
+                // Create shareable URL (replace with your actual domain)
+                const shareableURL = 'https://yourwebsite.com/bazi.html?' + params.toString();
+                
+                // Show URL display with copy icon
+                document.getElementById("urlDisplay").style.display = "flex";
+                document.getElementById("urlText").textContent = shareableURL;
+                
+                // Store for copying
+                window.shareableURL = shareableURL;
+            }
+
+            function loadFromURL() {
+                const params = new URLSearchParams(window.location.search);
+                
+                if (params.has('y')) {
+                    document.getElementById("year").value = params.get('y');
+                    document.getElementById("month").value = params.get('m') || '1';
+                    document.getElementById("day").value = params.get('d') || '1';
+                    document.getElementById("hour").value = params.get('h') || '0';
+                    document.getElementById("minute").value = params.get('min') || '0';
+                    document.getElementById("timezone").value = params.get('tz') || '0';
+                    calculateBaZi();
+                    return true;
+                }
+                return false;
+            }
+
+            function copyLink() {
+                // Use the stored shareable URL
+                const url = window.shareableURL || 'https://yourwebsite.com/bazi.html';
+                
+                // Try modern clipboard API first
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(() => {
+                        const icon = document.getElementById("copyIcon");
+                        const originalIcon = icon.innerHTML;
+                        icon.innerHTML = "✅";
+                        icon.style.color = "#32cd32";
+                        
+                        setTimeout(() => {
+                            icon.innerHTML = originalIcon;
+                            icon.style.color = "#7fff00";
+                        }, 2000);
+                    }).catch(err => {
+                        // Fallback to older method
+                        fallbackCopyTextToClipboard(url);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(url);
+                }
+            }
+
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.width = "2em";
+                textArea.style.height = "2em";
+                textArea.style.padding = "0";
+                textArea.style.border = "none";
+                textArea.style.outline = "none";
+                textArea.style.boxShadow = "none";
+                textArea.style.background = "transparent";
+                
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    const icon = document.getElementById("copyIcon");
+                    const originalIcon = icon.innerHTML;
+                    icon.innerHTML = "✅";
+                    icon.style.color = "#32cd32";
+                    
+                    setTimeout(() => {
+                        icon.innerHTML = originalIcon;
+                        icon.style.color = "#7fff00";
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy:', err);
+                    alert('Press Ctrl+C/Cmd+C to copy: ' + text);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+
+            // ============================================================================
             // BA ZI CALCULATION
             // ============================================================================
 
@@ -1270,6 +1414,9 @@
 
                 document.getElementById("pillarsContainer").innerHTML =
                     pillarsHTML;
+                
+                // Update URL with current parameters
+                updateURL();
             }
 
             function generatePillarHTML(title, pillar) {
@@ -1378,8 +1525,14 @@
                 calculateBaZi();
             }
 
-            // Load with current time on startup
-            window.onload = () => testCurrentTime();
+            // Load with URL parameters or current time on startup
+            window.onload = () => {
+                // First check if URL has parameters
+                if (!loadFromURL()) {
+                    // If no URL parameters, load current time
+                    testCurrentTime();
+                }
+            };
         </script>
     </body>
 </html>
