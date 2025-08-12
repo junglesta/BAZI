@@ -196,15 +196,35 @@
             font-weight: bold;
         }
         
-        .element-wood { background: rgba(0, 255, 0, 0.2); color: #00ff00; }
-        .element-fire { background: rgba(255, 69, 0, 0.2); color: #ff6347; }
-        .element-earth { background: rgba(160, 82, 45, 0.2); color: #daa520; }
-        .element-metal { background: rgba(192, 192, 192, 0.2); color: #c0c0c0; }
-        .element-water { background: rgba(30, 144, 255, 0.2); color: #1e90ff; }
+        .element-wood { background: rgba(34, 139, 34, 0.3); color: #32cd32; }
+        .element-fire { background: rgba(255, 69, 0, 0.3); color: #ff6347; }
+        .element-earth { background: rgba(160, 82, 45, 0.3); color: #daa520; }
+        .element-metal { background: rgba(192, 192, 192, 0.3); color: #c0c0c0; }
+        .element-water { background: rgba(30, 144, 255, 0.3); color: #1e90ff; }
         
         .animal-emoji {
             font-size: 3.5rem;
             margin: 15px 0;
+        }
+        
+        .animal-emoji-wood {
+            filter: url(#greenify) drop-shadow(0 0 8px rgba(127, 255, 0, 0.5));
+        }
+        
+        .animal-emoji-fire {
+            filter: url(#redify) drop-shadow(0 0 8px rgba(255, 69, 0, 0.5));
+        }
+        
+        .animal-emoji-earth {
+            filter: url(#earthify) drop-shadow(0 0 8px rgba(218, 165, 32, 0.5));
+        }
+        
+        .animal-emoji-metal {
+            filter: url(#metalify) drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
+        }
+        
+        .animal-emoji-water {
+            filter: url(#blueify) drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
         }
         
         .animal-info {
@@ -264,6 +284,61 @@
     </style>
 </head>
 <body>
+    <!-- SVG Filters for Element-Colored Emojis -->
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <!-- Wood Element Filter (Green) -->
+            <filter id="greenify">
+                <feColorMatrix type="saturate" values="0"/>
+                <feColorMatrix type="matrix" values="
+                    0.3  0.3  0.3  0  0
+                    0.8  0.8  0.8  0  0.2
+                    0.3  0.3  0.3  0  0
+                    0    0    0    1  0"/>
+            </filter>
+            
+            <!-- Fire Element Filter (Red/Orange) -->
+            <filter id="redify">
+                <feColorMatrix type="saturate" values="0"/>
+                <feColorMatrix type="matrix" values="
+                    1    1    1    0  0.2
+                    0.3  0.3  0.3  0  0
+                    0.1  0.1  0.1  0  0
+                    0    0    0    1  0"/>
+            </filter>
+            
+            <!-- Earth Element Filter (Golden Brown) -->
+            <filter id="earthify">
+                <feColorMatrix type="saturate" values="0"/>
+                <feColorMatrix type="matrix" values="
+                    0.8  0.8  0.8  0  0.3
+                    0.6  0.6  0.6  0  0.2
+                    0.2  0.2  0.2  0  0
+                    0    0    0    1  0"/>
+            </filter>
+            
+            <!-- Metal Element Filter (Silver/White) -->
+            <filter id="metalify">
+                <feColorMatrix type="saturate" values="0"/>
+                <feColorMatrix type="matrix" values="
+                    0.7  0.7  0.7  0  0.2
+                    0.7  0.7  0.7  0  0.2
+                    0.8  0.8  0.8  0  0.25
+                    0    0    0    1  0"/>
+            </filter>
+            
+            <!-- Water Element Filter (Deep Blue) -->
+            <filter id="blueify">
+                <feColorMatrix type="saturate" values="0"/>
+                <feColorMatrix type="matrix" values="
+                    0.1  0.1  0.1  0  0
+                    0.3  0.3  0.3  0  0.1
+                    0.9  0.9  0.9  0  0.3
+                    0    0    0    1  0"/>
+            </filter>
+        </defs>
+    </svg>
+    
     <div class="container">
         <header>
             <h1>BA ZI GEOMETRY</h1>
@@ -650,6 +725,7 @@
             const yinYang = HEAVENLY_STEMS.yin_yang[pillar.stem];
             
             const elementClass = `element-${element.toLowerCase()}`;
+            const emojiClass = `animal-emoji-${element.toLowerCase()}`;
             
             return `
                 <div class="pillar">
@@ -664,7 +740,7 @@
                             <div class="pinyin">${branchPinyin}</div>
                         </div>
                     </div>
-                    <div class="animal-emoji">${emoji}</div>
+                    <div class="animal-emoji ${emojiClass}">${emoji}</div>
                     <div class="animal-info">${animal} · ${yinYang}</div>
                     <span class="element ${elementClass}">${element}</span>
                 </div>
