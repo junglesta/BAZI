@@ -1,733 +1,1169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BA ZI GEOMETRY - Mathematical Formulas from First Principles</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #0a0f0a 0%, #1a3a1a 50%, #0d1f0d 100%);
-            min-height: 100vh;
-            color: #fff;
-            padding: 20px;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-        
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            background: linear-gradient(45deg, #7fff00, #adff2f);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: 900;
-            letter-spacing: 3px;
-        }
-        
-        .subtitle {
-            color: #aaa;
-            font-size: 1.1rem;
-        }
-        
-        .validation-badge {
-            display: inline-block;
-            background: rgba(127, 255, 0, 0.2);
-            color: #7fff00;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-        
-        .input-section {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-        }
-        
-        .input-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .input-group {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        label {
-            margin-bottom: 5px;
-            color: #adff2f;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        input {
-            padding: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        button {
-            background: linear-gradient(45deg, #7fff00, #32cd32);
-            color: #0a0f0a;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        
-        button:hover {
-            transform: translateY(-2px);
-        }
-        
-        .astronomical-data {
-            background: rgba(50, 205, 50, 0.1);
-            border: 1px solid rgba(127, 255, 0, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .data-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .data-label {
-            color: #8a8a8a;
-            font-size: 0.85rem;
-            margin-bottom: 5px;
-        }
-        
-        .data-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #7fff00;
-        }
-        
-        .pillars-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .pillar {
-            background: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid rgba(127, 255, 0, 0.3);
-        }
-        
-        .pillar-title {
-            font-size: 1.2rem;
-            color: #adff2f;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-        
-        .stem-branch {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .chinese-char {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        
-        .pinyin {
-            color: #aaa;
-            font-size: 0.8rem;
-            margin-top: 3px;
-        }
-        
-        .element {
-            display: inline-block;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            font-weight: bold;
-        }
-        
-        .element-wood { background: rgba(34, 139, 34, 0.3); color: #32cd32; }
-        .element-fire { background: rgba(255, 69, 0, 0.3); color: #ff6347; }
-        .element-earth { background: rgba(160, 82, 45, 0.3); color: #daa520; }
-        .element-metal { background: rgba(192, 192, 192, 0.3); color: #c0c0c0; }
-        .element-water { background: rgba(30, 144, 255, 0.3); color: #1e90ff; }
-        
-        .animal-emoji {
-            font-size: 3.5rem;
-            margin: 15px 0;
-        }
-        
-        .animal-emoji-wood {
-            filter: url(#greenify) drop-shadow(0 0 8px rgba(127, 255, 0, 0.5));
-        }
-        
-        .animal-emoji-fire {
-            filter: url(#redify) drop-shadow(0 0 8px rgba(255, 69, 0, 0.5));
-        }
-        
-        .animal-emoji-earth {
-            filter: url(#earthify) drop-shadow(0 0 8px rgba(218, 165, 32, 0.5));
-        }
-        
-        .animal-emoji-metal {
-            filter: url(#metalify) drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
-        }
-        
-        .animal-emoji-water {
-            filter: url(#blueify) drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
-        }
-        
-        .animal-info {
-            font-size: 1.2rem;
-            margin: 10px 0;
-            font-weight: 500;
-        }
-        
-        .solar-term-info {
-            background: rgba(60, 179, 113, 0.1);
-            border: 1px solid rgba(60, 179, 113, 0.3);
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .term-progress {
-            width: 100%;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-        
-        .term-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #7fff00, #228b22);
-            transition: width 0.3s ease;
-        }
-        
-        .test-cases {
-            background: rgba(34, 139, 34, 0.05);
-            border: 1px solid rgba(127, 255, 0, 0.2);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 30px;
-        }
-        
-        .test-button {
-            background: rgba(127, 255, 0, 0.2);
-            color: #7fff00;
-            border: 1px solid #7fff00;
-            padding: 8px 15px;
-            margin: 5px;
-            font-size: 0.9rem;
-        }
-        
-        .test-button:hover {
-            background: rgba(127, 255, 0, 0.3);
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.8rem; }
-            .pillars-container { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-    <!-- SVG Filters for Element-Colored Emojis -->
-    <svg width="0" height="0" style="position: absolute;">
-        <defs>
-            <!-- Wood Element Filter (Green) -->
-            <filter id="greenify">
-                <feColorMatrix type="saturate" values="0"/>
-                <feColorMatrix type="matrix" values="
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>BA ZI BIRTH CHART - Math From First Principles</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                background: linear-gradient(
+                    135deg,
+                    #0a0f0a 0%,
+                    #1a3a1a 50%,
+                    #0d1f0d 100%
+                );
+                min-height: 100vh;
+                color: #fff;
+                padding: 20px;
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            header {
+                text-align: center;
+                margin-bottom: 40px;
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.05);
+                border-radius: 15px;
+                backdrop-filter: blur(10px);
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 10px;
+                background: linear-gradient(45deg, #7fff00, #adff2f);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                font-weight: 900;
+                letter-spacing: 3px;
+            }
+
+            .subtitle {
+                color: #aaa;
+                font-size: 1.1rem;
+            }
+
+            .validation-badge {
+                display: inline-block;
+                background: rgba(127, 255, 0, 0.2);
+                color: #7fff00;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 0.9rem;
+                margin-top: 10px;
+            }
+
+            .input-section {
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 15px;
+                padding: 30px;
+                margin-bottom: 30px;
+                backdrop-filter: blur(10px);
+            }
+
+            .input-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 20px;
+                margin-bottom: 20px;
+            }
+
+            .input-group {
+                display: flex;
+                flex-direction: column;
+            }
+
+            label {
+                margin-bottom: 5px;
+                color: #adff2f;
+                font-size: 0.9rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+
+            input {
+                padding: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                background: rgba(255, 255, 255, 0.05);
+                color: #fff;
+                border-radius: 8px;
+                font-size: 1rem;
+            }
+
+            button {
+                background: linear-gradient(45deg, #7fff00, #32cd32);
+                color: #0a0f0a;
+                border: none;
+                padding: 12px 30px;
+                border-radius: 8px;
+                font-size: 1.1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: transform 0.2s;
+            }
+
+            button:hover {
+                transform: translateY(-2px);
+            }
+
+            .astronomical-data {
+                background: rgba(50, 205, 50, 0.1);
+                border: 1px solid rgba(127, 255, 0, 0.3);
+                border-radius: 15px;
+                padding: 20px;
+                margin-bottom: 30px;
+            }
+
+            .data-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 20px;
+            }
+
+            .data-card {
+                background: rgba(255, 255, 255, 0.05);
+                padding: 15px;
+                border-radius: 10px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }
+
+            .data-label {
+                color: #8a8a8a;
+                font-size: 0.85rem;
+                margin-bottom: 5px;
+            }
+
+            .data-value {
+                font-size: 1.3rem;
+                font-weight: bold;
+                color: #7fff00;
+            }
+
+            .pillars-container {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .pillar {
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 15px;
+                padding: 20px;
+                text-align: center;
+                border: 2px solid rgba(127, 255, 0, 0.3);
+            }
+
+            .pillar-title {
+                font-size: 1.2rem;
+                color: #adff2f;
+                margin-bottom: 15px;
+                font-weight: bold;
+            }
+
+            .stem-branch {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                margin: 15px 0;
+            }
+
+            .chinese-char {
+                font-size: 2rem;
+                font-weight: bold;
+            }
+
+            .pinyin {
+                color: #aaa;
+                font-size: 0.8rem;
+                margin-top: 3px;
+            }
+
+            .element {
+                display: inline-block;
+                padding: 5px 15px;
+                border-radius: 20px;
+                font-size: 1.1rem;
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            .element-wood {
+                background: rgba(34, 139, 34, 0.3);
+                color: #32cd32;
+            }
+            .element-fire {
+                background: rgba(255, 69, 0, 0.3);
+                color: #ff6347;
+            }
+            .element-earth {
+                background: rgba(160, 82, 45, 0.3);
+                color: #daa520;
+            }
+            .element-metal {
+                background: rgba(192, 192, 192, 0.3);
+                color: #c0c0c0;
+            }
+            .element-water {
+                background: rgba(30, 144, 255, 0.3);
+                color: #1e90ff;
+            }
+
+            .animal-emoji {
+                font-size: 3.5rem;
+                margin: 15px 0;
+            }
+
+            .animal-emoji-wood {
+                filter: url(#greenify)
+                    drop-shadow(0 0 8px rgba(127, 255, 0, 0.5));
+            }
+
+            .animal-emoji-fire {
+                filter: url(#redify) drop-shadow(0 0 8px rgba(255, 69, 0, 0.5));
+            }
+
+            .animal-emoji-earth {
+                filter: url(#earthify)
+                    drop-shadow(0 0 8px rgba(218, 165, 32, 0.5));
+            }
+
+            .animal-emoji-metal {
+                filter: url(#metalify)
+                    drop-shadow(0 0 8px rgba(192, 192, 192, 0.5));
+            }
+
+            .animal-emoji-water {
+                filter: url(#blueify)
+                    drop-shadow(0 0 8px rgba(30, 144, 255, 0.5));
+            }
+
+            .animal-info {
+                font-size: 1.2rem;
+                margin: 10px 0;
+                font-weight: 500;
+            }
+
+            .solar-term-info {
+                background: rgba(60, 179, 113, 0.1);
+                border: 1px solid rgba(60, 179, 113, 0.3);
+                border-radius: 15px;
+                padding: 20px;
+                margin-top: 20px;
+            }
+
+            .term-progress {
+                width: 100%;
+                height: 20px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 10px;
+                overflow: hidden;
+                margin-top: 10px;
+            }
+
+            .term-progress-bar {
+                height: 100%;
+                background: linear-gradient(90deg, #7fff00, #228b22);
+                transition: width 0.3s ease;
+            }
+
+            .test-cases {
+                background: rgba(34, 139, 34, 0.05);
+                border: 1px solid rgba(127, 255, 0, 0.2);
+                border-radius: 10px;
+                padding: 15px;
+                margin-top: 30px;
+            }
+
+            .test-button {
+                background: rgba(127, 255, 0, 0.2);
+                color: #7fff00;
+                border: 1px solid #7fff00;
+                padding: 8px 15px;
+                margin: 5px;
+                font-size: 0.9rem;
+            }
+
+            .test-button:hover {
+                background: rgba(127, 255, 0, 0.3);
+            }
+
+            @media (max-width: 768px) {
+                h1 {
+                    font-size: 1.8rem;
+                }
+                .pillars-container {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- SVG Filters for Element-Colored Emojis -->
+        <svg width="0" height="0" style="position: absolute">
+            <defs>
+                <!-- Wood Element Filter (Green) -->
+                <filter id="greenify">
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="
                     0.3  0.3  0.3  0  0
                     0.8  0.8  0.8  0  0.2
                     0.3  0.3  0.3  0  0
-                    0    0    0    1  0"/>
-            </filter>
-            
-            <!-- Fire Element Filter (Red/Orange) -->
-            <filter id="redify">
-                <feColorMatrix type="saturate" values="0"/>
-                <feColorMatrix type="matrix" values="
+                    0    0    0    1  0"
+                    />
+                </filter>
+
+                <!-- Fire Element Filter (Red/Orange) -->
+                <filter id="redify">
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="
                     1    1    1    0  0.2
                     0.3  0.3  0.3  0  0
                     0.1  0.1  0.1  0  0
-                    0    0    0    1  0"/>
-            </filter>
-            
-            <!-- Earth Element Filter (Golden Brown) -->
-            <filter id="earthify">
-                <feColorMatrix type="saturate" values="0"/>
-                <feColorMatrix type="matrix" values="
+                    0    0    0    1  0"
+                    />
+                </filter>
+
+                <!-- Earth Element Filter (Golden Brown) -->
+                <filter id="earthify">
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="
                     0.8  0.8  0.8  0  0.3
                     0.6  0.6  0.6  0  0.2
                     0.2  0.2  0.2  0  0
-                    0    0    0    1  0"/>
-            </filter>
-            
-            <!-- Metal Element Filter (Silver/White) -->
-            <filter id="metalify">
-                <feColorMatrix type="saturate" values="0"/>
-                <feColorMatrix type="matrix" values="
+                    0    0    0    1  0"
+                    />
+                </filter>
+
+                <!-- Metal Element Filter (Silver/White) -->
+                <filter id="metalify">
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="
                     0.7  0.7  0.7  0  0.2
                     0.7  0.7  0.7  0  0.2
                     0.8  0.8  0.8  0  0.25
-                    0    0    0    1  0"/>
-            </filter>
-            
-            <!-- Water Element Filter (Deep Blue) -->
-            <filter id="blueify">
-                <feColorMatrix type="saturate" values="0"/>
-                <feColorMatrix type="matrix" values="
+                    0    0    0    1  0"
+                    />
+                </filter>
+
+                <!-- Water Element Filter (Deep Blue) -->
+                <filter id="blueify">
+                    <feColorMatrix type="saturate" values="0" />
+                    <feColorMatrix
+                        type="matrix"
+                        values="
                     0.1  0.1  0.1  0  0
                     0.3  0.3  0.3  0  0.1
                     0.9  0.9  0.9  0  0.3
-                    0    0    0    1  0"/>
-            </filter>
-        </defs>
-    </svg>
-    
-    <div class="container">
-        <header>
-            <h1>BA ZI GEOMETRY</h1>
-            <p class="subtitle">Just mathematical formulas from first principles | beautiful simplicity</p>
-            <span class="validation-badge">✓ Pure Mathematics: Cold Dew 1967 Validated to ±0.001°</span>
-        </header>
-        
-        <div class="input-section">
-            <h2 style="margin-bottom: 20px;">Enter Birth Information</h2>
-            <div class="input-grid">
-                <div class="input-group">
-                    <label for="year">Year</label>
-                    <input type="number" id="year" min="1900" max="2030" value="1967" />
+                    0    0    0    1  0"
+                    />
+                </filter>
+            </defs>
+        </svg>
+
+        <div class="container">
+            <header>
+                <h1>BA ZI</h1>
+                <p class="subtitle">PILLAR OF DESTINY</p>
+                <span class="validation-badge"
+                    >✓ Mathematics meets ancient wisdom - Beautiful simplicity
+                </span>
+            </header>
+
+            <div class="input-section">
+                <h2 style="margin-bottom: 20px">Enter Birth Information</h2>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="year">Year</label>
+                        <input
+                            type="number"
+                            id="year"
+                            min="1900"
+                            max="2030"
+                            value="1967"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="month">Month</label>
+                        <input
+                            type="number"
+                            id="month"
+                            min="1"
+                            max="12"
+                            value="10"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="day">Day</label>
+                        <input
+                            type="number"
+                            id="day"
+                            min="1"
+                            max="31"
+                            value="9"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="hour">Hour (24h)</label>
+                        <input
+                            type="number"
+                            id="hour"
+                            min="0"
+                            max="23"
+                            value="0"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="minute">Minute</label>
+                        <input
+                            type="number"
+                            id="minute"
+                            min="0"
+                            max="59"
+                            value="0"
+                        />
+                    </div>
+                    <div class="input-group">
+                        <label for="timezone">Timezone</label>
+                        <select
+                            id="timezone"
+                            style="
+                                padding: 10px;
+                                border-radius: 8px;
+                                background: rgba(255, 255, 255, 0.05);
+                                color: white;
+                                border: 1px solid rgba(255, 255, 255, 0.2);
+                            "
+                        >
+                            <option value="0">UTC/GMT</option>
+                            <option value="-12">Baker Island (UTC-12)</option>
+                            <option value="-11">Samoa (UTC-11)</option>
+                            <option value="-10">Hawaii (UTC-10)</option>
+                            <option value="-9">Alaska (UTC-9)</option>
+                            <option value="-8">Los Angeles (UTC-8)</option>
+                            <option value="-7">Denver (UTC-7)</option>
+                            <option value="-6">Chicago (UTC-6)</option>
+                            <option value="-5">New York (UTC-5)</option>
+                            <option value="-4">Halifax (UTC-4)</option>
+                            <option value="-3">São Paulo (UTC-3)</option>
+                            <option value="-2">Mid-Atlantic (UTC-2)</option>
+                            <option value="-1">Azores (UTC-1)</option>
+                            <option value="1">Berlin/Paris (UTC+1)</option>
+                            <option value="2">Cairo (UTC+2)</option>
+                            <option value="3">Moscow (UTC+3)</option>
+                            <option value="4">Dubai (UTC+4)</option>
+                            <option value="5">Karachi (UTC+5)</option>
+                            <option value="5.5">Delhi (UTC+5.5)</option>
+                            <option value="6">Dhaka (UTC+6)</option>
+                            <option value="7">Bangkok (UTC+7)</option>
+                            <option value="8">Beijing/Shanghai (UTC+8)</option>
+                            <option value="9">Tokyo (UTC+9)</option>
+                            <option value="10">Sydney (UTC+10)</option>
+                            <option value="11">Noumea (UTC+11)</option>
+                            <option value="12">Auckland (UTC+12)</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="input-group">
-                    <label for="month">Month</label>
-                    <input type="number" id="month" min="1" max="12" value="10" />
-                </div>
-                <div class="input-group">
-                    <label for="day">Day</label>
-                    <input type="number" id="day" min="1" max="31" value="9" />
-                </div>
-                <div class="input-group">
-                    <label for="hour">Hour (24h)</label>
-                    <input type="number" id="hour" min="0" max="23" value="0" />
-                </div>
-                <div class="input-group">
-                    <label for="minute">Minute</label>
-                    <input type="number" id="minute" min="0" max="59" value="0" />
-                </div>
-                <div class="input-group">
-                    <label for="timezone">Timezone</label>
-                    <select id="timezone" style="padding: 10px; border-radius: 8px; background: rgba(255,255,255,0.05); color: white; border: 1px solid rgba(255,255,255,0.2);">
-                        <option value="0">UTC/GMT</option>
-                        <option value="-12">Baker Island (UTC-12)</option>
-                        <option value="-11">Samoa (UTC-11)</option>
-                        <option value="-10">Hawaii (UTC-10)</option>
-                        <option value="-9">Alaska (UTC-9)</option>
-                        <option value="-8">Los Angeles (UTC-8)</option>
-                        <option value="-7">Denver (UTC-7)</option>
-                        <option value="-6">Chicago (UTC-6)</option>
-                        <option value="-5">New York (UTC-5)</option>
-                        <option value="-4">Halifax (UTC-4)</option>
-                        <option value="-3">São Paulo (UTC-3)</option>
-                        <option value="-2">Mid-Atlantic (UTC-2)</option>
-                        <option value="-1">Azores (UTC-1)</option>
-                        <option value="1">Berlin/Paris (UTC+1)</option>
-                        <option value="2">Cairo (UTC+2)</option>
-                        <option value="3">Moscow (UTC+3)</option>
-                        <option value="4">Dubai (UTC+4)</option>
-                        <option value="5">Karachi (UTC+5)</option>
-                        <option value="5.5">Delhi (UTC+5.5)</option>
-                        <option value="6">Dhaka (UTC+6)</option>
-                        <option value="7">Bangkok (UTC+7)</option>
-                        <option value="8">Beijing/Shanghai (UTC+8)</option>
-                        <option value="9">Tokyo (UTC+9)</option>
-                        <option value="10">Sydney (UTC+10)</option>
-                        <option value="11">Noumea (UTC+11)</option>
-                        <option value="12">Auckland (UTC+12)</option>
-                    </select>
+                <button onclick="calculateBaZi()">Calculate Ba Zi</button>
+                <button
+                    onclick="testCurrentTime()"
+                    style="
+                        background: linear-gradient(45deg, #32cd32, #228b22);
+                        margin-left: 10px;
+                    "
+                >
+                    NOW
+                </button>
+            </div>
+
+            <div
+                class="astronomical-data"
+                id="astronomicalData"
+                style="display: none"
+            >
+                <h3 style="color: #7fff00; margin-bottom: 20px">
+                    🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar Term
+                </h3>
+                <div class="data-grid">
+                    <div class="data-card">
+                        <div class="data-label">Sun's Ecliptic Longitude</div>
+                        <div class="data-value" id="sunLongitude">--</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-label">Julian Day Number</div>
+                        <div class="data-value" id="julianDay">--</div>
+                    </div>
+                    <div class="data-card">
+                        <div class="data-label">UTC Datetime</div>
+                        <div
+                            class="data-value"
+                            id="utcTime"
+                            style="font-size: 1rem"
+                        >
+                            --
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button onclick="calculateBaZi()">Calculate Ba Zi</button>
-            <button onclick="testCurrentTime()" style="background: linear-gradient(45deg, #32cd32, #228b22); margin-left: 10px;">NOW</button>
-        </div>
-        
-        <div class="astronomical-data" id="astronomicalData" style="display: none;">
-            <h3 style="color: #7fff00; margin-bottom: 20px;">🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar Term</h3>
-            <div class="data-grid">
-                <div class="data-card">
-                    <div class="data-label">Sun's Ecliptic Longitude</div>
-                    <div class="data-value" id="sunLongitude">--</div>
-                </div>
-                <div class="data-card">
-                    <div class="data-label">Julian Day Number</div>
-                    <div class="data-value" id="julianDay">--</div>
-                </div>
-                <div class="data-card">
-                    <div class="data-label">UTC Datetime</div>
-                    <div class="data-value" id="utcTime" style="font-size: 1rem;">--</div>
+
+            <div
+                class="solar-term-info"
+                id="solarTermInfo"
+                style="display: none"
+            >
+                <h3 style="color: #32cd32; margin-bottom: 20px">
+                    📐 Geometric Position in Earth's Orbit
+                </h3>
+                <div id="termDetails"></div>
+                <div class="term-progress">
+                    <div class="term-progress-bar" id="termProgress"></div>
                 </div>
             </div>
-        </div>
-        
-        <div class="solar-term-info" id="solarTermInfo" style="display: none;">
-            <h3 style="color: #32cd32; margin-bottom: 20px;">📐 Geometric Position in Earth's Orbit</h3>
-            <div id="termDetails"></div>
-            <div class="term-progress">
-                <div class="term-progress-bar" id="termProgress"></div>
+
+            <div class="pillars-container" id="pillarsContainer"></div>
+
+            <div class="test-cases">
+                <h3 style="color: #7fff00; margin-bottom: 10px">
+                    Geometric Test Points | 0°, 90°, 180°, 195°, 270°
+                </h3>
+                <button class="test-button" onclick="testColdDew1967()">
+                    Cold Dew 1967
+                </button>
+                <button class="test-button" onclick="testSpringEquinox2024()">
+                    Spring Equinox 2024
+                </button>
+                <button class="test-button" onclick="testWinterSolstice2024()">
+                    Winter Solstice 2024
+                </button>
             </div>
+
+            <span class="validation-badge"
+                >✓ This opensource webapp is made from first principles
+            </span>
+
+            <span class="validation-badge"
+                >✓ Mathematics: Cold Dew 1967 Validated to ±0.001°</span
+            >
+
+            <span class="validation-badge"
+                >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1,
+                ChatGPT5</span
+            >
+            <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
         </div>
-        
-        <div class="pillars-container" id="pillarsContainer"></div>
-        
-        <div class="test-cases">
-            <h3 style="color: #7fff00; margin-bottom: 10px;">Geometric Test Points | 0°, 90°, 180°, 195°, 270°</h3>
-            <button class="test-button" onclick="testColdDew1967()">Cold Dew 1967</button>
-            <button class="test-button" onclick="testSpringEquinox2024()">Spring Equinox 2024</button>
-            <button class="test-button" onclick="testWinterSolstice2024()">Winter Solstice 2024</button>
-        </div>
-    </div>
-    
-    <script>
-        // ============================================================================
-        // ASTRONOMICAL CORE ENGINE
-        // ============================================================================
-        
-        function gregorianToJulianDay(year, month, day, hour = 0, minute = 0, second = 0) {
-            if (month <= 2) {
-                year -= 1;
-                month += 12;
+
+        <script>
+            // ============================================================================
+            // ASTRONOMICAL CORE ENGINE
+            // ============================================================================
+
+            function gregorianToJulianDay(
+                year,
+                month,
+                day,
+                hour = 0,
+                minute = 0,
+                second = 0,
+            ) {
+                if (month <= 2) {
+                    year -= 1;
+                    month += 12;
+                }
+
+                const A = Math.floor(year / 100);
+                const B = 2 - A + Math.floor(A / 4);
+
+                const JD =
+                    Math.floor(365.25 * (year + 4716)) +
+                    Math.floor(30.6001 * (month + 1)) +
+                    day +
+                    B -
+                    1524.5 +
+                    (hour + minute / 60 + second / 3600) / 24;
+
+                return JD;
             }
-            
-            const A = Math.floor(year / 100);
-            const B = 2 - A + Math.floor(A / 4);
-            
-            const JD = Math.floor(365.25 * (year + 4716)) + 
-                       Math.floor(30.6001 * (month + 1)) + 
-                       day + B - 1524.5 +
-                       (hour + minute/60 + second/3600) / 24;
-            
-            return JD;
-        }
-        
-        function sunLongitude(jd) {
-            const T = (jd - 2451545.0) / 36525;
-            const L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
-            const M = 357.52911 + 35999.05029 * T - 0.0001537 * T * T;
-            const M_rad = M * Math.PI / 180;
-            
-            const C = (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(M_rad) +
-                      (0.019993 - 0.000101 * T) * Math.sin(2 * M_rad) +
-                      0.000289 * Math.sin(3 * M_rad);
-            
-            let longitude = L0 + C;
-            longitude -= 0.00569; // Aberration
-            longitude = longitude % 360;
-            if (longitude < 0) longitude += 360;
-            
-            return longitude;
-        }
-        
-        // ============================================================================
-        // SOLAR TERMS DATA
-        // ============================================================================
-        
-        const SOLAR_TERMS = [
-            { index: 0,  longitude: 315, name_cn: "立春", name_en: "Start of Spring", name_pinyin: "Lìchūn" },
-            { index: 1,  longitude: 330, name_cn: "雨水", name_en: "Rain Water", name_pinyin: "Yǔshuǐ" },
-            { index: 2,  longitude: 345, name_cn: "惊蛰", name_en: "Awakening of Insects", name_pinyin: "Jīngzhé" },
-            { index: 3,  longitude: 0,   name_cn: "春分", name_en: "Spring Equinox", name_pinyin: "Chūnfēn" },
-            { index: 4,  longitude: 15,  name_cn: "清明", name_en: "Clear and Bright", name_pinyin: "Qīngmíng" },
-            { index: 5,  longitude: 30,  name_cn: "谷雨", name_en: "Grain Rain", name_pinyin: "Gǔyǔ" },
-            { index: 6,  longitude: 45,  name_cn: "立夏", name_en: "Start of Summer", name_pinyin: "Lìxià" },
-            { index: 7,  longitude: 60,  name_cn: "小满", name_en: "Grain Full", name_pinyin: "Xiǎomǎn" },
-            { index: 8,  longitude: 75,  name_cn: "芒种", name_en: "Grain in Ear", name_pinyin: "Mángzhòng" },
-            { index: 9,  longitude: 90,  name_cn: "夏至", name_en: "Summer Solstice", name_pinyin: "Xiàzhì" },
-            { index: 10, longitude: 105, name_cn: "小暑", name_en: "Minor Heat", name_pinyin: "Xiǎoshǔ" },
-            { index: 11, longitude: 120, name_cn: "大暑", name_en: "Major Heat", name_pinyin: "Dàshǔ" },
-            { index: 12, longitude: 135, name_cn: "立秋", name_en: "Start of Autumn", name_pinyin: "Lìqiū" },
-            { index: 13, longitude: 150, name_cn: "处暑", name_en: "End of Heat", name_pinyin: "Chǔshǔ" },
-            { index: 14, longitude: 165, name_cn: "白露", name_en: "White Dew", name_pinyin: "Báilù" },
-            { index: 15, longitude: 180, name_cn: "秋分", name_en: "Autumn Equinox", name_pinyin: "Qiūfēn" },
-            { index: 16, longitude: 195, name_cn: "寒露", name_en: "Cold Dew", name_pinyin: "Hánlù" },
-            { index: 17, longitude: 210, name_cn: "霜降", name_en: "Frost Descent", name_pinyin: "Shuāngjiàng" },
-            { index: 18, longitude: 225, name_cn: "立冬", name_en: "Start of Winter", name_pinyin: "Lìdōng" },
-            { index: 19, longitude: 240, name_cn: "小雪", name_en: "Minor Snow", name_pinyin: "Xiǎoxuě" },
-            { index: 20, longitude: 255, name_cn: "大雪", name_en: "Major Snow", name_pinyin: "Dàxuě" },
-            { index: 21, longitude: 270, name_cn: "冬至", name_en: "Winter Solstice", name_pinyin: "Dōngzhì" },
-            { index: 22, longitude: 285, name_cn: "小寒", name_en: "Minor Cold", name_pinyin: "Xiǎohán" },
-            { index: 23, longitude: 300, name_cn: "大寒", name_en: "Major Cold", name_pinyin: "Dàhán" }
-        ];
-        
-        // ============================================================================
-        // SEXAGENARY CYCLE DATA
-        // ============================================================================
-        
-        const HEAVENLY_STEMS = {
-            names: ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'],
-            pinyin: ['Jiǎ','Yǐ','Bǐng','Dīng','Wù','Jǐ','Gēng','Xīn','Rén','Guǐ'],
-            elements: ['Wood','Wood','Fire','Fire','Earth','Earth','Metal','Metal','Water','Water'],
-            yin_yang: ['Yang','Yin','Yang','Yin','Yang','Yin','Yang','Yin','Yang','Yin']
-        };
-        
-        const EARTHLY_BRANCHES = {
-            names: ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'],
-            pinyin: ['Zǐ','Chǒu','Yín','Mǎo','Chén','Sì','Wǔ','Wèi','Shēn','Yǒu','Xū','Hài'],
-            animals: ['Rat','Ox','Tiger','Rabbit','Dragon','Snake','Horse','Goat','Monkey','Rooster','Dog','Pig'],
-            emojis: ['🐀','🐂','🐅','🐇','🐉','🐍','🐎','🐐','🐒','🐓','🐕','🐖']
-        };
-        
-        // ============================================================================
-        // BA ZI CALCULATION
-        // ============================================================================
-        
-        function getSolarTermIndex(longitude) {
-            // Each solar term covers 15° starting from its longitude
-            // We need to find which term's range contains our longitude
-            const normalized = (longitude + 360) % 360;
-            
-            // Solar terms are arranged with Spring Equinox at 0°
-            // Start of Spring at 315° is actually term 0
-            // The sequence goes: 315, 330, 345, 0, 15, 30...
-            
-            for (let i = 0; i < SOLAR_TERMS.length; i++) {
-                const termStart = SOLAR_TERMS[i].longitude;
-                const termEnd = (termStart + 15) % 360;
-                
-                // Handle the wrap-around case (e.g., 345° to 0°)
-                if (termStart > termEnd) {
-                    // Range wraps around 360°
-                    if (normalized >= termStart || normalized < termEnd) {
-                        return i;
-                    }
-                } else {
-                    // Normal range
-                    if (normalized >= termStart && normalized < termEnd) {
-                        return i;
+
+            function sunLongitude(jd) {
+                const T = (jd - 2451545.0) / 36525;
+                const L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
+                const M = 357.52911 + 35999.05029 * T - 0.0001537 * T * T;
+                const M_rad = (M * Math.PI) / 180;
+
+                const C =
+                    (1.914602 - 0.004817 * T - 0.000014 * T * T) *
+                        Math.sin(M_rad) +
+                    (0.019993 - 0.000101 * T) * Math.sin(2 * M_rad) +
+                    0.000289 * Math.sin(3 * M_rad);
+
+                let longitude = L0 + C;
+                longitude -= 0.00569; // Aberration
+                longitude = longitude % 360;
+                if (longitude < 0) longitude += 360;
+
+                return longitude;
+            }
+
+            // ============================================================================
+            // SOLAR TERMS DATA
+            // ============================================================================
+
+            const SOLAR_TERMS = [
+                {
+                    index: 0,
+                    longitude: 315,
+                    name_cn: "立春",
+                    name_en: "Start of Spring",
+                    name_pinyin: "Lìchūn",
+                },
+                {
+                    index: 1,
+                    longitude: 330,
+                    name_cn: "雨水",
+                    name_en: "Rain Water",
+                    name_pinyin: "Yǔshuǐ",
+                },
+                {
+                    index: 2,
+                    longitude: 345,
+                    name_cn: "惊蛰",
+                    name_en: "Awakening of Insects",
+                    name_pinyin: "Jīngzhé",
+                },
+                {
+                    index: 3,
+                    longitude: 0,
+                    name_cn: "春分",
+                    name_en: "Spring Equinox",
+                    name_pinyin: "Chūnfēn",
+                },
+                {
+                    index: 4,
+                    longitude: 15,
+                    name_cn: "清明",
+                    name_en: "Clear and Bright",
+                    name_pinyin: "Qīngmíng",
+                },
+                {
+                    index: 5,
+                    longitude: 30,
+                    name_cn: "谷雨",
+                    name_en: "Grain Rain",
+                    name_pinyin: "Gǔyǔ",
+                },
+                {
+                    index: 6,
+                    longitude: 45,
+                    name_cn: "立夏",
+                    name_en: "Start of Summer",
+                    name_pinyin: "Lìxià",
+                },
+                {
+                    index: 7,
+                    longitude: 60,
+                    name_cn: "小满",
+                    name_en: "Grain Full",
+                    name_pinyin: "Xiǎomǎn",
+                },
+                {
+                    index: 8,
+                    longitude: 75,
+                    name_cn: "芒种",
+                    name_en: "Grain in Ear",
+                    name_pinyin: "Mángzhòng",
+                },
+                {
+                    index: 9,
+                    longitude: 90,
+                    name_cn: "夏至",
+                    name_en: "Summer Solstice",
+                    name_pinyin: "Xiàzhì",
+                },
+                {
+                    index: 10,
+                    longitude: 105,
+                    name_cn: "小暑",
+                    name_en: "Minor Heat",
+                    name_pinyin: "Xiǎoshǔ",
+                },
+                {
+                    index: 11,
+                    longitude: 120,
+                    name_cn: "大暑",
+                    name_en: "Major Heat",
+                    name_pinyin: "Dàshǔ",
+                },
+                {
+                    index: 12,
+                    longitude: 135,
+                    name_cn: "立秋",
+                    name_en: "Start of Autumn",
+                    name_pinyin: "Lìqiū",
+                },
+                {
+                    index: 13,
+                    longitude: 150,
+                    name_cn: "处暑",
+                    name_en: "End of Heat",
+                    name_pinyin: "Chǔshǔ",
+                },
+                {
+                    index: 14,
+                    longitude: 165,
+                    name_cn: "白露",
+                    name_en: "White Dew",
+                    name_pinyin: "Báilù",
+                },
+                {
+                    index: 15,
+                    longitude: 180,
+                    name_cn: "秋分",
+                    name_en: "Autumn Equinox",
+                    name_pinyin: "Qiūfēn",
+                },
+                {
+                    index: 16,
+                    longitude: 195,
+                    name_cn: "寒露",
+                    name_en: "Cold Dew",
+                    name_pinyin: "Hánlù",
+                },
+                {
+                    index: 17,
+                    longitude: 210,
+                    name_cn: "霜降",
+                    name_en: "Frost Descent",
+                    name_pinyin: "Shuāngjiàng",
+                },
+                {
+                    index: 18,
+                    longitude: 225,
+                    name_cn: "立冬",
+                    name_en: "Start of Winter",
+                    name_pinyin: "Lìdōng",
+                },
+                {
+                    index: 19,
+                    longitude: 240,
+                    name_cn: "小雪",
+                    name_en: "Minor Snow",
+                    name_pinyin: "Xiǎoxuě",
+                },
+                {
+                    index: 20,
+                    longitude: 255,
+                    name_cn: "大雪",
+                    name_en: "Major Snow",
+                    name_pinyin: "Dàxuě",
+                },
+                {
+                    index: 21,
+                    longitude: 270,
+                    name_cn: "冬至",
+                    name_en: "Winter Solstice",
+                    name_pinyin: "Dōngzhì",
+                },
+                {
+                    index: 22,
+                    longitude: 285,
+                    name_cn: "小寒",
+                    name_en: "Minor Cold",
+                    name_pinyin: "Xiǎohán",
+                },
+                {
+                    index: 23,
+                    longitude: 300,
+                    name_cn: "大寒",
+                    name_en: "Major Cold",
+                    name_pinyin: "Dàhán",
+                },
+            ];
+
+            // ============================================================================
+            // SEXAGENARY CYCLE DATA
+            // ============================================================================
+
+            const HEAVENLY_STEMS = {
+                names: [
+                    "甲",
+                    "乙",
+                    "丙",
+                    "丁",
+                    "戊",
+                    "己",
+                    "庚",
+                    "辛",
+                    "壬",
+                    "癸",
+                ],
+                pinyin: [
+                    "Jiǎ",
+                    "Yǐ",
+                    "Bǐng",
+                    "Dīng",
+                    "Wù",
+                    "Jǐ",
+                    "Gēng",
+                    "Xīn",
+                    "Rén",
+                    "Guǐ",
+                ],
+                elements: [
+                    "Wood",
+                    "Wood",
+                    "Fire",
+                    "Fire",
+                    "Earth",
+                    "Earth",
+                    "Metal",
+                    "Metal",
+                    "Water",
+                    "Water",
+                ],
+                yin_yang: [
+                    "Yang",
+                    "Yin",
+                    "Yang",
+                    "Yin",
+                    "Yang",
+                    "Yin",
+                    "Yang",
+                    "Yin",
+                    "Yang",
+                    "Yin",
+                ],
+            };
+
+            const EARTHLY_BRANCHES = {
+                names: [
+                    "子",
+                    "丑",
+                    "寅",
+                    "卯",
+                    "辰",
+                    "巳",
+                    "午",
+                    "未",
+                    "申",
+                    "酉",
+                    "戌",
+                    "亥",
+                ],
+                pinyin: [
+                    "Zǐ",
+                    "Chǒu",
+                    "Yín",
+                    "Mǎo",
+                    "Chén",
+                    "Sì",
+                    "Wǔ",
+                    "Wèi",
+                    "Shēn",
+                    "Yǒu",
+                    "Xū",
+                    "Hài",
+                ],
+                animals: [
+                    "Rat",
+                    "Ox",
+                    "Tiger",
+                    "Rabbit",
+                    "Dragon",
+                    "Snake",
+                    "Horse",
+                    "Goat",
+                    "Monkey",
+                    "Rooster",
+                    "Dog",
+                    "Pig",
+                ],
+                emojis: [
+                    "🐀",
+                    "🐂",
+                    "🐅",
+                    "🐇",
+                    "🐉",
+                    "🐍",
+                    "🐎",
+                    "🐐",
+                    "🐒",
+                    "🐓",
+                    "🐕",
+                    "🐖",
+                ],
+            };
+
+            // ============================================================================
+            // BA ZI CALCULATION
+            // ============================================================================
+
+            function getSolarTermIndex(longitude) {
+                // Each solar term covers 15° starting from its longitude
+                // We need to find which term's range contains our longitude
+                const normalized = (longitude + 360) % 360;
+
+                // Solar terms are arranged with Spring Equinox at 0°
+                // Start of Spring at 315° is actually term 0
+                // The sequence goes: 315, 330, 345, 0, 15, 30...
+
+                for (let i = 0; i < SOLAR_TERMS.length; i++) {
+                    const termStart = SOLAR_TERMS[i].longitude;
+                    const termEnd = (termStart + 15) % 360;
+
+                    // Handle the wrap-around case (e.g., 345° to 0°)
+                    if (termStart > termEnd) {
+                        // Range wraps around 360°
+                        if (normalized >= termStart || normalized < termEnd) {
+                            return i;
+                        }
+                    } else {
+                        // Normal range
+                        if (normalized >= termStart && normalized < termEnd) {
+                            return i;
+                        }
                     }
                 }
+
+                return 0; // Default (shouldn't reach here)
             }
-            
-            return 0; // Default (shouldn't reach here)
-        }
-        
-        function calculateYearPillar(year, solarTermIndex) {
-            // Year changes at Start of Spring (立春), not January 1
-            // Start of Spring is solar term 0
-            // If we're before Start of Spring, use previous year
-            // Simplified: using calendar year for now
-            
-            const stemIndex = (year - 4) % 10;
-            const branchIndex = (year - 4) % 12;
-            
-            return {
-                stem: (stemIndex + 10) % 10,  // Ensure positive
-                branch: (branchIndex + 12) % 12  // Ensure positive
-            };
-        }
-        
-        function calculateMonthPillar(year, solarTermIndex) {
-            // Month pillar based on solar term pairs
-            // Each pair of solar terms corresponds to one month
-            // Terms 0-1 (立春/雨水) = Tiger month (branch 2)
-            // Terms 2-3 (惊蛰/春分) = Rabbit month (branch 3), etc.
-            
-            const monthBranch = (Math.floor(solarTermIndex / 2) + 2) % 12;
-            
-            // Month stem calculation based on year stem
-            const yearStem = ((year - 4) % 10 + 10) % 10;  // Ensure positive
-            // Formula: monthStem = (yearStem * 2 + monthBranch) % 10
-            const monthStem = (yearStem * 2 + monthBranch) % 10;
-            
-            return {
-                stem: (monthStem + 10) % 10,  // Ensure positive
-                branch: (monthBranch + 12) % 12  // Ensure positive
-            };
-        }
-        
-        function calculateDayPillar(jd) {
-            // Day pillar cycles every 60 days
-            // Known reference: January 1, 1900 was 甲戌 day (stem 0, branch 10)
-            const referenceJD = gregorianToJulianDay(1900, 1, 1, 0, 0, 0); // 2415020.5
-            const daysSince = Math.floor(jd - referenceJD);
-            
-            // Calculate from base: 甲戌 (stem 0, branch 10)
-            const stemIndex = (0 + daysSince) % 10;
-            const branchIndex = (10 + daysSince) % 12;
-            
-            return {
-                stem: (stemIndex + 10) % 10,  // Normalize to positive
-                branch: (branchIndex + 12) % 12  // Normalize to positive
-            };
-        }
-        
-        function calculateHourPillar(hour, dayStem) {
-            // Double-hour system (时辰)
-            // 23:00-01:00 = 子时 (branch 0), 01:00-03:00 = 丑时 (branch 1), etc.
-            const hourBranch = Math.floor((hour + 1) / 2) % 12;
-            
-            // Hour stem depends on day stem
-            // Formula from traditional Ba Zi
-            const hourStem = (dayStem * 2 + hourBranch) % 10;
-            
-            return {
-                stem: (hourStem + 10) % 10,  // Ensure positive
-                branch: (hourBranch + 12) % 12  // Ensure positive
-            };
-        }
-        
-        function calculateBaZi() {
-            // Get input values
-            const year = parseInt(document.getElementById('year').value);
-            const month = parseInt(document.getElementById('month').value);
-            const day = parseInt(document.getElementById('day').value);
-            const hour = parseInt(document.getElementById('hour').value);
-            const minute = parseInt(document.getElementById('minute').value);
-            const timezone = parseFloat(document.getElementById('timezone').value);
-            
-            // Debug logging for October 1967
-            const isDebugDate = (year === 1967 && month === 10);
-            
-            // Create a date object and adjust for timezone
-            const localDate = new Date(year, month - 1, day, hour, minute, 0);
-            const utcDate = new Date(localDate.getTime() - timezone * 60 * 60 * 1000);
-            
-            // Get UTC components
-            const utcYear = utcDate.getUTCFullYear();
-            const utcMonth = utcDate.getUTCMonth() + 1;
-            const utcDay = utcDate.getUTCDate();
-            const utcHour = utcDate.getUTCHours();
-            const utcMinute = utcDate.getUTCMinutes();
-            
-            // Calculate Julian Day
-            const jd = gregorianToJulianDay(utcYear, utcMonth, utcDay, utcHour, utcMinute, 0);
-            
-            // Calculate sun position
-            const longitude = sunLongitude(jd);
-            const solarTermIndex = getSolarTermIndex(longitude);
-            const currentTerm = SOLAR_TERMS[solarTermIndex];
-            const nextTermIndex = (solarTermIndex + 1) % 24;
-            const nextTerm = SOLAR_TERMS[nextTermIndex];
-            
-            if (isDebugDate) {
-                console.log("=== DEBUG October 1967 ===");
-                console.log(`Input: ${year}-${month}-${day} ${hour}:${minute} TZ:${timezone}`);
-                console.log(`UTC: ${utcYear}-${utcMonth}-${utcDay} ${utcHour}:${utcMinute}`);
-                console.log(`JD: ${jd}`);
-                console.log(`Sun Longitude: ${longitude}°`);
-                console.log(`Solar Term Index: ${solarTermIndex}`);
-                console.log(`Solar Term: ${currentTerm.name_en} (${currentTerm.name_cn})`);
-                console.log(`Term starts at: ${currentTerm.longitude}°`);
+
+            function calculateYearPillar(year, solarTermIndex) {
+                // Year changes at Start of Spring (立春), not January 1
+                // Start of Spring is solar term 0
+                // If we're before Start of Spring, use previous year
+                // Simplified: using calendar year for now
+
+                const stemIndex = (year - 4) % 10;
+                const branchIndex = (year - 4) % 12;
+
+                return {
+                    stem: (stemIndex + 10) % 10, // Ensure positive
+                    branch: (branchIndex + 12) % 12, // Ensure positive
+                };
             }
-            
-            // Calculate progress through solar term
-            const progress = ((longitude - currentTerm.longitude + 360) % 360) / 15;
-            
-            // Calculate four pillars
-            const yearPillar = calculateYearPillar(year, solarTermIndex);
-            const monthPillar = calculateMonthPillar(year, solarTermIndex);
-            const dayPillar = calculateDayPillar(jd);
-            const hourPillar = calculateHourPillar(hour, dayPillar.stem);
-            
-            if (isDebugDate) {
-                const branches = ['子 Rat','丑 Ox','寅 Tiger','卯 Rabbit','辰 Dragon','巳 Snake',
-                                  '午 Horse','未 Goat','申 Monkey','酉 Rooster','戌 Dog','亥 Pig'];
-                console.log(`Month Pillar Branch: ${monthPillar.branch} = ${branches[monthPillar.branch]}`);
-                console.log("======================");
+
+            function calculateMonthPillar(year, solarTermIndex) {
+                // Month pillar based on solar term pairs
+                // Each pair of solar terms corresponds to one month
+                // Terms 0-1 (立春/雨水) = Tiger month (branch 2)
+                // Terms 2-3 (惊蛰/春分) = Rabbit month (branch 3), etc.
+
+                const monthBranch = (Math.floor(solarTermIndex / 2) + 2) % 12;
+
+                // Month stem calculation based on year stem
+                const yearStem = (((year - 4) % 10) + 10) % 10; // Ensure positive
+                // Formula: monthStem = (yearStem * 2 + monthBranch) % 10
+                const monthStem = (yearStem * 2 + monthBranch) % 10;
+
+                return {
+                    stem: (monthStem + 10) % 10, // Ensure positive
+                    branch: (monthBranch + 12) % 12, // Ensure positive
+                };
             }
-            
-            // Display astronomical data
-            document.getElementById('astronomicalData').style.display = 'block';
-            document.getElementById('sunLongitude').textContent = longitude.toFixed(3) + '°';
-            document.getElementById('julianDay').textContent = jd.toFixed(3);
-            document.getElementById('utcTime').textContent = utcDate.toISOString().replace('T', ' ').slice(0, -5) + ' UTC';
-            
-            // Display solar term info
-            document.getElementById('solarTermInfo').style.display = 'block';
-            document.getElementById('termDetails').innerHTML = `
+
+            function calculateDayPillar(jd) {
+                // Day pillar cycles every 60 days
+                // Known reference: January 1, 1900 was 甲戌 day (stem 0, branch 10)
+                const referenceJD = gregorianToJulianDay(1900, 1, 1, 0, 0, 0); // 2415020.5
+                const daysSince = Math.floor(jd - referenceJD);
+
+                // Calculate from base: 甲戌 (stem 0, branch 10)
+                const stemIndex = (0 + daysSince) % 10;
+                const branchIndex = (10 + daysSince) % 12;
+
+                return {
+                    stem: (stemIndex + 10) % 10, // Normalize to positive
+                    branch: (branchIndex + 12) % 12, // Normalize to positive
+                };
+            }
+
+            function calculateHourPillar(hour, dayStem) {
+                // Double-hour system (时辰)
+                // 23:00-01:00 = 子时 (branch 0), 01:00-03:00 = 丑时 (branch 1), etc.
+                const hourBranch = Math.floor((hour + 1) / 2) % 12;
+
+                // Hour stem depends on day stem
+                // Formula from traditional Ba Zi
+                const hourStem = (dayStem * 2 + hourBranch) % 10;
+
+                return {
+                    stem: (hourStem + 10) % 10, // Ensure positive
+                    branch: (hourBranch + 12) % 12, // Ensure positive
+                };
+            }
+
+            function calculateBaZi() {
+                // Get input values
+                const year = parseInt(document.getElementById("year").value);
+                const month = parseInt(document.getElementById("month").value);
+                const day = parseInt(document.getElementById("day").value);
+                const hour = parseInt(document.getElementById("hour").value);
+                const minute = parseInt(
+                    document.getElementById("minute").value,
+                );
+                const timezone = parseFloat(
+                    document.getElementById("timezone").value,
+                );
+
+                // Debug logging for October 1967
+                const isDebugDate = year === 1967 && month === 10;
+
+                // Create a date object and adjust for timezone
+                const localDate = new Date(
+                    year,
+                    month - 1,
+                    day,
+                    hour,
+                    minute,
+                    0,
+                );
+                const utcDate = new Date(
+                    localDate.getTime() - timezone * 60 * 60 * 1000,
+                );
+
+                // Get UTC components
+                const utcYear = utcDate.getUTCFullYear();
+                const utcMonth = utcDate.getUTCMonth() + 1;
+                const utcDay = utcDate.getUTCDate();
+                const utcHour = utcDate.getUTCHours();
+                const utcMinute = utcDate.getUTCMinutes();
+
+                // Calculate Julian Day
+                const jd = gregorianToJulianDay(
+                    utcYear,
+                    utcMonth,
+                    utcDay,
+                    utcHour,
+                    utcMinute,
+                    0,
+                );
+
+                // Calculate sun position
+                const longitude = sunLongitude(jd);
+                const solarTermIndex = getSolarTermIndex(longitude);
+                const currentTerm = SOLAR_TERMS[solarTermIndex];
+                const nextTermIndex = (solarTermIndex + 1) % 24;
+                const nextTerm = SOLAR_TERMS[nextTermIndex];
+
+                if (isDebugDate) {
+                    console.log("=== DEBUG October 1967 ===");
+                    console.log(
+                        `Input: ${year}-${month}-${day} ${hour}:${minute} TZ:${timezone}`,
+                    );
+                    console.log(
+                        `UTC: ${utcYear}-${utcMonth}-${utcDay} ${utcHour}:${utcMinute}`,
+                    );
+                    console.log(`JD: ${jd}`);
+                    console.log(`Sun Longitude: ${longitude}°`);
+                    console.log(`Solar Term Index: ${solarTermIndex}`);
+                    console.log(
+                        `Solar Term: ${currentTerm.name_en} (${currentTerm.name_cn})`,
+                    );
+                    console.log(`Term starts at: ${currentTerm.longitude}°`);
+                }
+
+                // Calculate progress through solar term
+                const progress =
+                    ((longitude - currentTerm.longitude + 360) % 360) / 15;
+
+                // Calculate four pillars
+                const yearPillar = calculateYearPillar(year, solarTermIndex);
+                const monthPillar = calculateMonthPillar(year, solarTermIndex);
+                const dayPillar = calculateDayPillar(jd);
+                const hourPillar = calculateHourPillar(hour, dayPillar.stem);
+
+                if (isDebugDate) {
+                    const branches = [
+                        "子 Rat",
+                        "丑 Ox",
+                        "寅 Tiger",
+                        "卯 Rabbit",
+                        "辰 Dragon",
+                        "巳 Snake",
+                        "午 Horse",
+                        "未 Goat",
+                        "申 Monkey",
+                        "酉 Rooster",
+                        "戌 Dog",
+                        "亥 Pig",
+                    ];
+                    console.log(
+                        `Month Pillar Branch: ${monthPillar.branch} = ${branches[monthPillar.branch]}`,
+                    );
+                    console.log("======================");
+                }
+
+                // Display astronomical data
+                document.getElementById("astronomicalData").style.display =
+                    "block";
+                document.getElementById("sunLongitude").textContent =
+                    longitude.toFixed(3) + "°";
+                document.getElementById("julianDay").textContent =
+                    jd.toFixed(3);
+                document.getElementById("utcTime").textContent =
+                    utcDate.toISOString().replace("T", " ").slice(0, -5) +
+                    " UTC";
+
+                // Display solar term info
+                document.getElementById("solarTermInfo").style.display =
+                    "block";
+                document.getElementById("termDetails").innerHTML = `
                 <p>Current Term: <strong>${currentTerm.name_cn} ${currentTerm.name_en}</strong> (${currentTerm.name_pinyin})</p>
                 <p>Solar Term Index: <strong>${solarTermIndex}</strong> (Terms ${solarTermIndex}-${solarTermIndex % 2 === 0 ? solarTermIndex + 1 : solarTermIndex} = Month Branch ${(Math.floor(solarTermIndex / 2) + 2) % 12})</p>
                 <p>Next Term: ${nextTerm.name_cn} ${nextTerm.name_en} in ${((1 - progress) * 15).toFixed(1)}°</p>
                 <p>Progress: ${(progress * 100).toFixed(1)}% through current term</p>
             `;
-            document.getElementById('termProgress').style.width = `${progress * 100}%`;
-            
-            // Display four pillars
-            const pillarsHTML = generatePillarHTML('Year', yearPillar) +
-                               generatePillarHTML('Month', monthPillar) +
-                               generatePillarHTML('Day', dayPillar) +
-                               generatePillarHTML('Hour', hourPillar);
-            
-            document.getElementById('pillarsContainer').innerHTML = pillarsHTML;
-        }
-        
-        function generatePillarHTML(title, pillar) {
-            const stem = HEAVENLY_STEMS.names[pillar.stem];
-            const branch = EARTHLY_BRANCHES.names[pillar.branch];
-            const stemPinyin = HEAVENLY_STEMS.pinyin[pillar.stem];
-            const branchPinyin = EARTHLY_BRANCHES.pinyin[pillar.branch];
-            const element = HEAVENLY_STEMS.elements[pillar.stem];
-            const animal = EARTHLY_BRANCHES.animals[pillar.branch];
-            const emoji = EARTHLY_BRANCHES.emojis[pillar.branch];
-            const yinYang = HEAVENLY_STEMS.yin_yang[pillar.stem];
-            
-            const elementClass = `element-${element.toLowerCase()}`;
-            const emojiClass = `animal-emoji-${element.toLowerCase()}`;
-            
-            return `
+                document.getElementById("termProgress").style.width =
+                    `${progress * 100}%`;
+
+                // Display four pillars
+                const pillarsHTML =
+                    generatePillarHTML("Year", yearPillar) +
+                    generatePillarHTML("Month", monthPillar) +
+                    generatePillarHTML("Day", dayPillar) +
+                    generatePillarHTML("Hour", hourPillar);
+
+                document.getElementById("pillarsContainer").innerHTML =
+                    pillarsHTML;
+            }
+
+            function generatePillarHTML(title, pillar) {
+                const stem = HEAVENLY_STEMS.names[pillar.stem];
+                const branch = EARTHLY_BRANCHES.names[pillar.branch];
+                const stemPinyin = HEAVENLY_STEMS.pinyin[pillar.stem];
+                const branchPinyin = EARTHLY_BRANCHES.pinyin[pillar.branch];
+                const element = HEAVENLY_STEMS.elements[pillar.stem];
+                const animal = EARTHLY_BRANCHES.animals[pillar.branch];
+                const emoji = EARTHLY_BRANCHES.emojis[pillar.branch];
+                const yinYang = HEAVENLY_STEMS.yin_yang[pillar.stem];
+
+                const elementClass = `element-${element.toLowerCase()}`;
+                const emojiClass = `animal-emoji-${element.toLowerCase()}`;
+
+                return `
                 <div class="pillar">
                     <div class="pillar-title">${title}</div>
                     <div class="stem-branch">
@@ -745,79 +1181,83 @@
                     <span class="element ${elementClass}">${element}</span>
                 </div>
             `;
-        }
-        
-        // ============================================================================
-        // TEST CASES
-        // ============================================================================
-        
-        function testColdDew1967() {
-            document.getElementById('year').value = '1967';
-            document.getElementById('month').value = '10';
-            document.getElementById('day').value = '9';
-            document.getElementById('hour').value = '0';
-            document.getElementById('minute').value = '0';
-            document.getElementById('timezone').value = '0';
-            calculateBaZi();
-        }
-        
-        function testSpringEquinox2024() {
-            document.getElementById('year').value = '2024';
-            document.getElementById('month').value = '3';
-            document.getElementById('day').value = '20';
-            document.getElementById('hour').value = '3';
-            document.getElementById('minute').value = '6';
-            document.getElementById('timezone').value = '0';
-            calculateBaZi();
-        }
-        
-        function testWinterSolstice2024() {
-            document.getElementById('year').value = '2024';
-            document.getElementById('month').value = '12';
-            document.getElementById('day').value = '21';
-            document.getElementById('hour').value = '9';
-            document.getElementById('minute').value = '20';
-            document.getElementById('timezone').value = '0';
-            calculateBaZi();
-        }
-        
-        function testCurrentTime() {
-            const now = new Date();
-            document.getElementById('year').value = now.getFullYear();
-            document.getElementById('month').value = now.getMonth() + 1;
-            document.getElementById('day').value = now.getDate();
-            document.getElementById('hour').value = now.getHours();
-            document.getElementById('minute').value = now.getMinutes();
-            
-            // Get timezone offset in hours (getTimezoneOffset returns minutes, negative for east of UTC)
-            const offsetMinutes = -now.getTimezoneOffset();
-            const offsetHours = offsetMinutes / 60;
-            
-            // Try to match the offset to our select options
-            const timezoneSelect = document.getElementById('timezone');
-            let optionFound = false;
-            
-            for (let i = 0; i < timezoneSelect.options.length; i++) {
-                const optionValue = parseFloat(timezoneSelect.options[i].value);
-                // Allow small tolerance for matching (0.1 hours = 6 minutes)
-                if (Math.abs(optionValue - offsetHours) < 0.1) {
-                    timezoneSelect.selectedIndex = i;
-                    optionFound = true;
-                    break;
+            }
+
+            // ============================================================================
+            // TEST CASES
+            // ============================================================================
+
+            function testColdDew1967() {
+                document.getElementById("year").value = "1967";
+                document.getElementById("month").value = "10";
+                document.getElementById("day").value = "9";
+                document.getElementById("hour").value = "0";
+                document.getElementById("minute").value = "0";
+                document.getElementById("timezone").value = "0";
+                calculateBaZi();
+            }
+
+            function testSpringEquinox2024() {
+                document.getElementById("year").value = "2024";
+                document.getElementById("month").value = "3";
+                document.getElementById("day").value = "20";
+                document.getElementById("hour").value = "3";
+                document.getElementById("minute").value = "6";
+                document.getElementById("timezone").value = "0";
+                calculateBaZi();
+            }
+
+            function testWinterSolstice2024() {
+                document.getElementById("year").value = "2024";
+                document.getElementById("month").value = "12";
+                document.getElementById("day").value = "21";
+                document.getElementById("hour").value = "9";
+                document.getElementById("minute").value = "20";
+                document.getElementById("timezone").value = "0";
+                calculateBaZi();
+            }
+
+            function testCurrentTime() {
+                const now = new Date();
+                document.getElementById("year").value = now.getFullYear();
+                document.getElementById("month").value = now.getMonth() + 1;
+                document.getElementById("day").value = now.getDate();
+                document.getElementById("hour").value = now.getHours();
+                document.getElementById("minute").value = now.getMinutes();
+
+                // Get timezone offset in hours (getTimezoneOffset returns minutes, negative for east of UTC)
+                const offsetMinutes = -now.getTimezoneOffset();
+                const offsetHours = offsetMinutes / 60;
+
+                // Try to match the offset to our select options
+                const timezoneSelect = document.getElementById("timezone");
+                let optionFound = false;
+
+                for (let i = 0; i < timezoneSelect.options.length; i++) {
+                    const optionValue = parseFloat(
+                        timezoneSelect.options[i].value,
+                    );
+                    // Allow small tolerance for matching (0.1 hours = 6 minutes)
+                    if (Math.abs(optionValue - offsetHours) < 0.1) {
+                        timezoneSelect.selectedIndex = i;
+                        optionFound = true;
+                        break;
+                    }
                 }
+
+                // If no matching option, default to UTC
+                if (!optionFound) {
+                    timezoneSelect.value = "0";
+                    console.log(
+                        `Your timezone offset (${offsetHours} hours) not in list, defaulting to UTC`,
+                    );
+                }
+
+                calculateBaZi();
             }
-            
-            // If no matching option, default to UTC
-            if (!optionFound) {
-                timezoneSelect.value = '0';
-                console.log(`Your timezone offset (${offsetHours} hours) not in list, defaulting to UTC`);
-            }
-            
-            calculateBaZi();
-        }
-        
-        // Load with test case on startup
-        window.onload = () => testColdDew1967();
-    </script>
-</body>
+
+            // Load with current time on startup
+            window.onload = () => testCurrentTime();
+        </script>
+    </body>
 </html>
