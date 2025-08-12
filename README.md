@@ -1,8 +1,8 @@
-# 🐉 BA ZI CALCULATOR - Your Destiny in 360°
+# 	生辰八字 BA ZI CALCULATOR - Your Destiny in 360°
 
 > *"Why read tea leaves when you can read the actual position of the sun?"*
 
-## What's This Sorcery? 
+## What's This Sorcery?
 
 Welcome to the world's most unnecessarily accurate Ba Zi calculator! We're talking astronomical precision that would make ancient Chinese astronomers weep with joy (or confusion about why we need 3 decimal places).
 
@@ -19,7 +19,7 @@ This isn't your grandmother's Ba Zi calculator that thinks October 9th is always
 
 ## 🚀 Quick Start
 
-Just open `bazi-calculator-app.html` in your browser. That's it. No npm, no webpack, no drama. 
+Just open `bazi-calculator-app.html` in your browser. That's it. No npm, no webpack, no drama.
 
 We believe in the radical idea that web apps should just... work.
 
@@ -27,7 +27,7 @@ We believe in the radical idea that web apps should just... work.
 
 Every Ba Zi calculator claims to be accurate. We PROVE it.
 
-**October 9, 1967** - The day that separates the real ones from the pretenders. Most calculators say it's Rooster month. We know better. The sun hadn't reached 195° yet, so it's still Monkey month. 
+**October 9, 1967** - The day that separates the real ones from the pretenders. Most calculators say it's Rooster month. We know better. The sun hadn't reached 195° yet, so it's still Monkey month.
 
 Don't believe us? Check NASA. We'll wait.
 
@@ -43,7 +43,7 @@ Maybe you shouldn't! But if you're here, you probably:
 ## 🛠️ Tech Stack of Destiny
 
 - **HTML** - The bones
-- **CSS** - The beauty  
+- **CSS** - The beauty
 - **JavaScript** - The brains
 - **Math** - The truth
 - **No frameworks** - The freedom
@@ -62,7 +62,7 @@ We just make sure the astronomy is correct. The rest is between you and the univ
 
 ## 🤝 Contributing
 
-Found a bug? The sun's position off by 0.002°? We take these things VERY seriously. 
+Found a bug? The sun's position off by 0.002°? We take these things VERY seriously.
 
 Pull requests welcome, especially if you:
 - Can make the animals dance
