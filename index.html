@@ -1,15 +1,67 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta name="version" content="90" />
+        <meta name="version" content="91" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>BAZI 八字 Math From First Principles</title>
+
+        <!-- SEO and Sharing Meta Tags -->
+        <meta
+            name="description"
+            content="Calculate your Ba Zi (Four Pillars of Destiny) with astronomical precision. Based on true solar positions and the 24 Solar Terms, not calendar approximations."
+        />
+        <meta
+            name="keywords"
+            content="Ba Zi, Four Pillars, 八字, Chinese astrology, solar terms, destiny calculator, Ganzhi calendar"
+        />
+        <meta
+            name="author"
+            content="Toybreaker with Claude Opus 4.1, Powered by JUNGLESTAR"
+        />
+
+        <!-- Open Graph Meta Tags -->
+        <meta
+            property="og:title"
+            content="Ba Zi 八字 - Astronomically Accurate Four Pillars Calculator"
+        />
+        <meta
+            property="og:description"
+            content="Calculate your Four Pillars of Destiny based on precise astronomical data. Mathematics meets ancient metaphors."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://bazi.junglestar.org" />
+        <meta
+            property="og:image"
+            content="https://bazi.junglestar.org/bazi-preview.png"
+        />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ba Zi 八字 Calculator" />
+        <meta
+            name="twitter:description"
+            content="Your destiny calculated with astronomical precision. Based on true solar positions, not calendar approximations."
+        />
+        <meta
+            name="twitter:image"
+            content="https://bazi.junglestar.org/bazi-preview.png"
+        />
+
+        <link rel="canonical" href="https://bazi.junglestar.org" />
+
+        <title>
+            Ba Zi 八字 - Astronomically Accurate Four Pillars Calculator |
+            JUNGLESTAR
+        </title>
         <style>
             * {
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
+            }
+
+            html {
+                background-color: #000;
             }
 
             body {
@@ -1080,9 +1132,9 @@
                 params.set("min", document.getElementById("minute").value);
                 params.set("tz", document.getElementById("timezone").value);
 
-                // Create shareable URL (replace with your actual domain)
+                // Create shareable URL
                 const shareableURL =
-                    "https://yourwebsite.com/bazi.html?" + params.toString();
+                    "https://bazi.junglestar.org?" + params.toString();
 
                 // Show URL display with copy icon
                 document.getElementById("urlDisplay").style.display = "flex";
@@ -1116,7 +1168,7 @@
             function copyLink() {
                 // Use the stored shareable URL
                 const url =
-                    window.shareableURL || "https://yourwebsite.com/bazi.html";
+                    window.shareableURL || "https://bazi.junglestar.org";
 
                 // Try modern clipboard API first
                 if (navigator.clipboard && navigator.clipboard.writeText) {

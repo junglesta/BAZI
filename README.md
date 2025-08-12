@@ -1,4 +1,4 @@
-# 	生辰八字 BA ZI CALCULATOR - Your Destiny in 360°
+# 	生辰八字 BA ZI CALCULATOR - Your Star's Imprint in 360°
 
 > *"Why read tea leaves when you can read the actual position of the sun?"*
 
@@ -6,7 +6,7 @@
 
 Welcome to the world's most unnecessarily accurate Ba Zi calculator! We're talking astronomical precision that would make ancient Chinese astronomers weep with joy (or confusion about why we need 3 decimal places).
 
-This isn't your grandmother's Ba Zi calculator that thinks October 9th is always Rooster month. Oh no. We calculate the ACTUAL position of the sun, because if you're going to divine someone's destiny, you might as well get the astronomy right.
+This isn't your grandmother's Ba Zi calculator that thinks October 9th is always Rooster month. Oh no. We calculate the ACTUAL position of the sun, because if you're going to divine someone's path, you might as well get the astronomy right.
 
 ## ✨ Features That Slap
 
@@ -62,9 +62,11 @@ We just make sure the astronomy is correct. The rest is between you and the univ
 
 ## 🤝 Contributing
 
-Found a bug? The sun's position off by 0.002°? We take these things VERY seriously.
+Found a bug?
+The sun's position off by 0.002°?
+We take these things VERY seriously.
 
-Pull requests welcome, especially if you:
+### Pull requests welcome, especially if you:
 - Can make the animals dance
 - Know the EXACT moment of Cold Dew 1967 from an authoritative source
 - Have better color filters for the element emojis
@@ -94,4 +96,4 @@ Now go forth and calculate with confidence, knowing your Monkey is truly a Monke
 
 *Not responsible for existential crises caused by discovering you've been the wrong zodiac animal all along*
 
-**[Live Demo](https://your-domain.com)** | **[Report Bug](https://github.com/yourusername/bazi-calculator/issues)** | **[Buy Us Coffee](https://ko-fi.com/yourname)**
+**[Live Demo](https://bazi.junglestar.org)** | **[Report Bug](https://github.com/junglesta/bazi/issues)** | **[Buy Us Coffee](https://ko-fi.com/junglo)**
