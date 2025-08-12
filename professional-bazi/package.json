@@ -1,0 +1,33 @@
+{
+  "name": "professional-bazi-calculator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Professional Ba Zi Calculator with Pre-calculated Solar Terms",
+  "main": "src/server.mjs",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "dev": "node --watch src/server.mjs",
+    "test": "node test/test-suite.mjs",
+    "test:accuracy": "node test/accuracy-test.mjs",
+    "generate:terms": "node scripts/generate-solar-terms.mjs",
+    "validate": "node scripts/validate-data.mjs",
+    "benchmark": "node test/benchmark.mjs"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "bazi",
+    "four-pillars",
+    "chinese-astrology",
+    "solar-terms",
+    "八字",
+    "四柱命理",
+    "節氣"
+  ],
+  "author": "Professional Ba Zi Systems",
+  "license": "MIT"
+}
