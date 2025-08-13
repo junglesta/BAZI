@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <meta name="version" content="91" />
+        <meta name="version" content="92" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -109,6 +109,20 @@
                 font-size: 1.1rem;
             }
 
+            .donation {
+                border-color: #7fff00;
+                margin-block: 1dvh;
+                padding: 1dvh;
+                text-align: right;
+                border-top: 1px solid #7fff00;
+                line-height: 2;
+            }
+
+            .spread_left_right {
+                display: flex;
+                justify-content: space-between;
+            }
+
             footer {
                 padding-block: 5dvh;
                 padding-inline: 1dvh;
@@ -123,6 +137,10 @@
             h5,
             h6 {
                 font-weight: 500;
+            }
+
+            .ext_link {
+                color: #7fff00;
             }
 
             .validation-badge {
@@ -538,14 +556,18 @@
 
         <div class="container">
             <header>
-                <h1>Ba Zi 八字</h1>
+                <h1 class="spread_left_right">
+                    <span>Ba Zi</span>
+                    <span>八字</span>
+                </h1>
                 <p class="validation-badge">
                     ✓ Mathematics meets ancient metaphors
                 </p>
             </header>
 
+            <h2 class="more" style="margin-bottom: 1.5dvh">Enter Birth data</h2>
+
             <div class="input-section">
-                <h2 style="margin-bottom: 1.5dvh">Enter Birth Information</h2>
                 <div class="input-grid">
                     <div class="input-group">
                         <label for="year">Year</label>
@@ -638,21 +660,16 @@
                         </select>
                     </div>
                 </div>
-                <button
-                    onclick="testCurrentTime()"
-                    style="background: linear-gradient(45deg, #32cd32, #228b22)"
-                >
-                    NOW
-                </button>
-                <button onclick="calculateBaZi()">Calculate Ba Zi</button>
+
+                <button onclick="calculateBaZi()">CALCULATE</button>
 
                 <div
                     id="urlDisplay"
                     style="
-                        margin-top: 1.5dvh;
+                        margin-block: 1.5dvh;
                         padding: 0.85dvh 0.75dvh;
                         background: rgba(255, 255, 255, 0.05);
-                        border-radius: 0.65dvh;
+                        border-radius: 0.75dvh;
                         font-size: 0.85rem;
                         color: #fff;
                         display: none;
@@ -661,12 +678,12 @@
                         border: 1px solid rgba(255, 255, 255, 0.1);
                     "
                 >
-                    <span
+                    <div
                         onclick="copyLink()"
                         style="
                             cursor: pointer;
-                            display: inline-block;
-                            margin-right: 0.75dvh;
+                            display: block;
+                            margin-inline: 2dvh;
                             color: #7fff00;
                             font-size: 1.2rem;
                             vertical-align: middle;
@@ -676,25 +693,40 @@
                         onmouseout="this.style.transform='scale(1)'"
                         title="Copy to clipboard"
                         id="copyIcon"
-                        >📋</span
                     >
-                    <span id="urlText" style="vertical-align: middle"></span>
+                        COPY URL
+                    </div>
+                    <div id="urlText" style="vertical-align: middle"></div>
                 </div>
+
+                <button
+                    onclick="testCurrentTime()"
+                    style="background: linear-gradient(45deg, #32cd32, #228b22)"
+                >
+                    RESET TO NOW
+                </button>
             </div>
 
             <!-- Calculated Date Display -->
-            <div
-                class="calculated-date-info"
-                id="calculatedDateInfo"
-                style="display: none"
-            >
-                <div class="date-display" id="dateDisplay">
-                    <!-- Date info will be inserted here -->
+            <h2 class="more" style="margin-bottom: 1.5dvh">Results</h2>
+            <div class="input-section">
+                <div
+                    class="calculated-date-info"
+                    id="calculatedDateInfo"
+                    style="display: none"
+                >
+                    <div class="date-display" id="dateDisplay">
+                        <!-- Date info will be inserted here -->
+                    </div>
                 </div>
+
+                <!-- Pillars moved up to be 3rd block -->
+                <div class="pillars-container" id="pillarsContainer"></div>
             </div>
 
-            <!-- Pillars moved up to be 3rd block -->
-            <div class="pillars-container" id="pillarsContainer"></div>
+            <h2 class="more" style="margin-bottom: 1.5dvh">
+                More understanding
+            </h2>
 
             <div
                 class="astronomical-data"
@@ -756,25 +788,31 @@
             </div>
 
             <footer>
-                <span class="validation-badge"
-                    >✓ This opensource webapp is made from first principles
+                <span class="validation-badge">
+                    ✓ This opensource webapp is made from first principles
                 </span>
 
-                <span class="validation-badge"
-                    >✓ Mathematics: Cold Dew 1967 Validated to ±0.001°</span
-                >
+                <span class="validation-badge">
+                    ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
+                </span>
 
                 <span class="validation-badge">✓ Beautiful simplicity </span>
 
                 <span class="validation-badge"
                     >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
-                    Characters, based on the Ganzhi calendar</span
-                >
+                    Characters, based on the Ganzhi calendar
+                </span>
                 <span class="validation-badge"
-                    >✓ Vibe Coded by Toybreaker w/help from Claude Opus
-                    4.1</span
-                >
+                    >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1
+                </span>
                 <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
+
+                <div class="donation">
+                    Feeling Thankful? <br />Tip this project! <br />
+                    <a class="ext_link" href="https://ko-fi.com/junglo">
+                        Buy Us a Coffee
+                    </a>
+                </div>
             </footer>
         </div>
 
