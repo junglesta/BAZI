@@ -1,7 +1,23 @@
 <!doctype html>
 <html lang="en">
+    <!--
+
+          _                   _           _
+         | |_   _ _ __   __ _| | ___  ___| |_ __ _ _ __
+      _  | | | | | '_ \ / _` | |/ _ \/ __| __/ _` | '__|
+     | |_| | |_| | | | | (_| | |  __/\__ \ || (_| | |
+      \___/ \__,_|_| |_|\__, |_|\___||___/\__\__,_|_|
+                        |___/
+
+     site     : https://junglestar.org
+     email    : info@junglestar.org
+     twitter	: @rokmatwit
+
+
+    -->
+
     <head>
-        <meta name="version" content="92" />
+        <meta name="version" content="93" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -104,9 +120,17 @@
                 letter-spacing: 3px;
             }
 
+            .center {
+                text-align: center;
+            }
+
             .subtitle {
                 color: #aaa;
                 font-size: 1.1rem;
+            }
+
+            .share {
+                padding-top: 5dvh;
             }
 
             .donation {
@@ -123,9 +147,20 @@
                 justify-content: space-between;
             }
 
-            footer {
+            .footwrap {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
                 padding-block: 5dvh;
                 padding-inline: 1dvh;
+            }
+            .qr {
+                display: block;
+                min-width: 200px;
+                width: 1dvh;
+                max-width: 400px;
+                height: auto;
             }
 
             h1,
@@ -159,12 +194,13 @@
                 padding-top: 5dvh;
             }
 
-            .input-section {
+            .section_right {
                 background: rgba(255, 255, 255, 0.08);
                 border-radius: 0.75dvh;
                 padding: 1.5dvh;
                 margin-bottom: 1.5dvh;
                 backdrop-filter: blur(0.75dvh);
+                margin-inline: 8dvw;
             }
 
             .input-grid {
@@ -195,7 +231,6 @@
                 border-radius: 0.175dvh;
                 font-size: 1rem;
             }
-
             button {
                 background: linear-gradient(45deg, #7fff00, #32cd32);
                 color: #0a0f0a;
@@ -208,6 +243,13 @@
                 transition: transform 0.3s;
                 margin-top: 0.5dvh;
                 margin-right: 0.5dvh;
+            }
+
+            button.stroke {
+                background: none;
+                color: #7fff00;
+                border: 2px #7fff00 solid;
+                border-radius: 1dvh;
             }
 
             button:hover {
@@ -255,7 +297,7 @@
             }
 
             .date-display {
-                font-size: 1.2rem;
+                font-size: 1.55rem !important;
                 color: #7fff00;
                 letter-spacing: 0.5px;
             }
@@ -566,8 +608,7 @@
             </header>
 
             <h2 class="more" style="margin-bottom: 1.5dvh">Enter Birth data</h2>
-
-            <div class="input-section">
+            <section class="section_right">
                 <div class="input-grid">
                     <div class="input-group">
                         <label for="year">Year</label>
@@ -699,17 +740,14 @@
                     <div id="urlText" style="vertical-align: middle"></div>
                 </div>
 
-                <button
-                    onclick="testCurrentTime()"
-                    style="background: linear-gradient(45deg, #32cd32, #228b22)"
-                >
+                <button onclick="testCurrentTime()" class="stroke">
                     RESET TO NOW
                 </button>
-            </div>
+            </section>
 
             <!-- Calculated Date Display -->
             <h2 class="more" style="margin-bottom: 1.5dvh">Results</h2>
-            <div class="input-section">
+            <section class="section_right">
                 <div
                     class="calculated-date-info"
                     id="calculatedDateInfo"
@@ -722,16 +760,14 @@
 
                 <!-- Pillars moved up to be 3rd block -->
                 <div class="pillars-container" id="pillarsContainer"></div>
-            </div>
+            </section>
 
             <h2 class="more" style="margin-bottom: 1.5dvh">
                 More understanding
             </h2>
-
-            <div
-                class="astronomical-data"
+            <section
+                class="section_right astronomical-data"
                 id="astronomicalData"
-                style="display: none"
             >
                 <h3 style="color: #7fff00; margin-bottom: 1.5dvh">
                     🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar Term
@@ -756,13 +792,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <div
-                class="solar-term-info"
-                id="solarTermInfo"
-                style="display: none"
-            >
+            <section class="section_right solar-term-info" id="solarTermInfo">
                 <h3 style="color: #32cd32; margin-bottom: 1.5dvh">
                     📐 Geometric Position in Earth's Orbit
                 </h3>
@@ -770,51 +802,1807 @@
                 <div class="term-progress">
                     <div class="term-progress-bar" id="termProgress"></div>
                 </div>
-            </div>
+            </section>
 
-            <div class="test-cases">
+            <section class="section_right test-cases">
                 <h3 style="color: #7fff00; margin-bottom: 0.75dvh">
-                    Geometric Test Points | 0°, 90°, 180°, 195°, 270°
+                    Geometric Test Points <br />
+                    0°, 90°, 180°, 195°, 270°
                 </h3>
                 <button class="test-button" onclick="testColdDew1967()">
                     Cold Dew 1967
                 </button>
+
                 <button class="test-button" onclick="testSpringEquinox2024()">
                     Spring Equinox 2024
                 </button>
                 <button class="test-button" onclick="testWinterSolstice2024()">
                     Winter Solstice 2024
                 </button>
+            </section>
+        </div>
+
+        <footer>
+            <div class="container footwrap">
+                <div class="badges">
+                    <span class="validation-badge">
+                        ✓ This opensource webapp is made from first principles
+                    </span>
+
+                    <span class="validation-badge">
+                        ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
+                    </span>
+
+                    <span class="validation-badge"
+                        >✓ Beautiful simplicity
+                    </span>
+
+                    <span class="validation-badge"
+                        >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
+                        Characters, based on the Ganzhi calendar
+                    </span>
+                    <span class="validation-badge"
+                        >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1
+                    </span>
+                    <span class="validation-badge"
+                        >✓ Powered by:  target="_blank" href="https://junglestar.org">JUNGLESTAR<</a>/span
+                    >
+                </div>
+
+                <div class="share">
+                    <p class="center">SCAN & SHARE</p>
+                    <svg
+                        class="qr"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        viewBox="0 0 1716 1716"
+                    >
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 104)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 156)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 260)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 312)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 364)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 416)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 468)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 520)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 572)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 624)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 208 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 676)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 260 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 728)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 260 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 780)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 832)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 208 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 884)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 936)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 988)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 156 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 208 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 260 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 1040)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 208 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 260 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 312 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1092)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 104 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 208 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 364 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 416 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 468 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 1144)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1196)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1248)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 1300)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 988 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 1352)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1144 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 1404)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 624 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1300 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1508 1456)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 728 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 884 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1404 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1560 1508)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 520 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 572 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 676 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 780 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 832 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 936 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1040 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1092 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1196 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1248 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1352 1560)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(.52 0 0 .52 1456 1560)"
+                        />
+                        <g style="fill: #7fff00">
+                            <path
+                                d="M15 15h70v70H15z"
+                                style="fill: none"
+                                transform="matrix(3.64 0 0 3.64 104 104)"
+                            />
+                            <path
+                                d="M413.4 104H104v364h364V104h-54.6zm0 309.4H158.6V158.6h254.8v254.8z"
+                            />
+                        </g>
+                        <g style="fill: #7fff00">
+                            <path
+                                d="M15 15h70v70H15z"
+                                style="fill: none"
+                                transform="matrix(3.64 0 0 3.64 1248 104)"
+                            />
+                            <path
+                                d="M1557.4 104H1248v364h364V104h-54.6zm0 309.4h-254.8V158.6h254.8v254.8z"
+                            />
+                        </g>
+                        <g style="fill: #7fff00">
+                            <path
+                                d="M15 15h70v70H15z"
+                                style="fill: none"
+                                transform="matrix(3.64 0 0 3.64 104 1248)"
+                            />
+                            <path
+                                d="M413.4 1248H104v364h364v-364h-54.6zm0 309.4H158.6v-254.8h254.8v254.8z"
+                            />
+                        </g>
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(1.56 0 0 1.56 208 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(1.56 0 0 1.56 1352 208)"
+                        />
+                        <path
+                            d="M0 0h100v100H0z"
+                            style="fill: #7fff00"
+                            transform="matrix(1.56 0 0 1.56 208 1352)"
+                        />
+                    </svg>
+                </div>
             </div>
 
-            <footer>
-                <span class="validation-badge">
-                    ✓ This opensource webapp is made from first principles
-                </span>
-
-                <span class="validation-badge">
-                    ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
-                </span>
-
-                <span class="validation-badge">✓ Beautiful simplicity </span>
-
-                <span class="validation-badge"
-                    >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
-                    Characters, based on the Ganzhi calendar
-                </span>
-                <span class="validation-badge"
-                    >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1
-                </span>
-                <span class="validation-badge">✓ Powered by: JUNGLESTAR</span>
-
-                <div class="donation">
-                    Feeling Thankful? <br />Tip this project! <br />
-                    <a class="ext_link" href="https://ko-fi.com/junglo">
-                        Buy Us a Coffee
-                    </a>
-                </div>
-            </footer>
-        </div>
+            <div class="donation">
+                Feeling Thankful? <br />Tip this project! <br />
+                <a target="_blank"  class="ext_link" href="https://ko-fi.com/junglo">
+                    Buy Us a Coffee
+                </a>
+            </div>
+        </footer>
 
         <script>
             // ============================================================================
