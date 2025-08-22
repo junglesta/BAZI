@@ -17,7 +17,7 @@
     -->
 
     <head>
-        <meta name="version" content="93" />
+        <meta name="version" content="97" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -66,10 +66,94 @@
         <link rel="canonical" href="https://bazi.junglestar.org" />
 
         <title>
-            Ba Zi 八字 - Astronomically Accurate Four Pillars Calculator |
-            JUNGLESTAR
+            Ba Zi 八字 - Astronomically Accurate Pillars Calculator | JUNGLESTAR
         </title>
         <style>
+            :root {
+                /* Primary Colors in OKLCH */
+                --color-primary: oklch(
+                    0.87 0.28 142
+                ); /* chartreuse green #7fff00 */
+                --color-primary-light: oklch(
+                    0.89 0.25 142
+                ); /* light green #adff2f */
+                --color-secondary: oklch(0.69 0.2 142); /* lime green #32cd32 */
+
+                /* Background Colors in OKLCH */
+                --bg-dark: oklch(0.15 0.02 142); /* dark green-black */
+                --bg-mid: oklch(0.25 0.05 142); /* mid green-black */
+                --bg-light: oklch(0.18 0.03 142); /* light green-black */
+                --bg-surface: oklch(1 0 0 / 0.05); /* white with opacity */
+                --bg-surface-hover: oklch(
+                    1 0 0 / 0.08
+                ); /* white with opacity */
+
+                /* Text Colors in OKLCH */
+                --text-primary: oklch(1 0 0); /* white */
+                --text-secondary: oklch(0.72 0 0); /* light gray */
+                --text-muted: oklch(0.6 0 0); /* muted gray */
+
+                /* Element Colors in OKLCH */
+                --element-wood: oklch(0.69 0.2 142); /* green */
+                --element-fire: oklch(0.64 0.2 41); /* red-orange */
+                --element-earth: oklch(0.7 0.15 85); /* golden */
+                --element-metal: oklch(0.82 0 0); /* silver */
+                --element-water: oklch(0.6 0.18 237); /* blue */
+
+                /* Element Backgrounds in OKLCH with opacity */
+                --element-bg-wood: oklch(0.69 0.2 142 / 0.3);
+                --element-bg-fire: oklch(0.64 0.2 41 / 0.3);
+                --element-bg-earth: oklch(0.7 0.15 85 / 0.3);
+                --element-bg-metal: oklch(0.82 0 0 / 0.3);
+                --element-bg-water: oklch(0.6 0.18 237 / 0.3);
+
+                /* Spacing */
+                --spacing-xs: 0.25dvh;
+                --spacing-sm: 0.5dvh;
+                --spacing-md: 0.75dvh;
+                --spacing-base: 1dvh;
+                --spacing-lg: 1.5dvh;
+                --spacing-xl: 2dvh;
+                --spacing-2xl: 3dvh;
+                --spacing-3xl: 5dvh;
+                --spacing-section: 8dvw;
+
+                /* Border Radius */
+                --radius-xs: 0.175dvh;
+                --radius-sm: 0.5dvh;
+                --radius-md: 0.75dvh;
+                --radius-base: 1dvh;
+                --radius-lg: 1.5dvh;
+
+                /* Typography */
+                --font-family:
+                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                    "Helvetica Neue", Arial, sans-serif;
+                --font-size-xs: 0.85rem;
+                --font-size-sm: 0.9rem;
+                --font-size-base: 1rem;
+                --font-size-md: 1.1rem;
+                --font-size-lg: 1.2rem;
+                --font-size-xl: 1.3rem;
+                --font-size-2xl: 1.55rem;
+                --font-size-3xl: 3rem;
+
+                /* Transitions */
+                --transition-fast: 0.2s ease;
+                --transition-base: 0.3s ease;
+
+                /* Borders in OKLCH */
+                --border-subtle: 1px solid oklch(1 0 0 / 0.1);
+                --border-visible: 1px solid oklch(1 0 0 / 0.2);
+                --border-primary: 1px solid var(--color-primary);
+                --border-green: 1px solid oklch(0.87 0.28 142 / 0.3);
+
+                /* Effects */
+                --blur-amount: 0.75dvh;
+                --shadow-glow: 0 0 0.65dvh;
+            }
+
+            /* Reset & Base */
             * {
                 margin: 0;
                 padding: 0;
@@ -81,38 +165,41 @@
             }
 
             body {
-                font-family:
-                    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                    "Helvetica Neue", Arial, sans-serif;
+                font-family: var(--font-family);
                 background: linear-gradient(
                     135deg,
-                    #0a0f0a 0%,
-                    #1a3a1a 50%,
-                    #0d1f0d 100%
+                    var(--bg-dark) 0%,
+                    var(--bg-mid) 50%,
+                    var(--bg-light) 100%
                 );
                 min-height: 100vh;
-                color: #fff;
-                padding: 1dvh;
+                color: var(--text-primary);
+                padding: var(--spacing-base);
             }
 
+            /* Container & Layout */
             .container {
                 max-width: 1200px;
                 margin: 0 auto;
             }
 
+            /* Header */
             header {
                 text-align: center;
-                margin-bottom: 1dvh;
-                padding: 1dvh;
-                /* background: rgba(255, 255, 255, 0.05); */
-                border-radius: 1dvh;
-                backdrop-filter: blur(0.75dvh);
+                margin-bottom: var(--spacing-base);
+                padding: var(--spacing-base);
+                border-radius: var(--radius-base);
+                backdrop-filter: blur(var(--blur-amount));
             }
 
             h1 {
-                font-size: 3rem;
-                margin-bottom: 0.5dvh;
-                background: linear-gradient(45deg, #7fff00, #adff2f);
+                font-size: var(--font-size-3xl);
+                margin-bottom: var(--spacing-sm);
+                background: linear-gradient(
+                    45deg,
+                    var(--color-primary),
+                    var(--color-primary-light)
+                );
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
                 background-clip: text;
@@ -120,26 +207,30 @@
                 letter-spacing: 3px;
             }
 
+            /* Typography */
+            h1,
+            h2,
+            h3 {
+                font-weight: 300;
+            }
+
+            h4,
+            h5,
+            h6 {
+                font-weight: 500;
+            }
+
+            h2.section-title {
+                margin-bottom: var(--spacing-lg);
+            }
+
+            h3 {
+                margin-bottom: var(--spacing-lg);
+            }
+
+            /* Common Classes */
             .center {
                 text-align: center;
-            }
-
-            .subtitle {
-                color: #aaa;
-                font-size: 1.1rem;
-            }
-
-            .share {
-                padding-top: 5dvh;
-            }
-
-            .donation {
-                border-color: #7fff00;
-                margin-block: 1dvh;
-                padding: 1dvh;
-                text-align: right;
-                border-top: 1px solid #7fff00;
-                line-height: 2;
             }
 
             .spread_left_right {
@@ -147,67 +238,38 @@
                 justify-content: space-between;
             }
 
-            .footwrap {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                align-items: center;
-                padding-block: 5dvh;
-                padding-inline: 1dvh;
-            }
-            .qr {
-                display: block;
-                min-width: 200px;
-                width: 1dvh;
-                max-width: 400px;
-                height: auto;
-            }
-
-            h1,
-            h2,
-            h3 {
-                font-weight: 300;
-            }
-            h4,
-            h5,
-            h6 {
-                font-weight: 500;
-            }
-
+            /* Links */
             .ext_link {
-                color: #7fff00;
+                color: var(--color-primary);
             }
 
+            /* Badges */
             .validation-badge {
                 display: inline-block;
-                border-color: #7fff00;
-                /*rgba(127, 255, 0, 0.2);*/
-                color: #7fff00;
-                padding: 0.25dvh 1dvh;
-                border-radius: 1dvh;
-                font-size: 0.9rem;
-                margin-top: 1dvh;
+                border-color: var(--color-primary);
+                color: var(--color-primary);
+                padding: var(--spacing-xs) var(--spacing-base);
+                border-radius: var(--radius-base);
+                font-size: var(--font-size-sm);
+                margin-top: var(--spacing-base);
             }
 
-            .pad_top_5 {
-                margin-top: 5dvh;
-                padding-top: 5dvh;
+            /* Sections */
+            .section-card {
+                background: var(--bg-surface-hover);
+                border-radius: var(--radius-md);
+                padding: var(--spacing-lg);
+                margin-bottom: var(--spacing-lg);
+                backdrop-filter: blur(var(--blur-amount));
+                margin-inline: var(--spacing-section);
             }
 
-            .section_right {
-                background: rgba(255, 255, 255, 0.08);
-                border-radius: 0.75dvh;
-                padding: 1.5dvh;
-                margin-bottom: 1.5dvh;
-                backdrop-filter: blur(0.75dvh);
-                margin-inline: 8dvw;
-            }
-
+            /* Forms */
             .input-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 1dvh;
-                margin-bottom: 1dvh;
+                gap: var(--spacing-base);
+                margin-bottom: var(--spacing-base);
             }
 
             .input-group {
@@ -216,112 +278,162 @@
             }
 
             label {
-                margin-bottom: 0.25dvh;
-                color: #adff2f;
-                font-size: 0.9rem;
+                margin-bottom: var(--spacing-xs);
+                color: var(--color-primary-light);
+                font-size: var(--font-size-sm);
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
 
-            input {
-                padding: 0.5dvh;
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                background: rgba(255, 255, 255, 0.05);
-                color: #fff;
-                border-radius: 0.175dvh;
-                font-size: 1rem;
+            input,
+            select {
+                padding: var(--spacing-sm);
+                border: var(--border-visible);
+                background: var(--bg-surface);
+                color: var(--text-primary);
+                border-radius: var(--radius-xs);
+                font-size: var(--font-size-base);
             }
+
+            select {
+                padding: var(--spacing-md);
+                border-radius: var(--radius-sm);
+            }
+
+            /* Buttons */
             button {
-                background: linear-gradient(45deg, #7fff00, #32cd32);
-                color: #0a0f0a;
+                background: linear-gradient(
+                    45deg,
+                    var(--color-primary),
+                    var(--color-secondary)
+                );
+                color: var(--bg-dark);
                 border: none;
-                padding: 0.75dvh 1.5dvh;
-                border-radius: 1dvh;
-                font-size: 1.1rem;
+                padding: var(--spacing-md) var(--spacing-lg);
+                border-radius: var(--radius-base);
+                font-size: var(--font-size-md);
                 font-weight: bold;
                 cursor: pointer;
-                transition: transform 0.3s;
-                margin-top: 0.5dvh;
-                margin-right: 0.5dvh;
+                transition: transform var(--transition-base);
+                margin-top: var(--spacing-sm);
+                margin-right: var(--spacing-sm);
             }
 
             button.stroke {
                 background: none;
-                color: #7fff00;
-                border: 2px #7fff00 solid;
-                border-radius: 1dvh;
+                color: var(--color-primary);
+                border: 2px var(--color-primary) solid;
             }
 
             button:hover {
                 transform: translateY(-2px);
             }
 
+            /* URL Display */
+            .url-display {
+                margin-block: var(--spacing-lg);
+                padding: var(--spacing-md);
+                background: var(--bg-surface);
+                border-radius: var(--radius-md);
+                font-size: var(--font-size-xs);
+                color: var(--text-primary);
+                display: none;
+                align-items: center;
+                word-break: break-all;
+                border: var(--border-subtle);
+            }
+
+            .button_copy {
+                cursor: pointer;
+                display: block;
+                margin-inline: var(--spacing-xl);
+                /* color: var(--color-primary); */
+                font-size: var(--font-size-lg);
+                vertical-align: middle;
+                transition: transform var(--transition-fast);
+            }
+
+            .url-text {
+                vertical-align: middle;
+            }
+
+            /* Date Display */
+            .calculated-date-info {
+                text-align: center;
+                margin-top: var(--spacing-sm);
+                margin-bottom: var(--spacing-base);
+            }
+
+            .date-display {
+                font-size: var(--font-size-2xl) !important;
+                color: var(--color-primary);
+                letter-spacing: 0.5px;
+            }
+
+            /* Astronomical Data */
             .astronomical-data {
-                background: rgba(50, 205, 50, 0.1);
-                border: 1px solid rgba(127, 255, 0, 0.3);
-                border-radius: 1dvh;
-                padding: 1dvh;
-                margin-bottom: 2dvh;
+                background: oklch(0.69 0.2 142 / 0.1);
+                border: var(--border-green);
+                border-radius: var(--radius-base);
+                padding: var(--spacing-base);
+                margin-bottom: var(--spacing-xl);
+            }
+
+            .astronomical-data h3 {
+                color: var(--color-primary);
             }
 
             .data-grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1dvh;
-                margin-top: 1dvh;
+                gap: var(--spacing-base);
+                margin-top: var(--spacing-base);
             }
 
             .data-card {
-                background: rgba(255, 255, 255, 0.05);
-                padding: 1dvh;
-                border-radius: 0.5dvh;
-                border: 1px solid rgba(255, 255, 255, 0.1);
+                background: var(--bg-surface);
+                padding: var(--spacing-base);
+                border-radius: var(--radius-sm);
+                border: var(--border-subtle);
             }
 
             .data-label {
-                color: #8a8a8a;
-                font-size: 0.85rem;
-                margin-bottom: 0.75dvh;
+                color: var(--text-muted);
+                font-size: var(--font-size-xs);
+                margin-bottom: var(--spacing-md);
             }
 
             .data-value {
-                font-size: 1.3rem;
+                font-size: var(--font-size-xl);
                 font-weight: bold;
-                color: #7fff00;
+                color: var(--color-primary);
             }
 
-            .calculated-date-info {
-                text-align: center;
-                margin-top: 0.5dvh;
-                margin-bottom: 1dvh;
+            .utc-time {
+                font-size: var(--font-size-base);
             }
 
-            .date-display {
-                font-size: 1.55rem !important;
-                color: #7fff00;
-                letter-spacing: 0.5px;
-            }
-
+            /* Pillars */
             .pillars-container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 1.5dvh;
-                margin-top: 1.5dvh;
-                margin-bottom: 1.5dvh;
+                gap: var(--spacing-lg);
+                margin-top: var(--spacing-lg);
+                margin-bottom: var(--spacing-lg);
             }
 
             .pillar {
-                background: rgba(255, 255, 255, 0.08);
-                border-radius: 0.75dvh;
-                padding: 1.5dvh;
+                background: var(--bg-surface-hover);
+                border-radius: var(--radius-md);
+                padding: var(--spacing-lg);
                 text-align: center;
-                border: 2px solid rgba(127, 255, 0, 0.3);
+                border: 2px solid oklch(0.87 0.28 142 / 0.3);
             }
 
             .pillar-title {
-                font-size: 1.2rem;
-                color: #adff2f;
-                margin-bottom: 0.75dvh;
+                font-size: var(--font-size-lg);
+                color: var(--color-primary-light);
+                margin-bottom: var(--spacing-md);
                 font-weight: bold;
             }
 
@@ -329,199 +441,295 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: 0.75dvh;
-                margin: 0.75dvh 0;
+                gap: var(--spacing-md);
+                margin: var(--spacing-md) 0;
             }
 
             .chinese-char {
-                font-size: 1rem;
+                font-size: var(--font-size-base);
                 font-weight: bold;
             }
 
             .pinyin {
-                color: #aaa;
+                color: var(--text-secondary);
                 font-size: 0.4rem;
                 margin-top: 3px;
             }
 
+            /* Elements */
             .element {
                 display: inline-block;
-                padding: 5px 0.75dvh;
-                border-radius: 1.5dvh;
-                font-size: 1.1rem;
-                margin-top: 0.75dvh;
+                padding: 5px var(--spacing-md);
+                border-radius: var(--radius-lg);
+                font-size: var(--font-size-md);
+                margin-top: var(--spacing-md);
                 font-weight: bold;
             }
 
             .element-wood {
-                background: rgba(34, 139, 34, 0.3);
-                color: #32cd32;
-            }
-            .element-fire {
-                background: rgba(255, 69, 0, 0.3);
-                color: #ff6347;
-            }
-            .element-earth {
-                background: rgba(160, 82, 45, 0.3);
-                color: #daa520;
-            }
-            .element-metal {
-                background: rgba(192, 192, 192, 0.3);
-                color: #c0c0c0;
-            }
-            .element-water {
-                background: rgba(30, 144, 255, 0.3);
-                color: #1e90ff;
+                background: var(--element-bg-wood);
+                color: var(--element-wood);
             }
 
+            .element-fire {
+                background: var(--element-bg-fire);
+                color: var(--element-fire);
+            }
+
+            .element-earth {
+                background: var(--element-bg-earth);
+                color: var(--element-earth);
+            }
+
+            .element-metal {
+                background: var(--element-bg-metal);
+                color: var(--element-metal);
+            }
+
+            .element-water {
+                background: var(--element-bg-water);
+                color: var(--element-water);
+            }
+
+            /* Animal Emojis */
             .animal-emoji {
                 font-size: 3.5rem;
-                margin: 0.75dvh 0;
+                margin: var(--spacing-md) 0;
             }
 
             .animal-emoji-wood {
                 filter: url(#greenify)
-                    drop-shadow(0 0 0.65dvh rgba(127, 255, 0, 0.5));
+                    drop-shadow(var(--shadow-glow) oklch(0.87 0.28 142 / 0.5));
             }
 
             .animal-emoji-fire {
                 filter: url(#redify)
-                    drop-shadow(0 0 0.65dvh rgba(255, 69, 0, 0.5));
+                    drop-shadow(var(--shadow-glow) oklch(0.64 0.2 41 / 0.5));
             }
 
             .animal-emoji-earth {
                 filter: url(#earthify)
-                    drop-shadow(0 0 0.65dvh rgba(218, 165, 32, 0.5));
+                    drop-shadow(var(--shadow-glow) oklch(0.7 0.15 85 / 0.5));
             }
 
             .animal-emoji-metal {
                 filter: url(#metalify)
-                    drop-shadow(0 0 0.65dvh rgba(192, 192, 192, 0.5));
+                    drop-shadow(var(--shadow-glow) oklch(0.82 0 0 / 0.5));
             }
 
             .animal-emoji-water {
                 filter: url(#blueify)
-                    drop-shadow(0 0 0.65dvh rgba(30, 144, 255, 0.5));
+                    drop-shadow(var(--shadow-glow) oklch(0.6 0.18 237 / 0.5));
             }
 
             .animal-info {
                 font-size: 2.4rem;
-                margin: 0.75dvh 0;
+                margin: var(--spacing-md) 0;
                 font-weight: 500;
             }
 
+            /* Solar Term Info */
             .solar-term-info {
-                background: rgba(60, 179, 113, 0.1);
-                border: 1px solid rgba(60, 179, 113, 0.3);
-                border-radius: 0.75dvh;
-                padding: 1.5dvh;
-                margin-top: 1.5dvh;
+                background: oklch(0.65 0.15 142 / 0.1);
+                border: 1px solid oklch(0.65 0.15 142 / 0.3);
+                border-radius: var(--radius-md);
+                padding: var(--spacing-lg);
+                margin-top: var(--spacing-lg);
+            }
+
+            .solar-term-info h3 {
+                color: var(--color-secondary);
             }
 
             .term-progress {
                 width: 100%;
-                height: 1.5dvh;
-                background: rgba(255, 255, 255, 0.1);
-                border-radius: 0.75dvh;
+                height: var(--spacing-lg);
+                background: oklch(1 0 0 / 0.1);
+                border-radius: var(--radius-md);
                 overflow: hidden;
-                margin-top: 0.75dvh;
+                margin-top: var(--spacing-md);
             }
 
             .term-progress-bar {
                 height: 100%;
-                background: linear-gradient(90deg, #7fff00, #228b22);
-                transition: width 0.3s ease;
+                background: linear-gradient(
+                    90deg,
+                    var(--color-primary),
+                    oklch(0.59 0.17 142)
+                );
+                transition: width var(--transition-base);
             }
 
+            /* Test Cases */
             .test-cases {
-                background: rgba(34, 139, 34, 0.05);
-                border: 1px solid rgba(127, 255, 0, 0.2);
-                border-radius: 0.75dvh;
-                padding: 0.75dvh;
-                margin-top: 1dvh;
+                background: oklch(0.69 0.2 142 / 0.05);
+                border: 1px solid oklch(0.87 0.28 142 / 0.2);
+                border-radius: var(--radius-md);
+                padding: var(--spacing-md);
+                margin-top: var(--spacing-base);
+            }
+
+            .test-cases h3 {
+                color: var(--color-primary);
+                margin-bottom: var(--spacing-md);
             }
 
             .test-button {
-                background: rgba(127, 255, 0, 0.2);
-                color: #7fff00;
-                border: 1px solid #7fff00;
-                padding: 0.65dvh 0.75dvh;
+                background: oklch(0.87 0.28 142 / 0.2);
+                color: var(--color-primary);
+                border: var(--border-primary);
+                padding: 0.65dvh var(--spacing-md);
                 margin: 5px;
-                font-size: 0.9rem;
+                font-size: var(--font-size-sm);
             }
 
             .test-button:hover {
-                background: rgba(127, 255, 0, 0.3);
+                background: oklch(0.87 0.28 142 / 0.3);
             }
 
-            @media (max-width: 760.65dvh) {
-                h1 {
-                    font-size: 3.3rem;
+            /* Footer */
+            .footwrap {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+                padding-block: var(--spacing-3xl);
+                padding-inline: var(--spacing-base);
+            }
+
+            .share {
+                padding-top: var(--spacing-3xl);
+            }
+
+            .qr {
+                display: block;
+                min-width: 200px;
+                width: var(--spacing-base);
+                max-width: 400px;
+                height: auto;
+            }
+
+            .donation {
+                border-color: var(--color-primary);
+                margin-block: var(--spacing-base);
+                padding: var(--spacing-base);
+                text-align: right;
+                border-top: var(--border-primary);
+                line-height: 2;
+            }
+
+            fieldset {
+                border: 0 none;
+            }
+
+            .pad_top {
+                padding-top: 2dvh;
+            }
+            .pad_bottom {
+                padding-bottom: 2dvh;
+            }
+
+            .flex_rows {
+                display: flex;
+            }
+
+            /* Media Queries */
+            @media (max-width: 760px) {
+                :root {
+                    --font-size-3xl: 3.3rem;
+                    --font-size-2xl: 0.9rem;
                 }
-                .date-display {
-                    font-size: 0.9rem;
-                }
+
                 .pillars-container {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 0.75dvh;
+                    gap: var(--spacing-md);
                 }
+
                 .pillar {
-                    padding: 0.75dvh 0.75dvh;
+                    padding: var(--spacing-md);
                 }
+
                 .chinese-char {
-                    font-size: 0.75rem;
+                    font-size: var(--spacing-md);
                 }
+
                 .animal-emoji {
                     font-size: 2.5rem;
                 }
+
                 .animal-info {
                     font-size: 1.8rem;
                 }
+
                 .element {
-                    font-size: 0.9rem;
-                    padding: 3px 0.75dvh;
+                    font-size: var(--font-size-sm);
+                    padding: 3px var(--spacing-md);
                 }
+
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: 0.75dvh !important;
+                    margin-top: var(--spacing-md) !important;
                 }
             }
 
             @media (max-width: 480px) {
-                .date-display {
-                    font-size: 0.85rem;
+                :root {
+                    --font-size-2xl: 0.85rem;
                 }
+
                 .pillars-container {
                     grid-template-columns: repeat(2, 1fr);
                     gap: 0.65dvh;
                 }
+
                 .pillar {
                     padding: 0.85dvh 0.65dvh;
                 }
+
                 .pillar-title {
-                    font-size: 1rem;
+                    font-size: var(--font-size-base);
                 }
+
                 .chinese-char {
                     font-size: 0.65rem;
                 }
+
                 .animal-emoji {
                     font-size: 2rem;
                 }
+
                 .pinyin {
                     font-size: 0.35rem;
                 }
+
                 .animal-info {
                     font-size: 1.4rem;
                 }
+
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: 0.75dvh !important;
+                    margin-top: var(--spacing-md) !important;
                 }
-                #urlDisplay {
-                    font-size: 0.75rem !important;
+
+                .url-display {
+                    font-size: var(--spacing-md) !important;
                 }
+            }
+
+            /*Screen reader only content */
+
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+                border: 0;
             }
         </style>
     </head>
@@ -600,2009 +808,377 @@
             <header>
                 <h1 class="spread_left_right">
                     <span>Ba Zi</span>
-                    <span>八字</span>
+                    <span lang="zh">八字</span>
                 </h1>
-                <p class="validation-badge">
+                <p class="validation-badge" role="doc-subtitle">
                     ✓ Mathematics meets ancient metaphors
                 </p>
             </header>
 
-            <h2 class="more" style="margin-bottom: 1.5dvh">Enter Birth data</h2>
-            <section class="section_right">
-                <div class="input-grid">
-                    <div class="input-group">
-                        <label for="year">Year</label>
-                        <input
-                            type="number"
-                            id="year"
-                            min="1900"
-                            max="2030"
-                            value="1967"
-                        />
-                    </div>
-                    <div class="input-group">
-                        <label for="month">Month</label>
-                        <input
-                            type="number"
-                            id="month"
-                            min="1"
-                            max="12"
-                            value="10"
-                        />
-                    </div>
-                    <div class="input-group">
-                        <label for="day">Day</label>
-                        <input
-                            type="number"
-                            id="day"
-                            min="1"
-                            max="31"
-                            value="9"
-                        />
-                    </div>
-                    <div class="input-group">
-                        <label for="hour">Hour (24h)</label>
-                        <input
-                            type="number"
-                            id="hour"
-                            min="0"
-                            max="23"
-                            value="0"
-                        />
-                    </div>
-                    <div class="input-group">
-                        <label for="minute">Minute</label>
-                        <input
-                            type="number"
-                            id="minute"
-                            min="0"
-                            max="59"
-                            value="0"
-                        />
-                    </div>
-                    <div class="input-group">
-                        <label for="timezone">Timezone</label>
-                        <select
-                            id="timezone"
-                            style="
-                                padding: 0.75dvh;
-                                border-radius: 0.65dvh;
-                                background: rgba(255, 255, 255, 0.05);
-                                color: white;
-                                border: 1px solid rgba(255, 255, 255, 0.2);
-                            "
-                        >
-                            <option value="0">UTC/GMT</option>
-                            <option value="-12">Baker Island (UTC-12)</option>
-                            <option value="-11">Samoa (UTC-11)</option>
-                            <option value="-10">Hawaii (UTC-10)</option>
-                            <option value="-9">Alaska (UTC-9)</option>
-                            <option value="-8">Los Angeles (UTC-8)</option>
-                            <option value="-7">Denver (UTC-7)</option>
-                            <option value="-6">Chicago (UTC-6)</option>
-                            <option value="-5">New York (UTC-5)</option>
-                            <option value="-4">Halifax (UTC-4)</option>
-                            <option value="-3">São Paulo (UTC-3)</option>
-                            <option value="-2">Mid-Atlantic (UTC-2)</option>
-                            <option value="-1">Azores (UTC-1)</option>
-                            <option value="1">Berlin/Paris (UTC+1)</option>
-                            <option value="2">Cairo (UTC+2)</option>
-                            <option value="3">Moscow (UTC+3)</option>
-                            <option value="4">Dubai (UTC+4)</option>
-                            <option value="5">Karachi (UTC+5)</option>
-                            <option value="5.5">Delhi (UTC+5.5)</option>
-                            <option value="6">Dhaka (UTC+6)</option>
-                            <option value="7">Bangkok (UTC+7)</option>
-                            <option value="8">Beijing/Shanghai (UTC+8)</option>
-                            <option value="9">Tokyo (UTC+9)</option>
-                            <option value="10">Sydney (UTC+10)</option>
-                            <option value="11">Noumea (UTC+11)</option>
-                            <option value="12">Auckland (UTC+12)</option>
-                        </select>
-                    </div>
-                </div>
-
-                <button onclick="calculateBaZi()">CALCULATE</button>
-
-                <div
-                    id="urlDisplay"
-                    style="
-                        margin-block: 1.5dvh;
-                        padding: 0.85dvh 0.75dvh;
-                        background: rgba(255, 255, 255, 0.05);
-                        border-radius: 0.75dvh;
-                        font-size: 0.85rem;
-                        color: #fff;
-                        display: none;
-                        align-items: center;
-                        word-break: break-all;
-                        border: 1px solid rgba(255, 255, 255, 0.1);
-                    "
-                >
-                    <div
-                        onclick="copyLink()"
-                        style="
-                            cursor: pointer;
-                            display: block;
-                            margin-inline: 2dvh;
-                            color: #7fff00;
-                            font-size: 1.2rem;
-                            vertical-align: middle;
-                            transition: transform 0.2s;
-                        "
-                        onmouseover="this.style.transform='scale(1.2)'"
-                        onmouseout="this.style.transform='scale(1)'"
-                        title="Copy to clipboard"
-                        id="copyIcon"
+            <main>
+                <section aria-labelledby="input-title">
+                    <h2 id="input-title" class="section-title">
+                        Enter Birth data
+                    </h2>
+                    <form
+                        class="section-card"
+                        onsubmit="event.preventDefault(); calculateBaZi();"
                     >
-                        COPY URL
-                    </div>
-                    <div id="urlText" style="vertical-align: middle"></div>
-                </div>
+                        <fieldset class="input-grid">
+                            <legend class="sr-only">Birth date and time</legend>
+                            <div class="input-group">
+                                <label for="year">Year</label>
+                                <input
+                                    type="number"
+                                    id="year"
+                                    min="1900"
+                                    max="2030"
+                                    value="1967"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="month">Month</label>
+                                <input
+                                    type="number"
+                                    id="month"
+                                    min="1"
+                                    max="12"
+                                    value="10"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="day">Day</label>
+                                <input
+                                    type="number"
+                                    id="day"
+                                    min="1"
+                                    max="31"
+                                    value="9"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="hour">Hour (24h)</label>
+                                <input
+                                    type="number"
+                                    id="hour"
+                                    min="0"
+                                    max="23"
+                                    value="0"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="minute">Minute</label>
+                                <input
+                                    type="number"
+                                    id="minute"
+                                    min="0"
+                                    max="59"
+                                    value="0"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="input-group">
+                                <label for="timezone">Timezone</label>
+                                <select
+                                    id="timezone"
+                                    required
+                                    aria-required="true"
+                                >
+                                    <option value="0">UTC / GMT</option>
+                                    <option value="-12">
+                                        Baker Island (UTC-12)
+                                    </option>
+                                    <option value="-11">Samoa (UTC-11)</option>
+                                    <option value="-10">Hawaii (UTC-10)</option>
+                                    <option value="-9">Alaska (UTC-9)</option>
+                                    <option value="-8">
+                                        Los Angeles (UTC-8)
+                                    </option>
+                                    <option value="-7">Denver (UTC-7)</option>
+                                    <option value="-6">Chicago (UTC-6)</option>
+                                    <option value="-5">New York (UTC-5)</option>
+                                    <option value="-4">Halifax (UTC-4)</option>
+                                    <option value="-3">
+                                        São Paulo (UTC-3)
+                                    </option>
+                                    <option value="-2">
+                                        Mid-Atlantic (UTC-2)
+                                    </option>
+                                    <option value="-1">Azores (UTC-1)</option>
+                                    <option value="1">
+                                        Berlin Winter (CEST UTC+1)
+                                    </option>
+                                    <option value="2">
+                                        Berlin Summer (CEST UTC+2)
+                                    </option>
+                                    <option value="3">Moscow (UTC+3)</option>
+                                    <option value="4">Dubai (UTC+4)</option>
+                                    <option value="5">Karachi (UTC+5)</option>
+                                    <option value="5.5">Delhi (UTC+5.5)</option>
+                                    <option value="6">Dhaka (UTC+6)</option>
+                                    <option value="7">Bangkok (UTC+7)</option>
+                                    <option value="8">
+                                        Beijing / Shanghai (UTC+8)
+                                    </option>
+                                    <option value="9">Tokyo (UTC+9)</option>
+                                    <option value="10">Sydney (UTC+10)</option>
+                                    <option value="11">Noumea (UTC+11)</option>
+                                    <option value="12">
+                                        Auckland (UTC+12)
+                                    </option>
+                                </select>
+                            </div>
+                        </fieldset>
 
-                <button onclick="testCurrentTime()" class="stroke">
-                    RESET TO NOW
-                </button>
-            </section>
+                        <button type="submit">CALCULATE</button>
 
-            <!-- Calculated Date Display -->
-            <h2 class="more" style="margin-bottom: 1.5dvh">Results</h2>
-            <section class="section_right">
-                <div
-                    class="calculated-date-info"
-                    id="calculatedDateInfo"
-                    style="display: none"
-                >
-                    <div class="date-display" id="dateDisplay">
-                        <!-- Date info will be inserted here -->
-                    </div>
-                </div>
-
-                <!-- Pillars moved up to be 3rd block -->
-                <div class="pillars-container" id="pillarsContainer"></div>
-            </section>
-
-            <h2 class="more" style="margin-bottom: 1.5dvh">
-                More understanding
-            </h2>
-            <section
-                class="section_right astronomical-data"
-                id="astronomicalData"
-            >
-                <h3 style="color: #7fff00; margin-bottom: 1.5dvh">
-                    🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar Term
-                </h3>
-                <div class="data-grid">
-                    <div class="data-card">
-                        <div class="data-label">Sun's Ecliptic Longitude</div>
-                        <div class="data-value" id="sunLongitude">--</div>
-                    </div>
-                    <div class="data-card">
-                        <div class="data-label">Julian Day Number</div>
-                        <div class="data-value" id="julianDay">--</div>
-                    </div>
-                    <div class="data-card">
-                        <div class="data-label">UTC Datetime</div>
-                        <div
-                            class="data-value"
-                            id="utcTime"
-                            style="font-size: 1rem"
+                        <button
+                            type="button"
+                            onclick="testCurrentTime()"
+                            class="stroke"
                         >
-                            --
+                            RESET TO NOW
+                        </button>
+
+                        <button
+                            type="button"
+                            onclick="clearSessionAndReload()"
+                            class="stroke"
+                            title="Clear saved data and start fresh"
+                        >
+                            CLEAR SESSION
+                        </button>
+
+                        <div class="pad_top flex_rows">
+                            <button
+                                type="button"
+                                onclick="copyLink()"
+                                class="button_copy stroke"
+                                id="copyIcon"
+                                onmouseover="this.style.transform='scale(1.2)'"
+                                onmouseout="this.style.transform='scale(1)'"
+                                title="Copy to clipboard"
+                                aria-label="Copy URL to clipboard"
+                            >
+                                COPY URL
+                            </button>
+                            <output
+                                class="url-display"
+                                id="urlDisplay"
+                                aria-live="polite"
+                            >
+                                <span class="url-text" id="urlText"></span>
+                            </output>
                         </div>
+                    </form>
+                </section>
+
+                <section aria-labelledby="results-title">
+                    <h2 id="results-title" class="section-title">Results</h2>
+                    <div class="section-card">
+                        <output
+                            class="calculated-date-info"
+                            id="calculatedDateInfo"
+                            style="display: none"
+                            aria-live="polite"
+                        >
+                            <time class="date-display" id="dateDisplay">
+                                <!-- Date info will be inserted here -->
+                            </time>
+                        </output>
+
+                        <!-- Pillars Container -->
+                        <div
+                            class="pillars-container"
+                            id="pillarsContainer"
+                            role="region"
+                            aria-label="Four Pillars of Destiny"
+                        ></div>
                     </div>
+                </section>
+
+                <section aria-labelledby="understanding-title">
+                    <h2 id="understanding-title" class="section-title">
+                        More understanding
+                    </h2>
+
+                    <article
+                        class="section-card astronomical-data"
+                        id="astronomicalData"
+                        aria-labelledby="astro-title"
+                    >
+                        <h3 id="astro-title">
+                            🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar
+                            Term
+                        </h3>
+                        <div class="data-grid">
+                            <div class="data-card">
+                                <div class="data-label">
+                                    Sun's Ecliptic Longitude
+                                </div>
+                                <output class="data-value" id="sunLongitude"
+                                    >--</output
+                                >
+                            </div>
+                            <div class="data-card">
+                                <div class="data-label">Julian Day Number</div>
+                                <output class="data-value" id="julianDay"
+                                    >--</output
+                                >
+                            </div>
+                            <div class="data-card">
+                                <div class="data-label">UTC Datetime</div>
+                                <output class="data-value utc-time" id="utcTime"
+                                    >--</output
+                                >
+                            </div>
+                        </div>
+                    </article>
+
+                    <article
+                        class="section-card solar-term-info"
+                        id="solarTermInfo"
+                        aria-labelledby="term-title"
+                    >
+                        <h3 id="term-title">
+                            🔍 Geometric Position in Earth's Orbit
+                        </h3>
+                        <output id="termDetails"></output>
+                        <div
+                            class="term-progress"
+                            role="progressbar"
+                            aria-label="Solar term progress"
+                        >
+                            <div
+                                class="term-progress-bar"
+                                id="termProgress"
+                            ></div>
+                        </div>
+                    </article>
+
+                    <aside
+                        class="section-card test-cases"
+                        aria-labelledby="test-title"
+                    >
+                        <h3 id="test-title">
+                            Geometric Test Points <br />
+                            0°, 90°, 180°, 195°, 270°
+                        </h3>
+                        <button
+                            type="button"
+                            class="test-button"
+                            onclick="testColdDew1967()"
+                        >
+                            Cold Dew 1967
+                        </button>
+                        <button
+                            type="button"
+                            class="test-button"
+                            onclick="testSpringEquinox2024()"
+                        >
+                            Spring Equinox 2024
+                        </button>
+                        <button
+                            type="button"
+                            class="test-button"
+                            onclick="testWinterSolstice2024()"
+                        >
+                            Winter Solstice 2024
+                        </button>
+                    </aside>
+                </section>
+            </main>
+
+            <footer>
+                <div class="container footwrap">
+                    <section class="badges" aria-label="Project information">
+                        <span class="validation-badge">
+                            ✓ This opensource webapp is made from first
+                            principles
+                        </span>
+                        <span class="validation-badge">
+                            ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
+                        </span>
+                        <span class="validation-badge">
+                            ✓ Beautiful simplicity
+                        </span>
+                        <span class="validation-badge">
+                            ✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
+                            Characters, based on the Ganzhi calendar
+                        </span>
+                        <span class="validation-badge">
+                            ✓ Vibe Coded by Toybreaker w/help from Claude Opus
+                            4.1
+                        </span>
+                        <span class="validation-badge">
+                            ✓ Powered by:
+                            <a
+                                class="ext_link"
+                                target="_blank"
+                                href="https://junglestar.org"
+                                >JUNGLESTAR</a
+                            >
+                        </span>
+                    </section>
+
+                    <aside class="share" aria-label="Share QR code">
+                        <p class="center pad_bottom">SCAN & SHARE</p>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            xml:space="preserve"
+                            viewBox="0 0 1155 1155"
+                        >
+                            <path fill="lime" d="M0 0h1155v1155H0z" />
+                            <path
+                                d="M420 70h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm-315 35h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm-420 35h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm-350 35h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm-280 35h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-385 35h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm-315 35h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm-420 35h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm70 0h35v35h-35zM70 350h35v35H70zm210 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zM70 385h35v35H70zm35 0h35v35h-35zm105 0h35v35h-35zm140 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zM70 420h35v35H70zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm175 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-805 35h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm-840 35h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm-875 35h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zM70 560h35v35H70zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zM70 595h35v35H70zm70 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm280 0h35v35h-35zm70 0h35v35h-35zm-945 35h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm210 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zM70 665h35v35H70zm35 0h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm280 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zM70 700h35v35H70zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zM70 735h35v35H70zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm175 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zM70 770h35v35H70zm70 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm140 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-700 35h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm-560 35h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-525 35h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm-560 35h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm-595 35h35v35h-35zm105 0h35v35h-35zm105 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-630 35h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm35 0h35v35h-35zm-630 35h35v35h-35zm105 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm210 0h35v35h-35zm140 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm-700 35h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm35 0h35v35h-35zm70 0h35v35h-35zm70 0h35v35h-35z"
+                            />
+                            <path
+                                fill="none"
+                                d="M106.8 106.8h171.4v171.4H106.8z"
+                            />
+                            <path
+                                d="M278.3 70H70v245h245V70h-36.8zm0 208.3H106.7V106.7h171.6v171.6z"
+                            />
+                            <path
+                                fill="none"
+                                d="M876.8 106.8h171.5v171.4H876.8z"
+                            />
+                            <path
+                                d="M1048.3 70H840v245h245V70h-36.8zm0 208.3H876.8V106.7h171.5v171.6z"
+                            />
+                            <path
+                                fill="none"
+                                d="M106.8 876.8h171.4v171.5H106.8z"
+                            />
+                            <path
+                                d="M278.3 840H70v245h245V840h-36.8zm0 208.3H106.7V876.8h171.6v171.5zM140 140h105v105H140zm770 0h105v105H910z"
+                            />
+                            <path d="M140 910h105v105H140z" />
+                        </svg>
+                    </aside>
                 </div>
-            </section>
 
-            <section class="section_right solar-term-info" id="solarTermInfo">
-                <h3 style="color: #32cd32; margin-bottom: 1.5dvh">
-                    📐 Geometric Position in Earth's Orbit
-                </h3>
-                <div id="termDetails"></div>
-                <div class="term-progress">
-                    <div class="term-progress-bar" id="termProgress"></div>
-                </div>
-            </section>
-
-            <section class="section_right test-cases">
-                <h3 style="color: #7fff00; margin-bottom: 0.75dvh">
-                    Geometric Test Points <br />
-                    0°, 90°, 180°, 195°, 270°
-                </h3>
-                <button class="test-button" onclick="testColdDew1967()">
-                    Cold Dew 1967
-                </button>
-
-                <button class="test-button" onclick="testSpringEquinox2024()">
-                    Spring Equinox 2024
-                </button>
-                <button class="test-button" onclick="testWinterSolstice2024()">
-                    Winter Solstice 2024
-                </button>
-            </section>
+                <aside class="donation" aria-label="Donation information">
+                    Feeling Thankful? <br />Tip this project! <br />
+                    <a
+                        target="_blank"
+                        class="ext_link"
+                        href="https://ko-fi.com/junglo"
+                    >
+                        Buy Us a Coffee
+                    </a>
+                </aside>
+            </footer>
         </div>
-
-        <footer>
-            <div class="container footwrap">
-                <div class="badges">
-                    <span class="validation-badge">
-                        ✓ This opensource webapp is made from first principles
-                    </span>
-
-                    <span class="validation-badge">
-                        ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
-                    </span>
-
-                    <span class="validation-badge"
-                        >✓ Beautiful simplicity
-                    </span>
-
-                    <span class="validation-badge"
-                        >✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
-                        Characters, based on the Ganzhi calendar
-                    </span>
-                    <span class="validation-badge"
-                        >✓ Vibe Coded by Toybreaker w/help from Claude Opus 4.1
-                    </span>
-                    <span class="validation-badge"
-                        >✓ Powered by:  target="_blank" href="https://junglestar.org">JUNGLESTAR<</a>/span
-                    >
-                </div>
-
-                <div class="share">
-                    <p class="center">SCAN & SHARE</p>
-                    <svg
-                        class="qr"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xml:space="preserve"
-                        viewBox="0 0 1716 1716"
-                    >
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 104)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 156)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 260)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 312)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 364)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 416)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 468)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 520)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 572)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 624)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 208 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 676)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 260 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 728)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 260 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 780)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 832)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 208 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 884)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 936)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 988)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 156 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 208 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 260 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 1040)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 208 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 260 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 312 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1092)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 104 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 208 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 364 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 416 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 468 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 1144)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1196)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1248)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 1300)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 988 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 1352)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1144 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 1404)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 624 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1300 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1508 1456)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 728 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 884 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1404 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1560 1508)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 520 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 572 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 676 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 780 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 832 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 936 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1040 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1092 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1196 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1248 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1352 1560)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(.52 0 0 .52 1456 1560)"
-                        />
-                        <g style="fill: #7fff00">
-                            <path
-                                d="M15 15h70v70H15z"
-                                style="fill: none"
-                                transform="matrix(3.64 0 0 3.64 104 104)"
-                            />
-                            <path
-                                d="M413.4 104H104v364h364V104h-54.6zm0 309.4H158.6V158.6h254.8v254.8z"
-                            />
-                        </g>
-                        <g style="fill: #7fff00">
-                            <path
-                                d="M15 15h70v70H15z"
-                                style="fill: none"
-                                transform="matrix(3.64 0 0 3.64 1248 104)"
-                            />
-                            <path
-                                d="M1557.4 104H1248v364h364V104h-54.6zm0 309.4h-254.8V158.6h254.8v254.8z"
-                            />
-                        </g>
-                        <g style="fill: #7fff00">
-                            <path
-                                d="M15 15h70v70H15z"
-                                style="fill: none"
-                                transform="matrix(3.64 0 0 3.64 104 1248)"
-                            />
-                            <path
-                                d="M413.4 1248H104v364h364v-364h-54.6zm0 309.4H158.6v-254.8h254.8v254.8z"
-                            />
-                        </g>
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(1.56 0 0 1.56 208 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(1.56 0 0 1.56 1352 208)"
-                        />
-                        <path
-                            d="M0 0h100v100H0z"
-                            style="fill: #7fff00"
-                            transform="matrix(1.56 0 0 1.56 208 1352)"
-                        />
-                    </svg>
-                </div>
-            </div>
-
-            <div class="donation">
-                Feeling Thankful? <br />Tip this project! <br />
-                <a target="_blank"  class="ext_link" href="https://ko-fi.com/junglo">
-                    Buy Us a Coffee
-                </a>
-            </div>
-        </footer>
 
         <script>
             // ============================================================================
@@ -3003,12 +1579,12 @@
                         .then(() => {
                             const icon = document.getElementById("copyIcon");
                             const originalIcon = icon.innerHTML;
-                            icon.innerHTML = "✅";
-                            icon.style.color = "#32cd32";
+                            icon.innerHTML = "🖤 COPIED!";
+                            icon.style.color = "black";
 
                             setTimeout(() => {
                                 icon.innerHTML = originalIcon;
-                                icon.style.color = "#7fff00";
+                                icon.style.color = "black";
                             }, 2000);
                         })
                         .catch((err) => {
@@ -3044,11 +1620,11 @@
                     const icon = document.getElementById("copyIcon");
                     const originalIcon = icon.innerHTML;
                     icon.innerHTML = "✅";
-                    icon.style.color = "#32cd32";
+                    icon.style.color = "oklch(0.69 0.20 142)";
 
                     setTimeout(() => {
                         icon.innerHTML = originalIcon;
-                        icon.style.color = "#7fff00";
+                        icon.style.color = "oklch(0.87 0.28 142)";
                     }, 2000);
                 } catch (err) {
                     console.error("Failed to copy:", err);
@@ -3169,6 +1745,9 @@
                 const timezone = parseFloat(
                     document.getElementById("timezone").value,
                 );
+
+                // Save to session storage for persistence
+                saveToSession();
 
                 // Debug logging for October 1967
                 const isDebugDate = year === 1967 && month === 10;
@@ -3318,11 +1897,11 @@
                 document.getElementById("solarTermInfo").style.display =
                     "block";
                 document.getElementById("termDetails").innerHTML = `
-                <p>Current Term: <strong>${currentTerm.name_cn} ${currentTerm.name_en}</strong> (${currentTerm.name_pinyin})</p>
-                <p>Solar Term Index: <strong>${solarTermIndex}</strong> (Terms ${solarTermIndex}-${solarTermIndex % 2 === 0 ? solarTermIndex + 1 : solarTermIndex} = Month Branch ${(Math.floor(solarTermIndex / 2) + 2) % 12})</p>
-                <p>Next Term: ${nextTerm.name_cn} ${nextTerm.name_en} in ${((1 - progress) * 15).toFixed(1)}°</p>
-                <p>Progress: ${(progress * 100).toFixed(1)}% through current term</p>
-            `;
+                    <p>Current Term: <strong>${currentTerm.name_cn} ${currentTerm.name_en}</strong> (${currentTerm.name_pinyin})</p>
+                    <p>Solar Term Index: <strong>${solarTermIndex}</strong> (Terms ${solarTermIndex}-${solarTermIndex % 2 === 0 ? solarTermIndex + 1 : solarTermIndex} = Month Branch ${(Math.floor(solarTermIndex / 2) + 2) % 12})</p>
+                    <p>Next Term: ${nextTerm.name_cn} ${nextTerm.name_en} in ${((1 - progress) * 15).toFixed(1)}°</p>
+                    <p>Progress: ${(progress * 100).toFixed(1)}% through current term</p>
+                `;
                 document.getElementById("termProgress").style.width =
                     `${progress * 100}%`;
 
@@ -3354,23 +1933,23 @@
                 const emojiClass = `animal-emoji-${element.toLowerCase()}`;
 
                 return `
-                <div class="pillar">
-                    <div class="pillar-title">${title}</div>
-                    <div class="stem-branch">
-                        <div>
-                            <div class="chinese-char">${stem}</div>
-                            <div class="pinyin">${stemPinyin}</div>
+                    <article class="pillar" aria-label="${title} Pillar">
+                        <h4 class="pillar-title">${title}</h4>
+                        <div class="stem-branch">
+                            <div>
+                                <div class="chinese-char" lang="zh">${stem}</div>
+                                <div class="pinyin">${stemPinyin}</div>
+                            </div>
+                            <div>
+                                <div class="chinese-char" lang="zh">${branch}</div>
+                                <div class="pinyin">${branchPinyin}</div>
+                            </div>
                         </div>
-                        <div>
-                            <div class="chinese-char">${branch}</div>
-                            <div class="pinyin">${branchPinyin}</div>
-                        </div>
-                    </div>
-                    <div class="animal-emoji ${emojiClass}">${emoji}</div>
-                    <div class="animal-info">${animal} · ${yinYang}</div>
-                    <span class="element ${elementClass}">${element}</span>
-                </div>
-            `;
+                        <div class="animal-emoji ${emojiClass}" role="img" aria-label="${animal} emoji">${emoji}</div>
+                        <div class="animal-info">${animal} · ${yinYang}</div>
+                        <span class="element ${elementClass}">${element}</span>
+                    </article>
+                `;
             }
 
             // ============================================================================
@@ -3415,6 +1994,9 @@
                 document.getElementById("hour").value = now.getHours();
                 document.getElementById("minute").value = now.getMinutes();
 
+                // Clear session storage when resetting to current time
+                clearSession();
+
                 // Get timezone offset in hours (getTimezoneOffset returns minutes, negative for east of UTC)
                 const offsetMinutes = -now.getTimezoneOffset();
                 const offsetHours = offsetMinutes / 60;
@@ -3446,14 +2028,136 @@
                 calculateBaZi();
             }
 
-            // Load with URL parameters or current time on startup
+            // ============================================================================
+            // SESSION PERSISTENCE
+            // ============================================================================
+
+            function saveToSession() {
+                const sessionData = {
+                    year: document.getElementById("year").value,
+                    month: document.getElementById("month").value,
+                    day: document.getElementById("day").value,
+                    hour: document.getElementById("hour").value,
+                    minute: document.getElementById("minute").value,
+                    timezone: document.getElementById("timezone").value,
+                    timestamp: Date.now(),
+                };
+                sessionStorage.setItem(
+                    "baziCalculatorData",
+                    JSON.stringify(sessionData),
+                );
+            }
+
+            function loadFromSession() {
+                const savedData = sessionStorage.getItem("baziCalculatorData");
+                if (savedData) {
+                    try {
+                        const data = JSON.parse(savedData);
+                        document.getElementById("year").value = data.year;
+                        document.getElementById("month").value = data.month;
+                        document.getElementById("day").value = data.day;
+                        document.getElementById("hour").value = data.hour;
+                        document.getElementById("minute").value = data.minute;
+                        document.getElementById("timezone").value =
+                            data.timezone;
+                        return true;
+                    } catch (e) {
+                        console.error("Error loading session data:", e);
+                        return false;
+                    }
+                }
+                return false;
+            }
+
+            function clearSession() {
+                sessionStorage.removeItem("baziCalculatorData");
+            }
+
+            function clearSessionAndReload() {
+                clearSession();
+                testCurrentTime();
+                // Show feedback
+                const msg = document.createElement("div");
+                msg.textContent = "✓ Session cleared";
+                msg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: oklch(0.65 0.15 142 / 0.9);
+                    color: white;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 0.9rem;
+                    z-index: 1000;
+                `;
+                document.body.appendChild(msg);
+                setTimeout(() => document.body.removeChild(msg), 2000);
+            }
+
+            // Load with URL parameters, session storage, or current time on startup
             window.onload = () => {
-                // First check if URL has parameters
+                // Priority order:
+                // 1. URL parameters (for shared links)
+                // 2. Session storage (for page refreshes)
+                // 3. Current time (for new visits)
+
                 if (!loadFromURL()) {
-                    // If no URL parameters, load current time
-                    testCurrentTime();
+                    // No URL parameters, try session storage
+                    if (loadFromSession()) {
+                        // Successfully loaded from session, calculate with saved data
+                        calculateBaZi();
+                        // Show subtle indicator that session was restored
+                        showSessionRestoredIndicator();
+                    } else {
+                        // No session data, load current time
+                        testCurrentTime();
+                    }
                 }
             };
+
+            function showSessionRestoredIndicator() {
+                // Create a temporary indicator
+                const indicator = document.createElement("div");
+                indicator.textContent = "✓ Previous session restored";
+                indicator.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: oklch(0.87 0.28 142 / 0.9);
+                    color: oklch(0.15 0.02 142);
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    font-size: 0.9rem;
+                    z-index: 1000;
+                    animation: slideIn 0.3s ease-out;
+                `;
+
+                // Add animation
+                const style = document.createElement("style");
+                style.textContent = `
+                    @keyframes slideIn {
+                        from {
+                            transform: translateX(100%);
+                            opacity: 0;
+                        }
+                        to {
+                            transform: translateX(0);
+                            opacity: 1;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                document.body.appendChild(indicator);
+
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    indicator.style.animation = "slideIn 0.3s ease-out reverse";
+                    setTimeout(() => {
+                        document.body.removeChild(indicator);
+                        document.head.removeChild(style);
+                    }, 300);
+                }, 3000);
+            }
         </script>
     </body>
 </html>
