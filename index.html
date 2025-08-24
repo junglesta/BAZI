@@ -135,7 +135,7 @@
                 --font-size-md: 1.1rem;
                 --font-size-lg: 1.2rem;
                 --font-size-xl: 1.3rem;
-                --font-size-2xl: 1.55rem;
+                --font-size-2xl: 1.95rem;
                 --font-size-3xl: 3rem;
 
                 /* Transitions */
@@ -222,6 +222,7 @@
 
             h2.section-title {
                 margin-bottom: var(--spacing-lg);
+                font-size: var(--font-size-2xl);
             }
 
             h3 {
@@ -256,12 +257,13 @@
 
             /* Sections */
             .section-card {
+                backdrop-filter: blur(var(--blur-amount));
                 background: var(--bg-surface-hover);
                 border-radius: var(--radius-md);
-                padding: var(--spacing-lg);
-                margin-bottom: var(--spacing-lg);
-                backdrop-filter: blur(var(--blur-amount));
-                margin-inline: var(--spacing-section);
+                padding-block: var(--spacing-lg);
+                padding-inline: var(--spacing-lg);
+                margin-block: var(--spacing-2xl);
+                margin-inline: var(--spacing-lg);
             }
 
             /* Forms */
@@ -292,7 +294,7 @@
                 background: var(--bg-surface);
                 color: var(--text-primary);
                 border-radius: var(--radius-xs);
-                font-size: var(--font-size-base);
+                font-size: var(--font-size-lg);
             }
 
             select {
@@ -360,8 +362,7 @@
             /* Date Display */
             .calculated-date-info {
                 text-align: center;
-                margin-top: var(--spacing-sm);
-                margin-bottom: var(--spacing-base);
+                margin-block: var(--spacing-xl);
             }
 
             .date-display {
@@ -644,7 +645,7 @@
             @media (max-width: 760px) {
                 :root {
                     --font-size-3xl: 3.3rem;
-                    --font-size-2xl: 0.9rem;
+                    --font-size-2xl: 1.85rem;
                 }
 
                 .pillars-container {
@@ -682,7 +683,7 @@
 
             @media (max-width: 480px) {
                 :root {
-                    --font-size-2xl: 0.85rem;
+                    --font-size-2xl: 1.75rem;
                 }
 
                 .pillars-container {
@@ -744,12 +745,21 @@
 
             .vert {
                 position: absolute;
-                right: 0.25rem;
-                top: 0.5rem;
+                z-index: 3;
+                right: 0.0125rem;
+                top: 1.25rem;
                 transform: rotate(180deg);
                 transform-origin: top top;
                 writing-mode: vertical-rl;
                 font-weight: 300;
+            }
+
+            .pillar .vert {
+                top: 0.45rem;
+            }
+
+            .relative {
+                position: relative;
             }
 
             /*Screen reader only content */
@@ -850,8 +860,8 @@
             </header>
 
             <main>
-                <section aria-labelledby="input-title">
-                    <h2 id="input-title" class="section-title uppercase">
+                <section aria-labelledby="input-title" class="relative">
+                    <h2 id="input-title" class="section-title uppercase center">
                         Enter Birth data
                     </h2>
                     <form
@@ -1016,8 +1026,11 @@
                     </form>
                 </section>
 
-                <section aria-labelledby="results-title">
-                    <h2 id="results-title" class="section-title uppercase">
+                <section aria-labelledby="results-title" class="relative">
+                    <h2
+                        id="results-title"
+                        class="section-title uppercase center"
+                    >
                         Results
                     </h2>
                     <div class="section-card">
@@ -1043,10 +1056,10 @@
                     </div>
                 </section>
 
-                <section aria-labelledby="understanding-title">
+                <section aria-labelledby="understanding-title" class="relative">
                     <h2
                         id="understanding-title"
-                        class="section-title uppercase"
+                        class="section-title uppercase center"
                     >
                         More understanding
                     </h2>
