@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Yin-Yang Tao Symbols</title>
+        <style>
+            :root {
+                --yin-purple: oklch(50% 0.2 290);
+
+                /* Green & Gold Theme in OKLCH */
+                --yin_green: oklch(55% 0.18 145);
+                --yang_gold: oklch(85% 0.16 85);
+
+                /* Common */
+                --border-color: var(--yang_gold);
+                --bg-gradient-1: var(--yang_gold);
+                --bg-gradient-2: var(--yin_green);
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            .hide {
+                display: none;
+            }
+
+            body {
+                min-height: 100vh;
+                background: linear-gradient(
+                    135deg,
+                    var(--bg-gradient-1),
+                    var(--bg-gradient-2)
+                );
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3rem;
+                padding: 2rem;
+                font-family:
+                    system-ui,
+                    -apple-system,
+                    sans-serif;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+            }
+
+            .title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                text-align: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.875rem;
+                text-align: center;
+                margin-bottom: 1rem;
+            }
+
+            .yin-yang {
+                width: 250px;
+                height: 250px;
+                filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.45));
+                transition: transform 0.3s ease;
+            }
+
+            .yin-yang:hover {
+                transform: scale(1.05);
+            }
+
+            .rotating {
+                animation: rotate 20s linear infinite;
+            }
+
+            .slow-rotate {
+                animation: rotate 30s linear infinite;
+            }
+
+            @keyframes rotate {
+                from {
+                    transform: rotate(0deg);
+                }
+                to {
+                    transform: rotate(-360deg);
+                }
+            }
+
+            .outer-circle {
+                fill: var(--yang_gold);
+                stroke: none;
+            }
+
+            .yin-side {
+                fill: var(--yin-color);
+            }
+
+            .yang-side {
+                fill: var(--yang_gold);
+            }
+
+            /* Purple-Yellow specific */
+            .purple-yellow .yin-side {
+                fill: var(--yin-purple);
+            }
+
+            .purple-yellow .yang-side {
+                fill: var(--yang_gold);
+            }
+
+            .purple-yellow .yin-dot {
+                fill: var(--yang_gold);
+            }
+
+            .purple-yellow .yang-dot {
+                fill: var(--yin-purple);
+            }
+
+            /* Green-Gold specific */
+            .green-gold .yin-side {
+                fill: var(--yin_green);
+            }
+
+            .green-gold .yang-side {
+                fill: var(--yang_gold);
+            }
+
+            .green-gold .yin-dot {
+                fill: var(--yang_gold);
+            }
+
+            .green-gold .yang-dot {
+                fill: var(--yin_green);
+            }
+
+            @media (max-width: 640px) {
+                .yin-yang {
+                    width: 200px;
+                    height: 200px;
+                }
+
+                body {
+                    gap: 2rem;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Purple & Yellow Yin-Yang -->
+        <div class="container">
+            <div>
+                <h2 class="title">Purple & Yellow Tao</h2>
+                <p class="subtitle">
+                    Depth/Mystery (Yin) • Brightness/Nobility (Yang)
+                </p>
+            </div>
+            <svg
+                class="yin-yang purple-yellow rotating"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <!-- Outer circle for definition -->
+                <circle class="outer-circle" cx="100" cy="100" r="98" />
+
+                <!-- Main Yin-Yang shape with proper S-curve -->
+                <g>
+                    <!-- Yellow (Yang) half -->
+                    <path
+                        class="hide yang-side"
+                        d="M 100 2 A 49 49 0 0 1 100 100 A 49 49 0 0 0 100 198 A 98 98 0 0 1 100 2"
+                    />
+
+                    <!-- Purple (Yin) half -->
+                    <path
+                        class="yin-side"
+                        d="M 100 2 A 49 49 0 0 0 100 100 A 49 49 0 0 1 100 198 A 98 98 0 0 0 100 2"
+                    />
+
+                    <!-- Small dots -->
+                    <circle class="yang-dot" cx="100" cy="150" r="16" />
+                    <circle class="yin-dot" cx="100" cy="50" r="16" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Green & Gold Yin-Yang -->
+        <div class="container">
+            <div>
+                <h2 class="title">Green & Gold Tao</h2>
+                <p class="subtitle">
+                    Growth/Harmony (Yin) • Brilliance/Vitality (Yang)
+                </p>
+            </div>
+            <svg
+                class="yin-yang green-gold slow-rotate"
+                viewBox="0 0 200 200"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+                <!-- Outer circle for definition -->
+                <circle class="outer-circle" cx="100" cy="100" r="98" />
+
+                <!-- Main Yin-Yang shape with proper S-curve -->
+                <g>
+                    <!-- Gold (Yang) half -->
+                    <path
+                        class="hide yang-side"
+                        d="M 100 2 A 49 49 0 0 1 100 100 A 49 49 0 0 0 100 198 A 98 98 0 0 1 100 2"
+                    />
+
+                    <!-- Green (Yin) half -->
+                    <path
+                        class="yin-side"
+                        d="M 100 2 A 49 49 0 0 0 100 100 A 49 49 0 0 1 100 198 A 98 98 0 0 0 100 2"
+                    />
+
+                    <!-- Small dots -->
+                    <circle class="yang-dot" cx="100" cy="150" r="16" />
+                    <circle class="yin-dot" cx="100" cy="50" r="16" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- Static variations for reference -->
+        <div class="container">
+            <div>
+                <h2 class="title">Static Variations</h2>
+                <p class="subtitle">Hover to enlarge</p>
+            </div>
+            <div
+                style="
+                    display: flex;
+                    gap: 2rem;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                "
+            >
+                <svg
+                    class="yin-yang purple-yellow"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="width: 150px; height: 150px"
+                >
+                    <circle class="outer-circle" cx="100" cy="100" r="98" />
+                    <g>
+                        <path
+                            class="hide yang-side"
+                            d="M 100 2 A 49 49 0 0 1 100 100 A 49 49 0 0 0 100 198 A 98 98 0 0 1 100 2"
+                        />
+                        <path
+                            class="yin-side"
+                            d="M 100 2 A 49 49 0 0 0 100 100 A 49 49 0 0 1 100 198 A 98 98 0 0 0 100 2"
+                        />
+                        <circle class="yang-dot" cx="100" cy="150" r="16" />
+                        <circle class="yin-dot" cx="100" cy="50" r="16" />
+                    </g>
+                </svg>
+
+                <svg
+                    class="yin-yang green-gold"
+                    viewBox="0 0 200 200"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style="width: 150px; height: 150px"
+                >
+                    <circle
+                        class="yin_color outer-circle"
+                        cx="100"
+                        cy="100"
+                        r="98"
+                    />
+                    <g>
+                        <path
+                            class="hide yang-side"
+                            d="M 100 2 A 49 49 0 0 1 100 100 A 49 49 0 0 0 100 198 A 98 98 0 0 1 100 2"
+                        />
+                        <path
+                            class="yin-side"
+                            d="M 100 2 A 49 49 0 0 0 100 100 A 49 49 0 0 1 100 198 A 98 98 0 0 0 100 2"
+                        />
+                        <circle class="yang-dot" cx="100" cy="150" r="16" />
+                        <circle class="yin-dot" cx="100" cy="50" r="16" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </body>
+</html>
