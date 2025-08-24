@@ -1,0 +1,21 @@
+<svg
+    version="1.1"
+    id="Layer_1"
+    xmlns="http://www.w3.org/2000/svg"
+    x="0"
+    y="0"
+    viewBox="0 0 200 200"
+    xml:space="preserve"
+>
+  <style>
+    .st0{fill:#fcd700}.st2{fill:#13a821}
+  </style>
+  <circle id="outer" class="st0" cx="100" cy="100" r="98" />
+  <path
+        id="yang"
+        class="st2"
+        d="M100 2C72.938 2 51 23.938 51 51s21.938 49 49 49 49 21.938 49 49-21.938 49-49 49c54.124 0 98-43.876 98-98S154.124 2 100 2"
+    />
+  <circle id="small_bottom" class="st2" cx="100" cy="150" r="16" />
+  <circle id="small_top" class="st0" cx="100" cy="50" r="16" />
+</svg>

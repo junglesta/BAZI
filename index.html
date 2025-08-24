@@ -528,6 +528,12 @@
                 font-weight: 500;
             }
 
+            .animal-yy {
+                font-size: 1.55rem;
+                margin: var(--spacing-xs) 0;
+                font-weight: 500;
+            }
+
             /* Solar Term Info */
             .solar-term-info {
                 background: oklch(0.65 0.15 142 / 0.1);
@@ -716,6 +722,15 @@
                 .url-display {
                     font-size: var(--spacing-md) !important;
                 }
+            }
+
+            .Yin {
+                color: oklch(0.5338 0.2537 289.16 / 0.75);
+                /*color: blueviolet;*/
+            }
+            .Yang {
+                color: oklch(0.7516 0.1469 83.99 / 0.75);
+                /*color: goldenrod;*/
             }
 
             /*Screen reader only content */
@@ -991,7 +1006,8 @@
                             style="display: none"
                             aria-live="polite"
                         >
-                            <time class="date-display" id="dateDisplay">
+                            <span>Ba Zi for </span
+                            ><time class="date-display" id="dateDisplay">
                                 <!-- Date info will be inserted here -->
                             </time>
                         </output>
@@ -1946,7 +1962,8 @@
                             </div>
                         </div>
                         <div class="animal-emoji ${emojiClass}" role="img" aria-label="${animal} emoji">${emoji}</div>
-                        <div class="animal-info">${animal} · ${yinYang}</div>
+                        <div class="animal-info">${animal}</div>
+                        <div class="animal-yy ${yinYang}">${yinYang}</div>
                         <span class="element ${elementClass}">${element}</span>
                     </article>
                 `;
