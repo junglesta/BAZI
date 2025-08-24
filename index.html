@@ -416,8 +416,8 @@
             /* Pillars */
             .pillars-container {
                 display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--spacing-lg);
+                grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+                gap: var(--spacing-xs);
                 margin-top: var(--spacing-lg);
                 margin-bottom: var(--spacing-lg);
             }
@@ -425,16 +425,17 @@
             .pillar {
                 background: var(--bg-surface-hover);
                 border-radius: var(--radius-md);
-                padding: var(--spacing-lg);
+                padding: var(--spacing-md);
                 text-align: center;
                 border: 2px solid oklch(0.87 0.28 142 / 0.3);
+                position: relative;
             }
 
             .pillar-title {
                 font-size: var(--font-size-lg);
                 color: var(--color-primary-light);
                 margin-bottom: var(--spacing-md);
-                font-weight: bold;
+                font-weight: 300;
             }
 
             .stem-branch {
@@ -446,13 +447,13 @@
             }
 
             .chinese-char {
-                font-size: var(--font-size-base);
+                font-size: var(--font-size-2xl);
                 font-weight: bold;
             }
 
             .pinyin {
                 color: var(--text-secondary);
-                font-size: 0.4rem;
+                font-size: var(--font-size-lg);
                 margin-top: 3px;
             }
 
@@ -733,6 +734,24 @@
                 /*color: goldenrod;*/
             }
 
+            .left {
+                width: 100%;
+                text-align: left;
+            }
+            .uppercase {
+                text-transform: uppercase;
+            }
+
+            .vert {
+                position: absolute;
+                right: 0.25rem;
+                top: 0.5rem;
+                transform: rotate(180deg);
+                transform-origin: top top;
+                writing-mode: vertical-rl;
+                font-weight: 300;
+            }
+
             /*Screen reader only content */
 
             .sr-only {
@@ -832,7 +851,7 @@
 
             <main>
                 <section aria-labelledby="input-title">
-                    <h2 id="input-title" class="section-title">
+                    <h2 id="input-title" class="section-title uppercase">
                         Enter Birth data
                     </h2>
                     <form
@@ -998,7 +1017,9 @@
                 </section>
 
                 <section aria-labelledby="results-title">
-                    <h2 id="results-title" class="section-title">Results</h2>
+                    <h2 id="results-title" class="section-title uppercase">
+                        Results
+                    </h2>
                     <div class="section-card">
                         <output
                             class="calculated-date-info"
@@ -1023,7 +1044,10 @@
                 </section>
 
                 <section aria-labelledby="understanding-title">
-                    <h2 id="understanding-title" class="section-title">
+                    <h2
+                        id="understanding-title"
+                        class="section-title uppercase"
+                    >
                         More understanding
                     </h2>
 
@@ -1033,8 +1057,7 @@
                         aria-labelledby="astro-title"
                     >
                         <h3 id="astro-title">
-                            🔭 Astronomical Data | 360° ÷ 24 = 15° per Solar
-                            Term
+                            Astronomical Data | 360° ÷ 24 = 15° per Solar Term
                         </h3>
                         <div class="data-grid">
                             <div class="data-card">
@@ -1066,7 +1089,7 @@
                         aria-labelledby="term-title"
                     >
                         <h3 id="term-title">
-                            🔍 Geometric Position in Earth's Orbit
+                            Geometric Position in Earth's Orbit
                         </h3>
                         <output id="termDetails"></output>
                         <div
@@ -1118,18 +1141,18 @@
                 <div class="container footwrap">
                     <section class="badges" aria-label="Project information">
                         <span class="validation-badge">
-                            ✓ This opensource webapp is made from first
-                            principles
+                            ✓ This Open Source webapp is made from first
+                            principles. Zero Dependencies. No build step.
                         </span>
                         <span class="validation-badge">
                             ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
                         </span>
                         <span class="validation-badge">
-                            ✓ Beautiful simplicity
+                            ✓ Beautiful simplicity.
                         </span>
                         <span class="validation-badge">
                             ✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
-                            Characters, based on the Ganzhi calendar
+                            Characters, based on the Ganzhi calendar.
                         </span>
                         <span class="validation-badge">
                             ✓ Vibe Coded by Toybreaker w/help from Claude Opus
@@ -1950,7 +1973,7 @@
 
                 return `
                     <article class="pillar" aria-label="${title} Pillar">
-                        <h4 class="pillar-title">${title}</h4>
+                        <h4 class="pillar-title vert uppercase">${title}</h4>
                         <div class="stem-branch">
                             <div>
                                 <div class="chinese-char" lang="zh">${stem}</div>
