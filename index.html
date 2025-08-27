@@ -85,7 +85,7 @@
                 --bg-light: oklch(0.18 0.03 142); /* light green-black */
                 --bg-surface: oklch(1 0 0 / 0.05); /* white with opacity */
                 --bg-surface-hover: oklch(
-                    1 0 0 / 0.08
+                    0 0 0 / 0.25
                 ); /* white with opacity */
 
                 /* Text Colors in OKLCH */
@@ -108,22 +108,22 @@
                 --element-bg-water: oklch(0.6 0.18 237 / 0.3);
 
                 /* Spacing */
-                --spacing-xs: 0.25dvh;
-                --spacing-sm: 0.5dvh;
-                --spacing-md: 0.75dvh;
-                --spacing-base: 1dvh;
-                --spacing-lg: 1.5dvh;
-                --spacing-xl: 2dvh;
-                --spacing-2xl: 3dvh;
-                --spacing-3xl: 5dvh;
+                --spacing-xs: 0.25svh;
+                --spacing-sm: 0.5svh;
+                --spacing-md: 0.75svh;
+                --spacing-base: 1svh;
+                --spacing-lg: 1.5svh;
+                --spacing-xl: 2svh;
+                --spacing-2xl: 3svh;
+                --spacing-3xl: 5svh;
                 --spacing-section: 8dvw;
 
                 /* Border Radius */
-                --radius-xs: 0.175dvh;
-                --radius-sm: 0.5dvh;
-                --radius-md: 0.75dvh;
-                --radius-base: 1dvh;
-                --radius-lg: 1.5dvh;
+                --radius-xs: 0.175svh;
+                --radius-sm: 0.5svh;
+                --radius-md: 0.75svh;
+                --radius-base: 1svh;
+                --radius-lg: 1.5svh;
 
                 /* Typography */
                 --font-family:
@@ -149,8 +149,8 @@
                 --border-green: 1px solid oklch(0.87 0.28 142 / 0.3);
 
                 /* Effects */
-                --blur-amount: 0.75dvh;
-                --shadow-glow: 0 0 0.65dvh;
+                --blur-amount: 0.75svh;
+                --shadow-glow: 0 0 0.65svh;
             }
 
             /* Reset & Base */
@@ -258,7 +258,7 @@
             /* Sections */
             .section-card {
                 backdrop-filter: blur(var(--blur-amount));
-                background: var(--bg-surface-hover);
+                /* background: var(--bg-surface-hover); */
                 border-radius: var(--radius-md);
                 padding-block: var(--spacing-lg);
                 padding-inline: var(--spacing-lg);
@@ -334,7 +334,7 @@
             /* URL Display */
             .url-display {
                 margin-block: var(--spacing-lg);
-                padding: var(--spacing-md);
+                /* padding: var(--spacing-md); */
                 background: var(--bg-surface);
                 border-radius: var(--radius-md);
                 font-size: var(--font-size-xs);
@@ -348,11 +348,10 @@
             .button_copy {
                 cursor: pointer;
                 display: block;
-                margin-inline: var(--spacing-xl);
-                /* color: var(--color-primary); */
-                font-size: var(--font-size-lg);
+                /* font-size: var(--font-size-lg); */
                 vertical-align: middle;
                 transition: transform var(--transition-fast);
+                margin-right: var(--spacing-md);
             }
 
             .url-text {
@@ -418,14 +417,14 @@
             .pillars-container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: var(--spacing-xs);
+                gap: var(--spacing-sm);
                 margin-top: var(--spacing-lg);
                 margin-bottom: var(--spacing-lg);
             }
 
             .pillar {
                 background: var(--bg-surface-hover);
-                border-radius: var(--radius-md);
+                border-radius: var(--radius-sm);
                 padding: var(--spacing-md);
                 text-align: center;
                 border: 2px solid oklch(0.87 0.28 142 / 0.3);
@@ -433,10 +432,11 @@
             }
 
             .pillar-title {
-                font-size: var(--font-size-lg);
+                font-size: var(--font-size-xl);
                 color: var(--color-primary-light);
                 margin-bottom: var(--spacing-md);
                 font-weight: 300;
+                opacity: 0.335;
             }
 
             .stem-branch {
@@ -465,6 +465,7 @@
                 border-radius: var(--radius-lg);
                 font-size: var(--font-size-md);
                 margin-top: var(--spacing-md);
+                margin-bottom: var(--spacing-xl);
                 font-weight: bold;
             }
 
@@ -495,7 +496,7 @@
 
             /* Animal Emojis */
             .animal-emoji {
-                font-size: 3.5rem;
+                font-size: 6.5rem;
                 margin: var(--spacing-md) 0;
             }
 
@@ -586,7 +587,7 @@
                 background: oklch(0.87 0.28 142 / 0.2);
                 color: var(--color-primary);
                 border: var(--border-primary);
-                padding: 0.65dvh var(--spacing-md);
+                padding: 0.65svh var(--spacing-md);
                 margin: 5px;
                 font-size: var(--font-size-sm);
             }
@@ -631,10 +632,10 @@
             }
 
             .pad_top {
-                padding-top: 2dvh;
+                padding-top: 2svh;
             }
             .pad_bottom {
-                padding-bottom: 2dvh;
+                padding-bottom: 2svh;
             }
 
             .flex_rows {
@@ -677,7 +678,7 @@
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: var(--spacing-md) !important;
+                    /*margin-top: var(--spacing-md) !important;*/
                 }
             }
 
@@ -688,15 +689,15 @@
 
                 .pillars-container {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: 0.65dvh;
+                    gap: 0.65svh;
                 }
 
                 .pillar {
-                    padding: 0.85dvh 0.65dvh;
+                    padding: 0.85svh 0.65svh;
                 }
 
                 .pillar-title {
-                    font-size: var(--font-size-base);
+                    font-size: var(--font-size-xl);
                 }
 
                 .chinese-char {
@@ -704,7 +705,7 @@
                 }
 
                 .animal-emoji {
-                    font-size: 2rem;
+                    font-size: 5rem;
                 }
 
                 .pinyin {
@@ -723,6 +724,7 @@
 
                 .url-display {
                     font-size: var(--spacing-md) !important;
+                    padding-left: var(--spacing-md);
                 }
             }
 
@@ -746,16 +748,12 @@
             .vert {
                 position: absolute;
                 z-index: 3;
-                right: 0.0125rem;
-                top: 1.25rem;
+                right: 0.25rem;
+                top: 0.75rem;
                 transform: rotate(180deg);
                 transform-origin: top top;
                 writing-mode: vertical-rl;
                 font-weight: 300;
-            }
-
-            .pillar .vert {
-                top: 0.45rem;
             }
 
             .relative {
@@ -1002,7 +1000,7 @@
                             CLEAR SESSION
                         </button>
 
-                        <div class="pad_top flex_rows">
+                        <div class="flex_rows">
                             <button
                                 type="button"
                                 onclick="copyLink()"
