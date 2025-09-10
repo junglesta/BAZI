@@ -264,6 +264,9 @@
                 padding-inline: var(--spacing-lg);
                 margin-block: var(--spacing-2xl);
                 margin-inline: var(--spacing-lg);
+
+                padding-top: var(--spacing-sm);
+                margin-top: var(--spacing-sm);
             }
 
             /* Forms */
@@ -361,11 +364,11 @@
             /* Date Display */
             .calculated-date-info {
                 text-align: center;
-                margin-block: var(--spacing-xl);
+                margin-block: var(--spacing-md);
             }
 
             .date-display {
-                font-size: var(--font-size-2xl) !important;
+                font-size: var(--font-size-md) !important;
                 color: var(--color-primary);
                 letter-spacing: 0.5px;
             }
@@ -858,6 +861,36 @@
             </header>
 
             <main>
+                <section aria-labelledby="results-title" class="relative">
+                    <!--<h2
+                        id="results-title"
+                        class="section-title uppercase center"
+                    >
+                        NOW, HERE
+                    </h2>-->
+                    <div class="section-card">
+                        <output
+                            class="calculated-date-info"
+                            id="calculatedDateInfo"
+                            style="display: none"
+                            aria-live="polite"
+                        >
+                            <span>Ba Zi for </span
+                            ><time class="date-display" id="dateDisplay">
+                                <!-- Date info will be inserted here -->
+                            </time>
+                        </output>
+
+                        <!-- Pillars Container -->
+                        <div
+                            class="pillars-container"
+                            id="pillarsContainer"
+                            role="region"
+                            aria-label="Four Pillars of Destiny"
+                        ></div>
+                    </div>
+                </section>
+
                 <section aria-labelledby="input-title" class="relative">
                     <h2 id="input-title" class="section-title uppercase center">
                         Enter Birth data
@@ -1022,36 +1055,6 @@
                             </output>
                         </div>
                     </form>
-                </section>
-
-                <section aria-labelledby="results-title" class="relative">
-                    <h2
-                        id="results-title"
-                        class="section-title uppercase center"
-                    >
-                        Results
-                    </h2>
-                    <div class="section-card">
-                        <output
-                            class="calculated-date-info"
-                            id="calculatedDateInfo"
-                            style="display: none"
-                            aria-live="polite"
-                        >
-                            <span>Ba Zi for </span
-                            ><time class="date-display" id="dateDisplay">
-                                <!-- Date info will be inserted here -->
-                            </time>
-                        </output>
-
-                        <!-- Pillars Container -->
-                        <div
-                            class="pillars-container"
-                            id="pillarsContainer"
-                            role="region"
-                            aria-label="Four Pillars of Destiny"
-                        ></div>
-                    </div>
                 </section>
 
                 <section aria-labelledby="understanding-title" class="relative">
