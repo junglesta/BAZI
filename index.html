@@ -17,22 +17,22 @@
     -->
 
     <head>
-        <meta name="version" content="97" />
+        <meta name="version" content="101" />
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <!-- SEO and Sharing Meta Tags -->
         <meta
             name="description"
-            content="Calculate your Ba Zi (Four Pillars of Destiny) with astronomical precision. Based on true solar positions and the 24 Solar Terms, not calendar approximations."
+            content="Calculate your BA ZI (Four Pillars of Destiny) with astronomical precision. Based on real solar positions and the 24 Solar Terms, not calendar approximations."
         />
         <meta
             name="keywords"
-            content="Ba Zi, Four Pillars, 八字, Chinese astrology, solar terms, destiny calculator, Ganzhi calendar"
+            content="Ba Zi, Four Pillars, 八字, Chinese astrology metaphors, astronomical precision, solar terms, destiny calculator, Ganzhi calendar"
         />
         <meta
             name="author"
-            content="Toybreaker with Claude Opus 4.1, Powered by JUNGLESTAR"
+            content="Toybreaker with ClaudeOpus4.1, Powered by JUNGLESTAR Yo!"
         />
 
         <!-- Open Graph Meta Tags -->
@@ -393,16 +393,19 @@
                 margin-top: var(--spacing-base);
             }
 
-            .data-card {
+            .data_card {
+                display: flex;
+                align-items: start;
+                justify-content: space-between;
                 background: var(--bg-surface);
                 padding: var(--spacing-base);
-                border-radius: var(--radius-sm);
+                border-radius: var(--radius-md);
                 border: var(--border-subtle);
             }
 
-            .data-label {
-                color: var(--text-muted);
-                font-size: var(--font-size-xs);
+            .data_label {
+                /*color: var(--text-muted);*/
+                font-size: var(--font-size-md);
                 margin-bottom: var(--spacing-md);
             }
 
@@ -776,6 +779,29 @@
                 white-space: nowrap;
                 border: 0;
             }
+
+            /* Keyboard Shortcuts Section */
+            .shortcuts-section {
+                background: oklch(0.87 0.28 142 / 0.05);
+                border: 1px solid oklch(0.87 0.28 142 / 0.3);
+            }
+
+            .shortcuts-title {
+                color: var(--color-primary);
+                margin-bottom: var(--spacing-lg);
+            }
+
+            .kbd {
+                white-space: nowrap;
+                background: var(--bg-mid);
+                color: var(--color-primary);
+                padding: 3px 8px;
+                border-radius: 3px;
+                font-family: monospace;
+                border: 1px solid var(--color-primary);
+                display: inline-block;
+                font-size: var(--font-size-base);
+            }
         </style>
     </head>
     <body>
@@ -1014,21 +1040,22 @@
                             </div>
                         </fieldset>
 
-                        <button type="submit">CALCULATE</button>
-
+                        <button type="submit" id="calculateBtn">
+                            CALCULATE
+                        </button>
                         <button
                             type="button"
+                            id="resetBtn"
                             onclick="testCurrentTime()"
                             class="stroke"
                         >
                             RESET TO NOW
                         </button>
-
                         <button
                             type="button"
+                            id="clearBtn"
                             onclick="clearSessionAndReload()"
                             class="stroke"
-                            title="Clear saved data and start fresh"
                         >
                             CLEAR SESSION
                         </button>
@@ -1038,11 +1065,11 @@
                                 type="button"
                                 onclick="copyLink()"
                                 class="button_copy stroke"
-                                id="copyIcon"
+                                id="copyURLbtn"
                                 onmouseover="this.style.transform='scale(1.2)'"
                                 onmouseout="this.style.transform='scale(1)'"
-                                title="Copy to clipboard"
-                                aria-label="Copy URL to clipboard"
+                                title="Click to Copy this link containing your BAZI URL, to clipboard!"
+                                aria-label="Click to Copy this link containing your BAZI URL, to clipboard!"
                             >
                                 COPY URL
                             </button>
@@ -1074,22 +1101,22 @@
                             Astronomical Data | 360° ÷ 24 = 15° per Solar Term
                         </h3>
                         <div class="data-grid">
-                            <div class="data-card">
-                                <div class="data-label">
+                            <div class="data_card">
+                                <div class="data_label">
                                     Sun's Ecliptic Longitude
                                 </div>
                                 <output class="data-value" id="sunLongitude"
                                     >--</output
                                 >
                             </div>
-                            <div class="data-card">
-                                <div class="data-label">Julian Day Number</div>
+                            <div class="data_card">
+                                <div class="data_label">Julian Day Number</div>
                                 <output class="data-value" id="julianDay"
                                     >--</output
                                 >
                             </div>
-                            <div class="data-card">
-                                <div class="data-label">UTC Datetime</div>
+                            <div class="data_card">
+                                <div class="data_label">UTC Datetime</div>
                                 <output class="data-value utc-time" id="utcTime"
                                     >--</output
                                 >
@@ -1148,6 +1175,49 @@
                             Winter Solstice 2024
                         </button>
                     </aside>
+                </section>
+
+                <section aria-labelledby="shortcuts-title" class="relative">
+                    <h2
+                        id="shortcuts-title"
+                        class="section-title uppercase center"
+                    >
+                        Keyboard Shortcuts
+                    </h2>
+                    <article class="section-card shortcuts-section">
+                        <div class="data-grid">
+                            <div class="data_card">
+                                <div class="data_label">Navigate Fields</div>
+                                <div class="data-value">
+                                    <kbd class="kbd">Enter</kbd>
+                                </div>
+                            </div>
+                            <div class="data_card">
+                                <div class="data_label">Kalculate</div>
+                                <div class="data-value">
+                                    <kbd class="kbd">Ctrl/⌘ + K</kbd>
+                                </div>
+                            </div>
+                            <div class="data_card">
+                                <div class="data_label">Reset to Now</div>
+                                <div class="data-value">
+                                    <kbd class="kbd">Ctrl/⌘ + R</kbd>
+                                </div>
+                            </div>
+                            <div class="data_card">
+                                <div class="data_label">Clear Session</div>
+                                <div class="data-value">
+                                    <kbd class="kbd">Ctrl/⌘ + ⇧ + C</kbd>
+                                </div>
+                            </div>
+                            <div class="data_card">
+                                <div class="data_label">Copy Link</div>
+                                <div class="data-value">
+                                    <kbd class="kbd">Ctrl/⌘ + L</kbd>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
                 </section>
             </main>
 
@@ -1630,7 +1700,7 @@
                     navigator.clipboard
                         .writeText(url)
                         .then(() => {
-                            const icon = document.getElementById("copyIcon");
+                            const icon = document.getElementById("copyURLbtn");
                             const originalIcon = icon.innerHTML;
                             icon.innerHTML = "🖤 COPIED!";
                             icon.style.color = "black";
@@ -1670,7 +1740,7 @@
 
                 try {
                     document.execCommand("copy");
-                    const icon = document.getElementById("copyIcon");
+                    const icon = document.getElementById("copyURLbtn");
                     const originalIcon = icon.innerHTML;
                     icon.innerHTML = "✅";
                     icon.style.color = "oklch(0.69 0.20 142)";
@@ -2212,6 +2282,83 @@
                     }, 300);
                 }, 3000);
             }
+        </script>
+
+        <!-- KYB SHORTCUTS -->
+        <script>
+            // KYB SHORTCUTS - Updated version
+            window.addEventListener("keydown", function (e) {
+                // ENTER: Cycle focus through fields and buttons
+                if (e.key === "Enter") {
+                    e.preventDefault();
+
+                    const focusElements = [
+                        "year",
+                        "month",
+                        "day",
+                        "hour",
+                        "minute",
+                        "timezone",
+                        "calculateBtn",
+                        "resetBtn",
+                        "clearBtn",
+                        "copyURLbtn", // Note: fixed the ID here
+                    ];
+
+                    const currentId = document.activeElement.id;
+                    const currentIndex = focusElements.indexOf(currentId);
+
+                    // Get next element (loop back to start)
+                    const nextIndex = (currentIndex + 1) % focusElements.length;
+                    const nextElement = document.getElementById(
+                        focusElements[nextIndex],
+                    );
+
+                    if (nextElement) {
+                        nextElement.focus();
+                    } else {
+                        // If no element focused, start with year
+                        document.getElementById("year").focus();
+                    }
+                }
+
+                // Ctrl/Cmd + K: Calculate (K for kalculate)
+                else if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key.toLowerCase() === "k"
+                ) {
+                    e.preventDefault();
+                    calculateBaZi();
+                }
+
+                // Ctrl/Cmd + R: Reset to Now
+                else if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key.toLowerCase() === "r"
+                ) {
+                    e.preventDefault();
+                    testCurrentTime();
+                }
+
+                // Ctrl/Cmd + Shift + C: Clear Session
+                else if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.shiftKey &&
+                    e.key.toLowerCase() === "c"
+                ) {
+                    e.preventDefault();
+                    clearSessionAndReload();
+                }
+
+                // Ctrl/Cmd + L: Copy Link
+                else if (
+                    (e.ctrlKey || e.metaKey) &&
+                    e.key.toLowerCase() === "l"
+                ) {
+                    e.preventDefault();
+                    copyLink();
+                }
+            });
         </script>
 
         <!-- Google tag (gtag.js) -->
