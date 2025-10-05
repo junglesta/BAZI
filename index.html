@@ -72,86 +72,86 @@
         <style>
             :root {
                 /* Primary Colors in OKLCH */
-                --color-primary: oklch(
+                --color_primary: oklch(
                     0.87 0.28 142
                 ); /* chartreuse green #7fff00 */
-                --color-primary-light: oklch(
+                --color_primary_light: oklch(
                     0.89 0.25 142
                 ); /* light green #adff2f */
-                --color-secondary: oklch(0.69 0.2 142); /* lime green #32cd32 */
+                --color_secondary: oklch(0.69 0.2 142); /* lime green #32cd32 */
 
                 /* Background Colors in OKLCH */
-                --bg-dark: oklch(0.15 0.02 142); /* dark green-black */
-                --bg-mid: oklch(0.25 0.05 142); /* mid green-black */
-                --bg-light: oklch(0.18 0.03 142); /* light green-black */
-                --bg-surface: oklch(1 0 0 / 0.05); /* white with opacity */
-                --bg-surface-hover: oklch(
+                --bg_dark: oklch(0.15 0.02 142); /* dark green-black */
+                --bg_mid: oklch(0.25 0.05 142); /* mid green-black */
+                --bg_light: oklch(0.18 0.03 142); /* light green-black */
+                --bg_surface: oklch(1 0 0 / 0.05); /* white with opacity */
+                --bg_surface_hover: oklch(
                     0 0 0 / 0.25
                 ); /* white with opacity */
 
                 /* Text Colors in OKLCH */
-                --text-primary: oklch(1 0 0); /* white */
-                --text-secondary: oklch(0.72 0 0); /* light gray */
-                --text-muted: oklch(0.6 0 0); /* muted gray */
+                --text_primary: oklch(1 0 0); /* white */
+                --text_secondary: oklch(0.72 0 0); /* light gray */
+                --text_muted: oklch(0.6 0 0); /* muted gray */
 
                 /* Element Colors in OKLCH */
-                --element-wood: oklch(0.69 0.2 142); /* green */
-                --element-fire: oklch(0.64 0.2 41); /* red-orange */
-                --element-earth: oklch(0.7 0.15 85); /* golden */
-                --element-metal: oklch(0.82 0 0); /* silver */
-                --element-water: oklch(0.6 0.18 237); /* blue */
+                --element_wood: oklch(0.69 0.2 142); /* green */
+                --element_fire: oklch(0.64 0.2 41); /* red-orange */
+                --element_earth: oklch(0.7 0.15 85); /* golden */
+                --element_metal: oklch(0.82 0 0); /* silver */
+                --element_water: oklch(0.6 0.18 237); /* blue */
 
                 /* Element Backgrounds in OKLCH with opacity */
-                --element-bg-wood: oklch(0.69 0.2 142 / 0.3);
-                --element-bg-fire: oklch(0.64 0.2 41 / 0.3);
-                --element-bg-earth: oklch(0.7 0.15 85 / 0.3);
-                --element-bg-metal: oklch(0.82 0 0 / 0.3);
-                --element-bg-water: oklch(0.6 0.18 237 / 0.3);
+                --element_bg_wood: oklch(0.69 0.2 142 / 0.3);
+                --element_bg_fire: oklch(0.64 0.2 41 / 0.3);
+                --element_bg_earth: oklch(0.7 0.15 85 / 0.3);
+                --element_bg_metal: oklch(0.82 0 0 / 0.3);
+                --element_bg_water: oklch(0.6 0.18 237 / 0.3);
 
                 /* Spacing */
-                --spacing-xs: 0.25svh;
-                --spacing-sm: 0.5svh;
-                --spacing-md: 0.75svh;
-                --spacing-base: 1svh;
-                --spacing-lg: 1.5svh;
-                --spacing-xl: 2svh;
-                --spacing-2xl: 3svh;
-                --spacing-3xl: 5svh;
-                --spacing-section: 8dvw;
+                --spacing_xs: 0.25svh;
+                --spacing_sm: 0.5svh;
+                --spacing_md: 0.75svh;
+                --spacing_base: 1svh;
+                --spacing_lg: 1.5svh;
+                --spacing_xl: 2svh;
+                --spacing_2xl: 3svh;
+                --spacing_3xl: 5svh;
+                --spacing_section: 8dvw;
 
                 /* Border Radius */
-                --radius-xs: 0.175svh;
-                --radius-sm: 0.5svh;
-                --radius-md: 0.75svh;
-                --radius-base: 1svh;
-                --radius-lg: 1.5svh;
+                --radius_xs: 0.175svh;
+                --radius_sm: 0.5svh;
+                --radius_md: 0.75svh;
+                --radius_base: 1svh;
+                --radius_lg: 1.5svh;
 
                 /* Typography */
-                --font-family:
+                --font_family:
                     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
                     "Helvetica Neue", Arial, sans-serif;
-                --font-size-xs: 0.85rem;
-                --font-size-sm: 0.9rem;
-                --font-size-base: 1rem;
-                --font-size-md: 1.1rem;
-                --font-size-lg: 1.2rem;
-                --font-size-xl: 1.3rem;
-                --font-size-2xl: 1.95rem;
-                --font-size-3xl: 3rem;
+                --font_size_xs: 0.85rem;
+                --font_size_sm: 0.9rem;
+                --font_size_base: 1rem;
+                --font_size_md: 1.1rem;
+                --font_size_lg: 1.2rem;
+                --font_size_xl: 1.3rem;
+                --font_size_2xl: 1.95rem;
+                --font_size_3xl: 3rem;
 
                 /* Transitions */
-                --transition-fast: 0.2s ease;
-                --transition-base: 0.3s ease;
+                --transition_fast: 0.2s ease;
+                --transition_base: 0.3s ease;
 
                 /* Borders in OKLCH */
-                --border-subtle: 1px solid oklch(1 0 0 / 0.1);
-                --border-visible: 1px solid oklch(1 0 0 / 0.2);
-                --border-primary: 1px solid var(--color-primary);
-                --border-green: 1px solid oklch(0.87 0.28 142 / 0.3);
+                --border_subtle: 1px solid oklch(1 0 0 / 0.1);
+                --border_visible: 1px solid oklch(1 0 0 / 0.2);
+                --border_primary: 1px solid var(--color_primary);
+                --border_green: 1px solid oklch(0.87 0.28 142 / 0.3);
 
                 /* Effects */
-                --blur-amount: 0.75svh;
-                --shadow-glow: 0 0 0.65svh;
+                --blur_amount: 0.75svh;
+                --shadow_glow: 0 0 0.65svh;
             }
 
             /* Reset & Base */
@@ -166,16 +166,16 @@
             }
 
             body {
-                font-family: var(--font-family);
+                font-family: var(--font_family);
                 background: linear-gradient(
                     135deg,
-                    var(--bg-dark) 0%,
-                    var(--bg-mid) 50%,
-                    var(--bg-light) 100%
+                    var(--bg_dark) 0%,
+                    var(--bg_mid) 50%,
+                    var(--bg_light) 100%
                 );
                 min-height: 100vh;
-                color: var(--text-primary);
-                padding: var(--spacing-base);
+                color: var(--text_primary);
+                padding: var(--spacing_base);
             }
 
             /* Container & Layout */
@@ -187,19 +187,19 @@
             /* Header */
             header {
                 text-align: center;
-                margin-bottom: var(--spacing-base);
-                padding: var(--spacing-base);
-                border-radius: var(--radius-base);
-                backdrop-filter: blur(var(--blur-amount));
+                margin-bottom: var(--spacing_base);
+                padding: var(--spacing_base);
+                border-radius: var(--radius_base);
+                backdrop-filter: blur(var(--blur_amount));
             }
 
             h1 {
-                font-size: var(--font-size-3xl);
-                margin-bottom: var(--spacing-sm);
+                font-size: var(--font_size_3xl);
+                margin-bottom: var(--spacing_sm);
                 background: linear-gradient(
                     45deg,
-                    var(--color-primary),
-                    var(--color-primary-light)
+                    var(--color_primary),
+                    var(--color_primary_light)
                 );
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
@@ -221,13 +221,13 @@
                 font-weight: 500;
             }
 
-            h2.section-title {
-                margin-bottom: var(--spacing-lg);
-                font-size: var(--font-size-2xl);
+            h2.section_title {
+                margin-bottom: var(--spacing_lg);
+                font-size: var(--font_size_2xl);
             }
 
             h3 {
-                margin-bottom: var(--spacing-lg);
+                margin-bottom: var(--spacing_lg);
             }
 
             /* Common Classes */
@@ -242,93 +242,93 @@
 
             /* Links */
             .ext_link {
-                color: var(--color-primary);
+                color: var(--color_primary);
             }
 
             /* Badges */
-            .validation-badge {
+            .validation_badge {
                 display: inline-block;
-                border-color: var(--color-primary);
-                color: var(--color-primary);
-                padding: var(--spacing-xs) var(--spacing-base);
-                border-radius: var(--radius-base);
-                font-size: var(--font-size-sm);
-                margin-top: var(--spacing-base);
+                border-color: var(--color_primary);
+                color: var(--color_primary);
+                padding: var(--spacing_xs) var(--spacing_base);
+                border-radius: var(--radius_base);
+                font-size: var(--font_size_sm);
+                margin-top: var(--spacing_base);
             }
 
             /* Sections */
-            .section-card {
-                backdrop-filter: blur(var(--blur-amount));
-                /* background: var(--bg-surface-hover); */
-                border-radius: var(--radius-md);
-                padding-block: var(--spacing-lg);
-                padding-inline: var(--spacing-lg);
-                margin-block: var(--spacing-2xl);
-                margin-inline: var(--spacing-lg);
+            .section_card {
+                backdrop-filter: blur(var(--blur_amount));
+                /* background: var(--bg_surface_hover); */
+                border-radius: var(--radius_md);
+                padding-block: var(--spacing_lg);
+                padding-inline: var(--spacing_lg);
+                margin-block: var(--spacing_2xl);
+                margin-inline: var(--spacing_lg);
 
-                padding-top: var(--spacing-sm);
-                margin-top: var(--spacing-sm);
+                padding-top: var(--spacing_sm);
+                margin-top: var(--spacing_sm);
             }
 
             /* Forms */
-            .input-grid {
+            .input_grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: var(--spacing-base);
-                margin-bottom: var(--spacing-base);
+                gap: var(--spacing_base);
+                margin-bottom: var(--spacing_base);
             }
 
-            .input-group {
+            .input_group {
                 display: flex;
                 flex-direction: column;
             }
 
             label {
-                margin-bottom: var(--spacing-xs);
-                color: var(--color-primary-light);
-                font-size: var(--font-size-sm);
+                margin-bottom: var(--spacing_xs);
+                color: var(--color_primary_light);
+                font-size: var(--font_size_sm);
                 text-transform: uppercase;
                 letter-spacing: 1px;
             }
 
             input,
             select {
-                padding: var(--spacing-sm);
-                border: var(--border-visible);
-                background: var(--bg-surface);
-                color: var(--text-primary);
-                border-radius: var(--radius-xs);
-                font-size: var(--font-size-lg);
+                padding: var(--spacing_sm);
+                border: var(--border_visible);
+                background: var(--bg_surface);
+                color: var(--text_primary);
+                border-radius: var(--radius_xs);
+                font-size: var(--font_size_lg);
             }
 
             select {
-                padding: var(--spacing-md);
-                border-radius: var(--radius-sm);
+                padding: var(--spacing_md);
+                border-radius: var(--radius_sm);
             }
 
             /* Buttons */
             button {
                 background: linear-gradient(
                     45deg,
-                    var(--color-primary),
-                    var(--color-secondary)
+                    var(--color_primary),
+                    var(--color_secondary)
                 );
-                color: var(--bg-dark);
+                color: var(--bg_dark);
                 border: none;
-                padding: var(--spacing-md) var(--spacing-lg);
-                border-radius: var(--radius-base);
-                font-size: var(--font-size-md);
+                padding: var(--spacing_md) var(--spacing_lg);
+                border-radius: var(--radius_base);
+                font-size: var(--font_size_md);
                 font-weight: bold;
                 cursor: pointer;
-                transition: transform var(--transition-base);
-                margin-top: var(--spacing-sm);
-                margin-right: var(--spacing-sm);
+                transition: transform var(--transition_base);
+                margin-top: var(--spacing_sm);
+                margin-right: var(--spacing_sm);
             }
 
             button.stroke {
                 background: none;
-                color: var(--color-primary);
-                border: 2px var(--color-primary) solid;
+                color: var(--color_primary);
+                border: 2px var(--color_primary) solid;
             }
 
             button:hover {
@@ -336,275 +336,275 @@
             }
 
             /* URL Display */
-            .url-display {
-                margin-block: var(--spacing-lg);
-                /* padding: var(--spacing-md); */
-                background: var(--bg-surface);
-                border-radius: var(--radius-md);
-                font-size: var(--font-size-xs);
-                color: var(--text-primary);
+            .url_display {
+                margin-block: var(--spacing_lg);
+                /* padding: var(--spacing_md); */
+                background: var(--bg_surface);
+                border-radius: var(--radius_md);
+                font-size: var(--font_size_xs);
+                color: var(--text_primary);
                 display: none;
                 align-items: center;
                 word-break: break-all;
-                border: var(--border-subtle);
+                border: var(--border_subtle);
             }
 
             .button_copy {
                 cursor: pointer;
                 display: block;
-                /* font-size: var(--font-size-lg); */
+                /* font-size: var(--font_size_lg); */
                 vertical-align: middle;
-                transition: transform var(--transition-fast);
-                margin-right: var(--spacing-md);
+                transition: transform var(--transition_fast);
+                margin-right: var(--spacing_md);
             }
 
-            .url-text {
+            .url_text {
                 vertical-align: middle;
             }
 
             /* Date Display */
-            .calculated-date-info {
+            .calculated_date_info {
                 text-align: center;
-                margin-block: var(--spacing-md);
+                margin-block: var(--spacing_md);
             }
 
-            .date-display {
-                font-size: var(--font-size-2xl) !important;
-                color: var(--color-primary);
+            .date_display {
+                font-size: var(--font_size_2xl) !important;
+                color: var(--color_primary);
                 letter-spacing: 0.5px;
             }
 
-            .date-display small {
+            .date_display small {
                 font-size: 50%;
                 display: block;
             }
 
             /* Astronomical Data */
-            .astronomical-data {
+            .astronomical_data {
                 background: oklch(0.69 0.2 142 / 0.1);
-                border: var(--border-green);
-                border-radius: var(--radius-base);
-                padding: var(--spacing-base);
-                margin-bottom: var(--spacing-xl);
+                border: var(--border_green);
+                border-radius: var(--radius_base);
+                padding: var(--spacing_base);
+                margin-bottom: var(--spacing_xl);
             }
 
-            .astronomical-data h3 {
-                color: var(--color-primary);
+            .astronomical_data h3 {
+                color: var(--color_primary);
             }
 
-            .data-grid {
+            .data_grid {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: var(--spacing-base);
-                margin-top: var(--spacing-base);
+                gap: var(--spacing_base);
+                margin-top: var(--spacing_base);
             }
 
             .data_card {
                 display: flex;
                 align-items: start;
                 justify-content: space-between;
-                background: var(--bg-surface);
-                padding: var(--spacing-base);
-                border-radius: var(--radius-md);
-                border: var(--border-subtle);
+                background: var(--bg_surface);
+                padding: var(--spacing_base);
+                border-radius: var(--radius_md);
+                border: var(--border_subtle);
             }
 
             .data_label {
-                /*color: var(--text-muted);*/
-                font-size: var(--font-size-md);
-                margin-bottom: var(--spacing-md);
+                /*color: var(--text_muted);*/
+                font-size: var(--font_size_md);
+                margin-bottom: var(--spacing_md);
             }
 
-            .data-value {
-                font-size: var(--font-size-xl);
+            .data_value {
+                font-size: var(--font_size_xl);
                 font-weight: bold;
-                color: var(--color-primary);
+                color: var(--color_primary);
             }
 
-            .utc-time {
-                font-size: var(--font-size-base);
+            .utc_time {
+                font-size: var(--font_size_base);
             }
 
             /* Pillars */
-            .pillars-container {
+            .pillars_container {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-                gap: var(--spacing-sm);
-                margin-top: var(--spacing-lg);
-                margin-bottom: var(--spacing-lg);
+                gap: var(--spacing_sm);
+                margin-top: var(--spacing_lg);
+                margin-bottom: var(--spacing_lg);
             }
 
             .pillar {
-                background: var(--bg-surface-hover);
-                border-radius: var(--radius-sm);
-                padding: var(--spacing-md);
+                background: var(--bg_surface_hover);
+                border-radius: var(--radius_sm);
+                padding: var(--spacing_md);
                 text-align: center;
                 border: 2px solid oklch(0.87 0.28 142 / 0.3);
                 position: relative;
             }
 
-            .pillar-title {
-                font-size: var(--font-size-xl);
-                color: var(--color-primary-light);
-                margin-bottom: var(--spacing-md);
+            .pillar_title {
+                font-size: var(--font_size_xl);
+                color: var(--color_primary_light);
+                margin-bottom: var(--spacing_md);
                 font-weight: 300;
                 opacity: 0.335;
             }
 
-            .stem-branch {
+            .stem_branch {
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                gap: var(--spacing-md);
-                margin: var(--spacing-md) 0;
+                gap: var(--spacing_md);
+                margin: var(--spacing_md) 0;
             }
 
-            .chinese-char {
-                font-size: var(--font-size-2xl);
+            .chinese_char {
+                font-size: var(--font_size_2xl);
                 font-weight: bold;
             }
 
             .pinyin {
-                color: var(--text-secondary);
-                font-size: var(--font-size-lg);
+                color: var(--text_secondary);
+                font-size: var(--font_size_lg);
                 margin-top: 3px;
             }
 
             /* Elements */
             .element {
                 display: inline-block;
-                padding: 5px var(--spacing-md);
-                border-radius: var(--radius-lg);
-                font-size: var(--font-size-md);
-                margin-top: var(--spacing-md);
-                margin-bottom: var(--spacing-xl);
+                padding: 5px var(--spacing_md);
+                border-radius: var(--radius_lg);
+                font-size: var(--font_size_md);
+                margin-top: var(--spacing_md);
+                margin-bottom: var(--spacing_xl);
                 font-weight: bold;
             }
 
-            .element-wood {
-                background: var(--element-bg-wood);
-                color: var(--element-wood);
+            .element_wood {
+                background: var(--element_bg_wood);
+                color: var(--element_wood);
             }
 
-            .element-fire {
-                background: var(--element-bg-fire);
-                color: var(--element-fire);
+            .element_fire {
+                background: var(--element_bg_fire);
+                color: var(--element_fire);
             }
 
-            .element-earth {
-                background: var(--element-bg-earth);
-                color: var(--element-earth);
+            .element_earth {
+                background: var(--element_bg_earth);
+                color: var(--element_earth);
             }
 
-            .element-metal {
-                background: var(--element-bg-metal);
-                color: var(--element-metal);
+            .element_metal {
+                background: var(--element_bg_metal);
+                color: var(--element_metal);
             }
 
-            .element-water {
-                background: var(--element-bg-water);
-                color: var(--element-water);
+            .element_water {
+                background: var(--element_bg_water);
+                color: var(--element_water);
             }
 
             /* Animal Emojis */
-            .animal-emoji {
+            .animal_emoji {
                 font-size: 6.5rem;
-                margin: var(--spacing-md) 0;
+                margin: var(--spacing_md) 0;
             }
 
-            .animal-emoji-wood {
+            .animal_emoji_wood {
                 filter: url(#greenify)
-                    drop-shadow(var(--shadow-glow) oklch(0.87 0.28 142 / 0.5));
+                    drop-shadow(var(--shadow_glow) oklch(0.87 0.28 142 / 0.5));
             }
 
-            .animal-emoji-fire {
+            .animal_emoji_fire {
                 filter: url(#redify)
-                    drop-shadow(var(--shadow-glow) oklch(0.64 0.2 41 / 0.5));
+                    drop-shadow(var(--shadow_glow) oklch(0.64 0.2 41 / 0.5));
             }
 
-            .animal-emoji-earth {
+            .animal_emoji_earth {
                 filter: url(#earthify)
-                    drop-shadow(var(--shadow-glow) oklch(0.7 0.15 85 / 0.5));
+                    drop-shadow(var(--shadow_glow) oklch(0.7 0.15 85 / 0.5));
             }
 
-            .animal-emoji-metal {
+            .animal_emoji_metal {
                 filter: url(#metalify)
-                    drop-shadow(var(--shadow-glow) oklch(0.82 0 0 / 0.5));
+                    drop-shadow(var(--shadow_glow) oklch(0.82 0 0 / 0.5));
             }
 
-            .animal-emoji-water {
+            .animal_emoji_water {
                 filter: url(#blueify)
-                    drop-shadow(var(--shadow-glow) oklch(0.6 0.18 237 / 0.5));
+                    drop-shadow(var(--shadow_glow) oklch(0.6 0.18 237 / 0.5));
             }
 
-            .animal-info {
+            .animal_info {
                 font-size: 2.4rem;
-                margin: var(--spacing-md) 0;
+                margin: var(--spacing_md) 0;
                 font-weight: 500;
             }
 
-            .animal-yy {
+            .animal_yy {
                 font-size: 1.55rem;
-                margin: var(--spacing-xs) 0;
+                margin: var(--spacing_xs) 0;
                 font-weight: 500;
             }
 
             /* Solar Term Info */
-            .solar-term-info {
+            .solar_term_info {
                 background: oklch(0.65 0.15 142 / 0.1);
                 border: 1px solid oklch(0.65 0.15 142 / 0.3);
-                border-radius: var(--radius-md);
-                padding: var(--spacing-lg);
-                margin-top: var(--spacing-lg);
+                border-radius: var(--radius_md);
+                padding: var(--spacing_lg);
+                margin-top: var(--spacing_lg);
             }
 
-            .solar-term-info h3 {
-                color: var(--color-secondary);
+            .solar_term_info h3 {
+                color: var(--color_secondary);
             }
 
-            .term-progress {
+            .term_progress {
                 width: 100%;
-                height: var(--spacing-lg);
+                height: var(--spacing_lg);
                 background: oklch(1 0 0 / 0.1);
-                border-radius: var(--radius-md);
+                border-radius: var(--radius_md);
                 overflow: hidden;
-                margin-top: var(--spacing-md);
+                margin-top: var(--spacing_md);
             }
 
-            .term-progress-bar {
+            .term_progress_bar {
                 height: 100%;
                 background: linear-gradient(
                     90deg,
-                    var(--color-primary),
+                    var(--color_primary),
                     oklch(0.59 0.17 142)
                 );
-                transition: width var(--transition-base);
+                transition: width var(--transition_base);
             }
 
             /* Test Cases */
-            .test-cases {
+            .test_cases {
                 background: oklch(0.69 0.2 142 / 0.05);
                 border: 1px solid oklch(0.87 0.28 142 / 0.2);
-                border-radius: var(--radius-md);
-                padding: var(--spacing-md);
-                margin-top: var(--spacing-base);
+                border-radius: var(--radius_md);
+                padding: var(--spacing_md);
+                margin-top: var(--spacing_base);
             }
 
-            .test-cases h3 {
-                color: var(--color-primary);
-                margin-bottom: var(--spacing-md);
+            .test_cases h3 {
+                color: var(--color_primary);
+                margin-bottom: var(--spacing_md);
             }
 
-            .test-button {
+            .test_button {
                 background: oklch(0.87 0.28 142 / 0.2);
-                color: var(--color-primary);
-                border: var(--border-primary);
-                padding: 0.65svh var(--spacing-md);
+                color: var(--color_primary);
+                border: var(--border_primary);
+                padding: 0.65svh var(--spacing_md);
                 margin: 5px;
-                font-size: var(--font-size-sm);
+                font-size: var(--font_size_sm);
             }
 
-            .test-button:hover {
+            .test_button:hover {
                 background: oklch(0.87 0.28 142 / 0.3);
             }
 
@@ -614,28 +614,28 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
-                padding-block: var(--spacing-3xl);
-                padding-inline: var(--spacing-base);
+                padding-block: var(--spacing_3xl);
+                padding-inline: var(--spacing_base);
             }
 
             .share {
-                padding-top: var(--spacing-3xl);
+                padding-top: var(--spacing_3xl);
             }
 
             .qr {
                 display: block;
                 min-width: 200px;
-                width: var(--spacing-base);
+                width: var(--spacing_base);
                 max-width: 400px;
                 height: auto;
             }
 
             .donation {
-                border-color: var(--color-primary);
-                margin-block: var(--spacing-base);
-                padding: var(--spacing-base);
+                border-color: var(--color_primary);
+                margin-block: var(--spacing_base);
+                padding: var(--spacing_base);
                 text-align: right;
-                border-top: var(--border-primary);
+                border-top: var(--border_primary);
                 line-height: 2;
             }
 
@@ -657,49 +657,49 @@
             /* Media Queries */
             @media (max-width: 760px) {
                 :root {
-                    --font-size-3xl: 3.3rem;
-                    --font-size-2xl: 1.85rem;
+                    --font_size_3xl: 3.3rem;
+                    --font_size_2xl: 1.85rem;
                 }
 
-                .pillars-container {
+                .pillars_container {
                     grid-template-columns: repeat(2, 1fr);
-                    gap: var(--spacing-md);
+                    gap: var(--spacing_md);
                 }
 
                 .pillar {
-                    padding: var(--spacing-md);
+                    padding: var(--spacing_md);
                 }
 
-                .chinese-char {
-                    font-size: var(--spacing-md);
+                .chinese_char {
+                    font-size: var(--spacing_md);
                 }
 
-                .animal-emoji {
+                .animal_emoji {
                     font-size: 2.5rem;
                 }
 
-                .animal-info {
+                .animal_info {
                     font-size: 1.8rem;
                 }
 
                 .element {
-                    font-size: var(--font-size-sm);
-                    padding: 3px var(--spacing-md);
+                    font-size: var(--font_size_sm);
+                    padding: 3px var(--spacing_md);
                 }
 
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    /*margin-top: var(--spacing-md) !important;*/
+                    /*margin-top: var(--spacing_md) !important;*/
                 }
             }
 
             @media (max-width: 480px) {
                 :root {
-                    --font-size-2xl: 1.75rem;
+                    --font_size_2xl: 1.75rem;
                 }
 
-                .pillars-container {
+                .pillars_container {
                     grid-template-columns: repeat(2, 1fr);
                     gap: 0.65svh;
                 }
@@ -708,15 +708,15 @@
                     padding: 0.85svh 0.65svh;
                 }
 
-                .pillar-title {
-                    font-size: var(--font-size-xl);
+                .pillar_title {
+                    font-size: var(--font_size_xl);
                 }
 
-                .chinese-char {
+                .chinese_char {
                     font-size: 0.65rem;
                 }
 
-                .animal-emoji {
+                .animal_emoji {
                     font-size: 5rem;
                 }
 
@@ -724,19 +724,19 @@
                     font-size: 0.35rem;
                 }
 
-                .animal-info {
+                .animal_info {
                     font-size: 1.4rem;
                 }
 
                 button {
                     width: 100%;
                     margin-left: 0 !important;
-                    margin-top: var(--spacing-md) !important;
+                    margin-top: var(--spacing_md) !important;
                 }
 
-                .url-display {
-                    font-size: var(--spacing-md) !important;
-                    padding-left: var(--spacing-md);
+                .url_display {
+                    font-size: var(--spacing_md) !important;
+                    padding-left: var(--spacing_md);
                 }
             }
 
@@ -774,7 +774,7 @@
 
             /*Screen reader only content */
 
-            .sr-only {
+            .sr_only {
                 position: absolute;
                 width: 1px;
                 height: 1px;
@@ -787,26 +787,26 @@
             }
 
             /* Keyboard Shortcuts Section */
-            .shortcuts-section {
+            .shortcuts_section {
                 background: oklch(0.87 0.28 142 / 0.05);
                 border: 1px solid oklch(0.87 0.28 142 / 0.3);
             }
 
-            .shortcuts-title {
-                color: var(--color-primary);
-                margin-bottom: var(--spacing-lg);
+            .shortcuts_title {
+                color: var(--color_primary);
+                margin-bottom: var(--spacing_lg);
             }
 
             .kbd {
                 white-space: nowrap;
-                background: var(--bg-mid);
-                color: var(--color-primary);
+                background: var(--bg_mid);
+                color: var(--color_primary);
                 padding: 3px 8px;
                 border-radius: 3px;
                 font-family: monospace;
-                border: 1px solid var(--color-primary);
+                border: 1px solid var(--color_primary);
                 display: inline-block;
-                font-size: var(--font-size-base);
+                font-size: var(--font_size_base);
             }
         </style>
     </head>
@@ -887,7 +887,7 @@
                     <span>Ba Zi</span>
                     <span lang="zh">八字</span>
                 </h1>
-                <p class="validation-badge" role="doc-subtitle">
+                <p class="validation_badge" role="doc-subtitle">
                     ✓ Mathematics meets ancient metaphors
                 </p>
             </header>
@@ -896,26 +896,26 @@
                 <section aria-labelledby="results-title" class="relative">
                     <!--<h2
                         id="results-title"
-                        class="section-title uppercase center"
+                        class="section_title uppercase center"
                     >
                         NOW, HERE
                     </h2>-->
-                    <div class="section-card">
+                    <div class="section_card">
                         <output
-                            class="calculated-date-info"
+                            class="calculated_date_info"
                             id="calculatedDateInfo"
                             style="display: none"
                             aria-live="polite"
                         >
                             <div>Ba Zi for</div>
-                            <time class="date-display" id="dateDisplay">
+                            <time class="date_display" id="dateDisplay">
                                 <!-- Date info will be inserted here -->
                             </time>
                         </output>
 
                         <!-- Pillars Container -->
                         <div
-                            class="pillars-container"
+                            class="pillars_container"
                             id="pillarsContainer"
                             role="region"
                             aria-label="Four Pillars of Destiny"
@@ -924,16 +924,16 @@
                 </section>
 
                 <section aria-labelledby="input-title" class="relative">
-                    <h2 id="input-title" class="section-title uppercase center">
+                    <h2 id="input-title" class="section_title uppercase center">
                         Enter Date
                     </h2>
                     <form
-                        class="section-card"
+                        class="section_card"
                         onsubmit="event.preventDefault(); calculateBaZi();"
                     >
-                        <fieldset class="input-grid">
-                            <legend class="sr-only">Birth date and time</legend>
-                            <div class="input-group">
+                        <fieldset class="input_grid">
+                            <legend class="sr_only">Birth date and time</legend>
+                            <div class="input_group">
                                 <label for="year">Year</label>
                                 <input
                                     type="number"
@@ -945,7 +945,7 @@
                                     aria-required="true"
                                 />
                             </div>
-                            <div class="input-group">
+                            <div class="input_group">
                                 <label for="month">Month</label>
                                 <input
                                     type="number"
@@ -957,7 +957,7 @@
                                     aria-required="true"
                                 />
                             </div>
-                            <div class="input-group">
+                            <div class="input_group">
                                 <label for="day">Day</label>
                                 <input
                                     type="number"
@@ -969,7 +969,7 @@
                                     aria-required="true"
                                 />
                             </div>
-                            <div class="input-group">
+                            <div class="input_group">
                                 <label for="hour">Hour (24h)</label>
                                 <input
                                     type="number"
@@ -981,7 +981,7 @@
                                     aria-required="true"
                                 />
                             </div>
-                            <div class="input-group">
+                            <div class="input_group">
                                 <label for="minute">Minute</label>
                                 <input
                                     type="number"
@@ -993,7 +993,7 @@
                                     aria-required="true"
                                 />
                             </div>
-                            <div class="input-group">
+                            <div class="input_group">
                                 <label for="timezone">Timezone</label>
                                 <select
                                     id="timezone"
@@ -1080,11 +1080,11 @@
                                 COPY URL
                             </button>
                             <output
-                                class="url-display"
+                                class="url_display"
                                 id="urlDisplay"
                                 aria-live="polite"
                             >
-                                <span class="url-text" id="urlText"></span>
+                                <span class="url_text" id="urlText"></span>
                             </output>
                         </div>
                     </form>
@@ -1093,37 +1093,37 @@
                 <section aria-labelledby="understanding-title" class="relative">
                     <h2
                         id="understanding-title"
-                        class="section-title uppercase center"
+                        class="section_title uppercase center"
                     >
                         More understanding
                     </h2>
 
                     <article
-                        class="section-card astronomical-data"
+                        class="section_card astronomical_data"
                         id="astronomicalData"
                         aria-labelledby="astro-title"
                     >
                         <h3 id="astro-title">
                             Astronomical Data | 360° ÷ 24 = 15° per Solar Term
                         </h3>
-                        <div class="data-grid">
+                        <div class="data_grid">
                             <div class="data_card">
                                 <div class="data_label">
                                     Sun's Ecliptic Longitude
                                 </div>
-                                <output class="data-value" id="sunLongitude"
+                                <output class="data_value" id="sunLongitude"
                                     >--</output
                                 >
                             </div>
                             <div class="data_card">
                                 <div class="data_label">Julian Day Number</div>
-                                <output class="data-value" id="julianDay"
+                                <output class="data_value" id="julianDay"
                                     >--</output
                                 >
                             </div>
                             <div class="data_card">
                                 <div class="data_label">UTC Datetime</div>
-                                <output class="data-value utc-time" id="utcTime"
+                                <output class="data_value utc_time" id="utcTime"
                                     >--</output
                                 >
                             </div>
@@ -1131,7 +1131,7 @@
                     </article>
 
                     <article
-                        class="section-card solar-term-info"
+                        class="section_card solar_term_info"
                         id="solarTermInfo"
                         aria-labelledby="term-title"
                     >
@@ -1140,19 +1140,19 @@
                         </h3>
                         <output id="termDetails"></output>
                         <div
-                            class="term-progress"
+                            class="term_progress"
                             role="progressbar"
                             aria-label="Solar term progress"
                         >
                             <div
-                                class="term-progress-bar"
+                                class="term_progress_bar"
                                 id="termProgress"
                             ></div>
                         </div>
                     </article>
 
                     <aside
-                        class="section-card test-cases"
+                        class="section_card test_cases"
                         aria-labelledby="test-title"
                     >
                         <h3 id="test-title">
@@ -1161,21 +1161,21 @@
                         </h3>
                         <button
                             type="button"
-                            class="test-button"
+                            class="test_button"
                             onclick="testColdDew1967()"
                         >
                             Cold Dew 1967
                         </button>
                         <button
                             type="button"
-                            class="test-button"
+                            class="test_button"
                             onclick="testSpringEquinox2024()"
                         >
                             Spring Equinox 2024
                         </button>
                         <button
                             type="button"
-                            class="test-button"
+                            class="test_button"
                             onclick="testWinterSolstice2024()"
                         >
                             Winter Solstice 2024
@@ -1186,39 +1186,39 @@
                 <section aria-labelledby="shortcuts-title" class="relative">
                     <h2
                         id="shortcuts-title"
-                        class="section-title uppercase center"
+                        class="section_title uppercase center"
                     >
                         Keyboard Shortcuts
                     </h2>
-                    <article class="section-card shortcuts-section">
-                        <div class="data-grid">
+                    <article class="section_card shortcuts_section">
+                        <div class="data_grid">
                             <div class="data_card">
                                 <div class="data_label">Navigate Fields</div>
-                                <div class="data-value">
+                                <div class="data_value">
                                     <kbd class="kbd">Enter</kbd>
                                 </div>
                             </div>
                             <div class="data_card">
                                 <div class="data_label">Kalculate</div>
-                                <div class="data-value">
+                                <div class="data_value">
                                     <kbd class="kbd">Ctrl/⌘ + K</kbd>
                                 </div>
                             </div>
                             <div class="data_card">
                                 <div class="data_label">Reset to Now</div>
-                                <div class="data-value">
+                                <div class="data_value">
                                     <kbd class="kbd">Ctrl/⌘ + R</kbd>
                                 </div>
                             </div>
                             <div class="data_card">
                                 <div class="data_label">Clear Session</div>
-                                <div class="data-value">
+                                <div class="data_value">
                                     <kbd class="kbd">Ctrl/⌘ + ⇧ + C</kbd>
                                 </div>
                             </div>
                             <div class="data_card">
                                 <div class="data_label">Copy Link</div>
-                                <div class="data-value">
+                                <div class="data_value">
                                     <kbd class="kbd">Ctrl/⌘ + L</kbd>
                                 </div>
                             </div>
@@ -1230,19 +1230,19 @@
             <footer>
                 <div class="container footwrap">
                     <section class="badges" aria-label="Project information">
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ This 八字 BA ZI CALCULATOR describes a point in
                             time. It's also a Clock System, a Metaphor System
                             for Illiterate Commoners.
                         </span>
 
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ 八字 BA ZI is used as potentiality indicator, a
                             Mnemonic Tools, a Thought Pump. Analphabet ready.
                             Pretty cool!
                         </span>
 
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ 八字 BA ZI Is based on an ancient way to talk
                             about the universe considering we are part of it.
                             It's roots concepts are that we not separated from
@@ -1250,33 +1250,33 @@
                             world.
                         </span>
 
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ 八字 BA ZI had, and still have, a huge relevance
                             where offspring's marriages are managed by the
                             family.
                         </span>
 
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ This Open Source BA ZI Calculator webapp is made
                             from first principles. Zero Dependencies. No build
                             step.
                         </span>
 
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ Mathematics: Cold Dew 1967 Validated to ±0.001°
                         </span>
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ Beautiful simplicity.
                         </span>
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ Four Pillars of Destiny, "BaZi" Birth Time Eight
                             Characters, based on the Ganzhi calendar.
                         </span>
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ Vibe Coded by Toybreaker w/help from Claude Opus
                             4.1
                         </span>
-                        <span class="validation-badge">
+                        <span class="validation_badge">
                             ✓ Powered by:
                             <a
                                 class="ext_link"
@@ -2086,25 +2086,25 @@
                 const emoji = EARTHLY_BRANCHES.emojis[pillar.branch];
                 const yinYang = HEAVENLY_STEMS.yin_yang[pillar.stem];
 
-                const elementClass = `element-${element.toLowerCase()}`;
-                const emojiClass = `animal-emoji-${element.toLowerCase()}`;
+                const elementClass = `element_${element.toLowerCase()}`;
+                const emojiClass = `animal_emoji_${element.toLowerCase()}`;
 
                 return `
                     <article class="pillar" aria-label="${title} Pillar">
-                        <h4 class="pillar-title vert uppercase">${title}</h4>
-                        <div class="stem-branch">
+                        <h4 class="pillar_title vert uppercase">${title}</h4>
+                        <div class="stem_branch">
                             <div>
-                                <div class="chinese-char" lang="zh">${stem}</div>
+                                <div class="chinese_char" lang="zh">${stem}</div>
                                 <div class="pinyin">${stemPinyin}</div>
                             </div>
                             <div>
-                                <div class="chinese-char" lang="zh">${branch}</div>
+                                <div class="chinese_char" lang="zh">${branch}</div>
                                 <div class="pinyin">${branchPinyin}</div>
                             </div>
                         </div>
-                        <div class="animal-emoji ${emojiClass}" role="img" aria-label="${animal} emoji">${emoji}</div>
-                        <div class="animal-info">${animal}</div>
-                        <div class="animal-yy ${yinYang}">${yinYang}</div>
+                        <div class="animal_emoji ${emojiClass}" role="img" aria-label="${animal} emoji">${emoji}</div>
+                        <div class="animal_info">${animal}</div>
+                        <div class="animal_yy ${yinYang}">${yinYang}</div>
                         <span class="element ${elementClass}">${element}</span>
                     </article>
                 `;
