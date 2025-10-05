@@ -369,9 +369,14 @@
             }
 
             .date-display {
-                font-size: var(--font-size-md) !important;
+                font-size: var(--font-size-2xl) !important;
                 color: var(--color-primary);
                 letter-spacing: 0.5px;
+            }
+
+            .date-display small {
+                font-size: 50%;
+                display: block;
             }
 
             /* Astronomical Data */
@@ -902,8 +907,8 @@
                             style="display: none"
                             aria-live="polite"
                         >
-                            <span>Ba Zi for </span
-                            ><time class="date-display" id="dateDisplay">
+                            <div>Ba Zi for</div>
+                            <time class="date-display" id="dateDisplay">
                                 <!-- Date info will be inserted here -->
                             </time>
                         </output>
@@ -2032,7 +2037,7 @@
                 document.getElementById("calculatedDateInfo").style.display =
                     "block";
                 document.getElementById("dateDisplay").innerHTML =
-                    `${dayOfWeek}, ${monthName} ${day}, ${year} at ${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} (${timezoneName})`;
+                    `${dayOfWeek}, ${monthName} ${day}, ${year} <small>at ${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")} (${timezoneName})</small>`;
 
                 // Display astronomical data
                 document.getElementById("astronomicalData").style.display =
