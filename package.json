@@ -1,0 +1,12 @@
+{
+  "name": "bazi",
+  "version": "102",
+  "description": "Astronomically-accurate BaZi (Four Pillars of Destiny) Calculator",
+  "homepage": "https://bazi.junglestar.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junglesta/BAZI.git"
+  },
+  "author": "JUNGLESTAR",
+  "license": "MIT"
+}
