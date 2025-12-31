@@ -1834,11 +1834,15 @@
             function calculateYearPillar(year, solarTermIndex) {
                 // Year changes at Start of Spring (立春), not January 1
                 // Start of Spring is solar term 0
+                // Solar terms 22-23 (小寒/大寒) are before Start of Spring
                 // If we're before Start of Spring, use previous year
-                // Simplified: using calendar year for now
+                let effectiveYear = year;
+                if (solarTermIndex >= 22) {
+                    effectiveYear = year - 1;
+                }
 
-                const stemIndex = (year - 4) % 10;
-                const branchIndex = (year - 4) % 12;
+                const stemIndex = (effectiveYear - 4) % 10;
+                const branchIndex = (effectiveYear - 4) % 12;
 
                 return {
                     stem: (stemIndex + 10) % 10, // Ensure positive
@@ -1855,7 +1859,12 @@
                 const monthBranch = (Math.floor(solarTermIndex / 2) + 2) % 12;
 
                 // Month stem calculation based on year stem
-                const yearStem = (((year - 4) % 10) + 10) % 10; // Ensure positive
+                // Use effective year (previous year if before Start of Spring)
+                let effectiveYear = year;
+                if (solarTermIndex >= 22) {
+                    effectiveYear = year - 1;
+                }
+                const yearStem = (((effectiveYear - 4) % 10) + 10) % 10; // Ensure positive
                 // Formula: monthStem = (yearStem * 2 + monthBranch) % 10
                 const monthStem = (yearStem * 2 + monthBranch) % 10;
 
