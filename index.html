@@ -1831,13 +1831,14 @@
                 return 0; // Default (shouldn't reach here)
             }
 
-            function calculateYearPillar(year, solarTermIndex) {
+            function calculateYearPillar(year, month, solarTermIndex) {
                 // Year changes at Start of Spring (立春), not January 1
-                // Start of Spring is solar term 0
-                // Solar terms 22-23 (小寒/大寒) are before Start of Spring
+                // Start of Spring is solar term 0 (at longitude 315°)
+                // Solar terms 21-23 (冬至/小寒/大寒) in Jan/Feb are before Start of Spring
                 // If we're before Start of Spring, use previous year
                 let effectiveYear = year;
-                if (solarTermIndex >= 22) {
+                // January/February dates with solar terms 21-23 are before 立春
+                if (month <= 2 && solarTermIndex >= 21) {
                     effectiveYear = year - 1;
                 }
 
@@ -1850,7 +1851,7 @@
                 };
             }
 
-            function calculateMonthPillar(year, solarTermIndex) {
+            function calculateMonthPillar(year, month, solarTermIndex) {
                 // Month pillar based on solar term pairs
                 // Each pair of solar terms corresponds to one month
                 // Terms 0-1 (立春/雨水) = Tiger month (branch 2)
@@ -1861,7 +1862,8 @@
                 // Month stem calculation based on year stem
                 // Use effective year (previous year if before Start of Spring)
                 let effectiveYear = year;
-                if (solarTermIndex >= 22) {
+                // January/February dates with solar terms 21-23 are before 立春
+                if (month <= 2 && solarTermIndex >= 21) {
                     effectiveYear = year - 1;
                 }
                 const yearStem = (((effectiveYear - 4) % 10) + 10) % 10; // Ensure positive
@@ -1983,8 +1985,8 @@
                     ((longitude - currentTerm.longitude + 360) % 360) / 15;
 
                 // Calculate four pillars
-                const yearPillar = calculateYearPillar(year, solarTermIndex);
-                const monthPillar = calculateMonthPillar(year, solarTermIndex);
+                const yearPillar = calculateYearPillar(year, month, solarTermIndex);
+                const monthPillar = calculateMonthPillar(year, month, solarTermIndex);
                 const dayPillar = calculateDayPillar(jd);
                 const hourPillar = calculateHourPillar(hour, dayPillar.stem);
 
