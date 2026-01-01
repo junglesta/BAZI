@@ -67,7 +67,7 @@
 
         <title>
             Ba Zi 八字 - Astronomically-accurate Potentiality-pillars Calculator
-            | JUNGLESTAR | v102
+            | JUNGLESTAR | v103
         </title>
         <style>
             :root {
@@ -1804,7 +1804,8 @@
             function getSolarTermIndex(longitude) {
                 // Each solar term covers 15° starting from its longitude
                 // We need to find which term's range contains our longitude
-                const normalized = (longitude + 360) % 360;
+                // Round to avoid floating-point boundary issues (e.g., 194.9999 vs 195.0)
+                const normalized = Math.round(((longitude + 360) % 360) * 100) / 100;
 
                 // Solar terms are arranged with Spring Equinox at 0°
                 // Start of Spring at 315° is actually term 0
