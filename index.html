@@ -637,15 +637,16 @@
                 text-align: right;
                 border-top: var(--border_primary);
                 line-height: 2;
+
+                display: grid;
+                grid-template-columns: 1fr 1fr;
             }
 
             .version {
                 margin-block: var(--spacing_base);
                 padding: var(--spacing_base);
                 text-align: left;
-                border-top: var(--border_primary);
                 line-height: 2;
-                opacity: 0.6;
                 font-size: 0.85em;
             }
 
@@ -939,7 +940,10 @@
                     </h2>
                     <form
                         class="section_card"
-                        onsubmit="event.preventDefault(); calculateBaZi();"
+                        onsubmit="
+                            event.preventDefault();
+                            calculateBaZi();
+                        "
                     >
                         <fieldset class="input_grid">
                             <legend class="sr_only">Birth date and time</legend>
@@ -1082,8 +1086,10 @@
                                 onclick="copyLink()"
                                 class="button_copy stroke"
                                 id="copyURLbtn"
-                                onmouseover="this.style.transform='scale(1.2)'"
-                                onmouseout="this.style.transform='scale(1)'"
+                                onmouseover="
+                                    this.style.transform = 'scale(1.2)'
+                                "
+                                onmouseout="this.style.transform = 'scale(1)'"
                                 title="Click to Copy this link containing your BAZI URL, to clipboard!"
                                 aria-label="Click to Copy this link containing your BAZI URL, to clipboard!"
                             >
@@ -1340,19 +1346,32 @@
                     </aside>
                 </div>
 
-                <aside class="version" aria-label="Version information">
-                    v104 <br />2026-01-01
-                </aside>
-
                 <aside class="donation" aria-label="Donation information">
-                    Feeling Thankful? <br />Tip this project! <br />
-                    <a
-                        target="_blank"
-                        class="ext_link"
-                        href="https://ko-fi.com/junglo"
-                    >
-                        Buy Us a Coffee
-                    </a>
+                    <div class="left" aria-label="Version information">
+                        <section>
+                            v105 | Updated on 2026-01-01 <br />
+                            OPEN SOURCE on
+                            <a
+                                target="_blank"
+                                class="ext_link"
+                                href="https://github.com/junglesta/BAZI"
+                            >
+                                Github
+                            </a>
+                        </section>
+                    </div>
+                    <div class="right">
+                        <h3>
+                            Feeling Thankful? <br />Tip this project! <br />
+                        </h3>
+                        <a
+                            target="_blank"
+                            class="ext_link"
+                            href="https://ko-fi.com/junglo"
+                        >
+                            Buy Us a Coffee
+                        </a>
+                    </div>
                 </aside>
             </footer>
         </div>
@@ -1819,7 +1838,8 @@
                 // Each solar term covers 15° starting from its longitude
                 // We need to find which term's range contains our longitude
                 // Round to avoid floating-point boundary issues (e.g., 194.9999 vs 195.0)
-                const normalized = Math.round(((longitude + 360) % 360) * 100) / 100;
+                const normalized =
+                    Math.round(((longitude + 360) % 360) * 100) / 100;
 
                 // Solar terms are arranged with Spring Equinox at 0°
                 // Start of Spring at 315° is actually term 0
@@ -2000,8 +2020,16 @@
                     ((longitude - currentTerm.longitude + 360) % 360) / 15;
 
                 // Calculate four pillars
-                const yearPillar = calculateYearPillar(year, month, solarTermIndex);
-                const monthPillar = calculateMonthPillar(year, month, solarTermIndex);
+                const yearPillar = calculateYearPillar(
+                    year,
+                    month,
+                    solarTermIndex,
+                );
+                const monthPillar = calculateMonthPillar(
+                    year,
+                    month,
+                    solarTermIndex,
+                );
                 const dayPillar = calculateDayPillar(jd);
                 const hourPillar = calculateHourPillar(hour, dayPillar.stem);
 
